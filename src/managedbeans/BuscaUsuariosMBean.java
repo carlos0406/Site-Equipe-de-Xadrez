@@ -114,4 +114,10 @@ public class BuscaUsuariosMBean extends ControladorGeral {
 	public void setUsuariosEncontrados(List<Usuario> usuariosEncontrados) {
 		this.usuariosEncontrados = usuariosEncontrados;
 	}
+	
+	public List<Usuario> autoCompleteUsuarios(String query) {
+
+		return new UsuarioDAO().buscarPelaColunaLike("nome", query, Usuario.class);
+
+	}
 }

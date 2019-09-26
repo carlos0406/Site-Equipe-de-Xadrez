@@ -37,10 +37,14 @@
 					disabled="#{usuarioLogado.administrador == false}"/>
 				
 				<h:outputLabel for="ministrantes" value="Ministrantes: " />
-				<h:inputText id="ministrantes" value="#{cadastrarTreinoMBean.treino.ministrantes}" 
-					disabled="#{usuarioLogado.administrador == false}"/>
+				<p:autoComplete value="#{cadastrarTreinoMBean.treino.ministrantes}"
+					minQueryLength="3"
+					completeMethod="#{buscaUsuariosMBean.autoCompleteUsuarios}"
+					var="usuario" itemLabel="#{usuario.nome}" itemValue="#{usuario}"
+					converter="usuarioConverter" size="20" required="true"
+					requiredMessage="Campo ministrantes obrigatório" />
 				
-				<h:outputLabel for="participantes" value="Participantes: " />
+				<h:outputLabel for="participantes" value="Partici pantes: " />
 				<h:inputTextarea id="participantes" value="#{cadastrarTreinoMBean.treino.participantes}" 
 					rows="5" cols="40"/>
 							
