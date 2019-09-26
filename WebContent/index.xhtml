@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>
+		<link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/imagens/favicon.ico" />
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Equipe de Xadrez IFRN-JC</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Site responsável pela transmissão de 
+		informações sobre a equipe de xadrez do IFRN campus Joâo Câmara/RN"/>
+		<meta name="keywords" content="xadrez, IFRN, joao camara"/>
+		<meta name="robots" content="index, follow" />
+		<meta name="author" content="Raissa Crispim, Eudes Romão, Larissa 
+		Cavalcanti, Gean, Débora, João Victor" />
+		<h:link rel="stylesheet" href="css/style.css"/>
+		<h:link rel="icon" href="imagens/logo.png" />
+		<h:link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
+				integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" 
+				crossorigin="anonymous"/>
+
+		<style>
+
+			@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+
+			body {
+				background-color: #ecf0f1;
+			}
+			
+			.main {
+				margin: 20px 0;
+				padding: 10px;
+			}
+			
+			.block_login {
+				margin: 5px auto;
+				width: 85%;
+				padding: 20px;
+				color: #fff;
+				border-radius: 10px;
+				background-color: #2f3640;
+			}
+			
+			.iconeDoSistema {
+				width: 50%;
+				margin: 0;
+			}
+			
+			h1 {
+				text-align: center;
+				font-family: 'Inconsolata', monospace;
+			}
+			
+			.write {
+				background: transparent;
+				width: 80%;
+				color: #ecf0f1;
+				padding: 10px 0;
+				margin: 10px 10%;
+				border-top: none;
+				border-bottom: 2px solid #ecf0f1;
+				border-left: none;
+				border-right: none;
+				outline: none;
+			}
+			
+			.botao_enviar {
+				background-color: #ecf0f1;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				padding: 10px;
+				width: 50%;
+				margin: 10px 25%;
+			}
+			
+			.botao_enviar:hover {
+				background-color: #ddd;
+			}
+			
+			p {
+				text-align: center;
+			}
+			
+			.esqueceuSenha {
+				color: #ecf0f1;
+				text-decoration: none;
+				font-family: 'Inconsolata', monospace;
+			}
+			
+			/* ###################### RESOLUÇÕES ###################### */
+			
+			@media screen and (min-width: 580px) {
+				
+				.iconeDoSistema {
+					width: 30%;
+					margin: 0 35%;
+				}
+			
+				.write {
+					width: 80%;
+					padding: 10px 0;
+					margin: 10px 10%;
+				}
+			
+				.botao_enviar {
+					width: 50%;
+					padding: 10px 0;
+					margin: 10px 25%;
+				}
+			
+			}
+			
+			@media screen and (min-width: 840px) {
+				
+				.iconeDoSistema {
+					width: 25%;
+					margin: 0 37%;
+				}	
+			
+				.block_login {
+					width: 60%;
+				}
+			
+				.write {
+					width: 50%;
+					padding: 10px 0;
+					margin: 10px 25%;
+				}
+			
+				.botao_enviar {
+					width: 30%;
+					padding: 10px 0;
+					margin: 10px 35%;
+				}
+			
+			}
+		
+		</style>
+	</h:head>
+	<h:body>
+		
+	<div class="main">
+		<div class="block_login">
+		
+			<h:graphicImage value="/imagens/logo.png" styleClass="iconeDoSistema"/>
+			<h1>Xadrez</h1>
+		
+			<h:form>
+						
+				<p:inputText value="#{loginMBean.usuario.email}" placeholder="Email"
+						styleClass="form-control" class="write" />
+	
+				<p:password value="#{loginMBean.usuario.senha}" placeholder="Senha"
+						styleClass="form-control" id="inputPassword" class="write" />
+			
+
+				<!-- BOTÃO DE LOGIN UTILIZANDO AJAX -->			
+				<h:commandButton styleClass="btn btn-lg btn-primary btn-block"
+						value="Entrar" class="botao_enviar" action="#{loginMBean.entrar}">
+				</h:commandButton>
+			</h:form>				
+		</div>
+	</div>
+		
+	</h:body>
+</html>

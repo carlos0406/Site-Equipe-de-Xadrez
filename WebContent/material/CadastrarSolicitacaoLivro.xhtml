@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="../template.xhtml">
+
+	<!-- ###################### CONTEÚDO ###################### -->
+
+	<div id="conteudo">
+		<h1>Cadastrar solicitação</h1>
+			
+			
+			<h:form enctype="multipart/form-data">
+				<h:messages/>
+				<h:panelGrid columns="4" style="background-color: #ecf0f1; 
+                    bottom: 0px; left: 0px; right: 0px; top: 0px; 
+                    width: 600px">
+			
+					<h:outputLabel for="autor_solicitacao" value="Solicitante: " />
+					<h:inputText id="autor_camisa" value="#{cadastrarSolicitacao.solicitacao.usuarioSolicitante.nome}" />
+					
+					<h:outputLabel value="Livro: " />
+					<h:outputText value="#{cadastrarSolicitacao.solicitacao.livroSolicitado.nome_livro}"/>
+					
+					<h:outputLabel value="Autor: " />
+					<h:outputText value="#{cadastrarSolicitacao.solicitacao.livroSolicitado.nome_autor}"/>
+					
+					<h:outputLabel value="Ano: " />
+					<h:outputText value="#{cadastrarSolicitacao.solicitacao.livroSolicitado.ano_livro}"/>
+					
+					<h:outputLabel for="prazo" value="Prazo: "/>
+					<p:calendar id="data" value="#{cadastrarSolicitacao.solicitacao.dataPrazo}" locale="br" navigator="true" pattern="dd/MM/yyyy" mask="true" />
+					
+					<h:commandButton class="botao" value="Enviar" action="#{cadastrarSolicitacao.cadastrar}"/>
+				</h:panelGrid>
+			</h:form>
+	</div>
+</ui:decorate>

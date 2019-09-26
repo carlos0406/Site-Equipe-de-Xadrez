@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="../template.xhtml">
+
+	<!-- ###################### CONTEÚDO ###################### -->
+
+	<div id="conteudo">
+		
+		<h1>Cadastrar patrimônio</h1>
+
+		<h:form enctype="multipart/form-data">
+			<h:messages/>
+			<p:panelGrid columns="4" style=" 
+                   bottom: 0px; left: 0px; right: 0px; top: 0px; 
+                   width: 150px">
+		
+				<h:outputLabel for="nomeLivro" value="Nome da obra: " />
+				<h:inputText id="nomeLivro" value="#{cadastrarLivroMBean.livro.nome_livro}" />
+			
+				<h:outputLabel for="ano_livro" value="Ano: " />
+				<h:inputText id="ano_livro" value="#{cadastrarLivroMBean.livro.ano_livro}" />
+				
+				<h:outputLabel for="nome_autor" value="Nome do autor: " />
+				<h:inputText id="nome_autor" value="#{cadastrarLivroMBean.livro.nome_autor}" />
+				
+				<h:outputLabel for="fotoLivro" value="Foto da capa: "/>
+				<p:fileUpload id="fotoLivro" mode="simple" value="#{cadastrarLivroMBean.livro.fotoLivro}"/>
+				
+				<h:outputLabel for="tipo" value="Tipo: "/>
+				<h:selectOneRadio id="tipo" value="#{cadastrarLivroMBean.livro.tipo}">
+					<f:selectItem 
+						itemLabel="Livro"
+						itemValue="Livro"/> 
+					<f:selectItem 
+						itemLabel="Filme" 
+						itemValue="Filme" />
+				</h:selectOneRadio>
+				
+				<h:commandButton class="botao" value="Enviar" action="#{cadastrarLivroMBean.cadastrar}"/>
+				<h:commandLink value="Ver patrimônios" action="#{buscaLivrosMBean.entrarBuscarLivros}" />
+		
+			</p:panelGrid>
+		
+		</h:form>
+	</div>
+
+</ui:decorate>

@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="../template.xhtml">
+	
+	<!-- ###################### CONTEÚDO ###################### -->
+	
+	<style>
+		span {
+			margin-left: 0px;
+		}
+		
+		table {
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+	</style>
+
+	<div id="conteudo">
+		
+		<h1>Cadastrar Treino</h1>
+		
+		<h:form enctype="multipart/form-data" style="margin: 0px auto;">
+			<h:messages/>
+			
+			<h:panelGrid columns="4" style="background-color: #ecf0f1; 
+                   bottom: 0px; left: 0px; right: 0px; top: 0px; 
+                   width: 200px">
+				
+				<h:outputLabel for="tema" value="Tema: " />
+				<h:inputText id="tema" value="#{cadastrarTreinoMBean.treino.tema}" 
+					disabled="#{usuarioLogado.administrador == false}"/>
+				
+				<h:outputLabel for="ministrantes" value="Ministrantes: " />
+				<h:inputText id="ministrantes" value="#{cadastrarTreinoMBean.treino.ministrantes}" 
+					disabled="#{usuarioLogado.administrador == false}"/>
+				
+				<h:outputLabel for="participantes" value="Participantes: " />
+				<h:inputTextarea id="participantes" value="#{cadastrarTreinoMBean.treino.participantes}" 
+					rows="5" cols="40"/>
+							
+				<p:outputLabel for="data" value="Data: " />
+				<p:calendar id="data" value="#{cadastrarTreinoMBean.treino.data}"
+					disabled="#{usuarioLogado.administrador == false}"/>
+				
+				<h:outputLabel for="turno" value="Turno: "/>
+				<h:selectOneRadio id="turno" value="#{cadastrarTreinoMBean.treino.turno}" disabled="#{usuarioLogado.administrador == false}">
+					<f:selectItem 
+						itemLabel="Manhã"
+						itemValue="Manha"/> 
+					<f:selectItem 
+						itemLabel="Tarde" 
+						itemValue="Tarde" />
+				</h:selectOneRadio>
+				
+				<h:commandButton class="botao" value="Enviar" action="#{cadastrarTreinoMBean.cadastrar}"/>
+		
+			</h:panelGrid>
+		
+		</h:form>
+	</div>
+</ui:decorate>

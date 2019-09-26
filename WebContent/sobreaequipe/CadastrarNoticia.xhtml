@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="../template.xhtml">
+		
+	<!-- ###################### CONTEÚDO ###################### -->
+
+	<div id="conteudo">
+		
+		<h1>Cadastrar notícia</h1>
+	
+
+		<h:form enctype="multipart/form-data">
+			<p:growl id="mensagens"/>
+			
+			<h:panelGrid columns="2" style="width: 100%;">
+				<h:outputLabel for="TituloNoticia" value="Título: " />
+				<h:inputText id="TituloNoticia" value="#{cadastrarNoticiaMBean.noticia.titulo_noticia}" 
+					style="width:100%;"/>
+				
+				<h:outputLabel for="NomeAutor" value="Autor: " />
+				<h:inputText id="NomeAutor" value="#{cadastrarNoticiaMBean.noticia.nome_autor}" 
+					style="width:100%;"/>
+				
+				<h:outputLabel for="PalavraChave" value="Palavras-chave: " style="width: 30px;" />
+				<h:inputText id="PalavraChave" value="#{cadastrarNoticiaMBean.noticia.palavraChave}" 
+					style="width:100%;"/>
+			</h:panelGrid>
+			
+			<br/>
+			
+			<h:outputLabel for="fotoNoticia" value="Fotos da notícia: "/>
+			<p:fileUpload id="fotoNoticia" mode="advanced" dragDropSupport="false"
+                 multiple="true" fileUploadListener="#{cadastrarNoticiaMBean.fazerUploadFotos}"
+                 fileLimit="10" label="Escolher arquivos" cancelLabel="Cancelar envio" 
+                 uploadLabel="Enviar fotos" fileLimitMessage="São permitidas no máximo 10 fotos para envio. "
+                 update="mensagens"/>
+            
+            <div style="color: red; font-weight: bold;">
+				Atenção: para anexar as fotos, é necessário selecioná-las e, em seguida, clicar no botão Enviar fotos. 
+			</div>
+            
+            <ui:remove>
+            	<p:fileUpload id="fotoNoticia" mode="simple" value="#{cadastrarNoticiaMBean.noticia.fotoNoticia}"/>
+            </ui:remove>
+			
+			<br/>
+			
+			<h:outputLabel for="texto" value="Texto: " />
+			<p:textEditor id="texto" widgetVar="editor1" value="#{cadastrarNoticiaMBean.noticia.texto_noticia}" height="300" style="margin-bottom:10px"/>
+			
+			<h:commandButton class="botao" value="Enviar" action="#{cadastrarNoticiaMBean.cadastrar}" />
+			<h:commandLink value="Ver noticias" action="#{buscaNoticiasMBean.entrarBuscarNoticias}" />
+		
+		</h:form>
+	
+	</div>
+
+</ui:decorate>

@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>  
+<!DOCTYPE ui:composition PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="../template.xhtml">
+	
+	<style>
+		span {
+			margin-left: 0px;
+		}
+		
+		td {
+			word-break: break-all;
+		}
+		
+		input[type="submit"] {
+		    white-space: normal;
+		}
+	</style>
+	
+	<!-- ###################### CONTEÚDO ###################### -->
+
+	<div id="conteudo">
+		
+		<h1>Solicitação de material</h1>
+		
+		<h:form enctype="multipart/form-data" >
+	
+		<h:messages/>
+		
+		<h:panelGrid columns="2">
+				
+			<h4>Filtrar por nome do livro: </h4>
+			<p:inputText value="#{buscaSolicitacoesMBean.nomeLivro}" aria-describedby="addonNome" />
+			
+			<h4>Filtrar por nome do usuario: </h4>
+			<p:inputText value="#{buscaSolicitacoesMBean.nomeUsuario}" aria-describedby="addonNome" />
+			
+			<h4>Filtrar por data de inicio: </h4>
+			<p:calendar id="dataInicio" value="#{buscaSolicitacoesMBean.dataInicioBusca}" locale="br" navigator="true" pattern="dd/MM/yyyy" mask="true" />
+					
+			<h4>Filtrar por data final: </h4>
+			<p:calendar id="dataFinal" value="#{buscaSolicitacoesMBean.dataFimBusca}" locale="br" navigator="true" pattern="dd/MM/yyyy" mask="true" />
+					
+				
+			<p:commandButton value="Buscar" action="#{buscaSolicitacoesMBean.buscar}" ajax="false"/>
+		</h:panelGrid>
+		
+	</h:form>
+	
+	<br/>
+	
+	<h:form prependId="false" style=" margin: 0 0%;">
+		<h:panelGroup rendered="#{empty buscaSolicitacoesMBean.solicitacoesEncontradas}">
+		<br/>
+			<h3>Nenhuma solicitação encontrada.</h3>
+		</h:panelGroup>
+				
+		<h:panelGroup rendered="#{not empty buscaSolicitacoesMBean.solicitacoesEncontradas}" style="width: 100%;"><!--Só exibe algo, se encontrar usuários-->
+					
+			<p:dataTable var="s" value="#{buscaSolicitacoesMBean.solicitacoesEncontradas}" style="width: 100%;">
+					  
+				<p:column headerText="Livro">
+					<h:outputText value="#{s.livroSolicitado.nome_livro}" />
+				</p:column>
+					    
+				<p:column headerText="Autor">
+					<h:outputText value="#{s.livroSolicitado.nome_autor}" />
+				</p:column>
+				
+				<p:column headerText="Tipo">
+					<h:outputText value="#{s.livroSolicitado.tipo}"/>
+				</p:column>
+				
+				<p:column headerText="Solicitante">
+					<h:outputText value="#{s.usuarioSolicitante.nome}"/>
+				</p:column>
+					
+				<p:column headerText="Solicitação">
+					<h:outputText id="dataSolicitacao" value="#{s.dataSolicitacao}">
+							<f:convertDateTime pattern="dd/MM/yyyy"/> 
+						</h:outputText>
+				</p:column>
+				
+				<p:column headerText="Situação">
+						<h:outputText value="Aprovado" rendered="#{s.aprovado}"/>
+						<h:outputText value="Indeferido" rendered="#{s.aprovado == false}"/>
+						<h:outputText value="Em análise" rendered="#{s.aprovado == null}"/>
+				</p:column>
+					
+				<p:column headerText="Devolvido?">
+					<h:outputText value="Sim" rendered="#{s.devolvido}"/>
+					<h:outputText value="Não" rendered="#{s.devolvido == false}"/>
+				</p:column>
+					
+				<p:column headerText="Prazo">
+					<h:outputText id="dataPrazo" value="#{s.dataPrazo}">
+							<f:convertDateTime pattern="dd/MM/yyyy"/>
+						</h:outputText>
+				</p:column>
+				
+				<p:column headerText="Opções" style="word-break: break-all;"> 
+					<h:commandButton class="botao" value="Deferir" action="#{buscaSolicitacoesMBean.deferir(s)}" rendered="#{s.aprovado == null}"/>
+					<h:commandButton class="botao" value="Indeferir" action="#{buscaSolicitacoesMBean.indeferir(s)}" rendered="#{s.aprovado == null}"/>
+					<h:commandButton class="botao" value="Registrar Devolução" action="#{buscaSolicitacoesMBean.devolver(s)}" rendered="#{s.aprovado and s.devolvido == false}"/>
+				</p:column>
+			
+			</p:dataTable>
+					
+		</h:panelGroup>
+				
+	</h:form>
+	</div>
+</ui:composition>

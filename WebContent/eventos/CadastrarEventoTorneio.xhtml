@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="../template.xhtml">
+	
+	<style>
+		span {
+			margin-left: 0px;
+		}
+		
+		table {
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+	</style>
+	
+	<!-- ###################### CONTEÚDO ###################### -->
+
+	<div id="conteudo">
+		
+		<h1>Cadastrar Torneio</h1>
+		
+		<h:form enctype="multipart/form-data" style="margin: 0px auto;">
+			<h:messages/>
+			
+			<h:panelGrid columns="4" style="background-color: #ecf0f1; 
+                   bottom: 0px; left: 0px; right: 0px; top: 0px; 
+                   width: 200px">
+				
+				<h:outputLabel for="local" value="Local: " />
+				<h:inputText id="local" value="#{cadastrarEventoTorneioMBean.evento.local}" 
+					disabled="#{usuarioLogado.administrador == false}"/>
+				
+				<h:outputLabel for="nome" value="Torneio: " />
+				<h:inputText id="nome" value="#{cadastrarEventoTorneioMBean.evento.nome_torneio}" 
+					disabled="#{usuarioLogado.administrador == false}"/>
+				
+				<h:outputLabel for="participantes" value="Participantes: " />
+				<h:inputTextarea id="participantes" value="#{cadastrarEventoTorneioMBean.evento.participantes}" 
+					rows="5" cols="40"/>
+							
+				<p:outputLabel for="data" value="Data: " />
+				<p:calendar id="data" value="#{cadastrarEventoTorneioMBean.evento.data}"
+					disabled="#{usuarioLogado.administrador == false}"/>
+				
+				<h:outputLabel for="foto" value="Foto: "/>
+				<p:fileUpload id="foto" mode="simple" value="#{cadastrarEventoTorneioMBean.evento.fotoEvento}"
+					disabled="#{usuarioLogado.administrador == false}"/>
+				
+				<h:commandButton class="botao" value="Enviar" action="#{cadastrarEventoTorneioMBean.cadastrar}"/>
+				<h:commandLink value="Ver torneios" action="#{buscaEventoTorneioMBean.entrarBuscarEventoTorneio}" />
+		
+			</h:panelGrid>
+		
+		</h:form>
+	</div>
+</ui:decorate>

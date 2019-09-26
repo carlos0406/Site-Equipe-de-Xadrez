@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="../template.xhtml">
+	
+	<style>
+		span {
+			margin-left: 0px;
+		}
+	</style>
+	
+	<!-- ###################### CONTEÃšDO ###################### -->
+
+	<div id="conteudo">
+		
+		<h1>Cadastrar usuário</h1>
+		
+		<h:form enctype="multipart/form-data">
+			<h:messages/>
+			
+			<h:panelGrid columns="4" style="background-color: #ecf0f1; 
+                   bottom: 0px; left: 0px; right: 0px; top: 0px; 
+                   width: 150px">
+		
+				<h:outputLabel for="nome" value="Nome completo: " />
+				<h:inputText id="nome" value="#{cadastrarUser.usuario.nome}" />
+				
+				<h:outputLabel for="sexo" value="Sexo: "/>
+				<h:selectOneRadio id="sexo" value="#{cadastrarUser.usuario.sexo}">
+					<f:selectItem 
+						itemLabel="Feminino"
+						itemValue="F"/>
+					<f:selectItem 
+						itemLabel="Masculino" 
+						itemValue="M" />
+				</h:selectOneRadio>
+			
+				<h:outputLabel for="data" value="Data de nascimento: " />
+				<p:calendar id="data" value="#{cadastrarUser.usuario.dataNascimento}" locale="br" navigator="true" pattern="dd/MM/yyyy" mask="true" />
+				
+				<h:outputLabel for="rg" value="Registro Geral (RG): " />
+				<p:inputMask id="rg" value="#{cadastrarUser.usuario.rg}" mask="999.999.999"
+                     required="true"
+                     requiredMessage="RG INVÁLIDO!" />
+				
+				<h:outputLabel for="cpf" value="CPF: "  />
+				<p:inputMask mask="999.999.999-99" id="cpf" value="#{cadastrarUser.usuario.cpf}" required="true"
+                     requiredMessage="CPF INVÁLIDO!" />
+				
+				<h:outputLabel for="email" value="Email: " />
+				<h:inputText id="email" value="#{cadastrarUser.usuario.email}" />
+				
+				<h:outputLabel for="senha" value="Senha: " />
+				<h:inputSecret id="senha" value="#{cadastrarUser.usuario.senha}" />
+				
+				<h:outputLabel for="confirm" value="Confirmar Senha: " />
+				<h:inputSecret id="confirm" value="#{cadastrarUser.usuario.confirmarSenha}" />
+				
+				<h:outputLabel for="tipoUsuario" value="Tipo de Usuário: " />
+				<h:selectOneMenu value="#{cadastrarUser.usuario.tipoUsuario}"
+					id="tipoUsuario">
+					<f:selectItem itemValue="#{null}" itemLabel="--SELECIONE--"
+						itemDescription="--SELECIONE--" />
+					<f:selectItem itemValue="ADMINISTRADOR" itemLabel="Administrador"
+						itemDescription="Administrador" />
+					<f:selectItem itemValue="MEMBRO" itemLabel="Membro"
+						itemDescription="Membro" />
+				</h:selectOneMenu>
+						
+				<p:outputLabel for="celular" value="Celular: " />
+				<p:inputMask id="celular" value="#{cadastrarUser.usuario.celular}" mask="(99)99999-9999"/>		
+				
+				<h:outputLabel for="matricula" value="Matrícula: " />
+				<h:inputText id="matricula" value="#{cadastrarUser.usuario.matricula}" />
+				
+				<h:outputLabel for="op" value="Operação: " />
+				<h:inputText id="op" value="#{cadastrarUser.usuario.op}" />
+				
+				<h:outputLabel for="ag" value="Agência: " />
+				<h:inputText id="ag" value="#{cadastrarUser.usuario.ag}" />
+				
+				<h:outputLabel for="conta" value="Conta: " />
+				<h:inputText id="conta" value="#{cadastrarUser.usuario.conta}" />
+				
+				<h:outputLabel for="banco" value="Banco: " />
+				<h:selectOneMenu id="banco" class="caixa" value="#{cadastrarUser.usuario.banco}">
+					<f:selectItem itemLabel="--SELECIONE--" noSelectionOption="true"/>
+					<f:selectItems 
+						value="#{cadastrarUser.bancos}"
+						var="bank"
+						itemValue="#{bank}"
+						itemLabel="#{bank}"/>
+				</h:selectOneMenu>
+				
+				<h:outputLabel for="foto-usuario" value="Foto: "/>
+				<p:fileUpload id="foto-usuario" mode="simple" value="#{cadastrarUser.usuario.foto}"/>
+				
+				<!-- BOTÃƒO DE CADASTRAR QUE ESTÃ� UTILIZANDO AJAX -->
+				
+				<h:commandButton class="botao" value="Enviar" action="#{cadastrarUser.cadastrar}"/>
+		
+			</h:panelGrid>
+		
+		</h:form>
+	</div>
+</ui:decorate>
