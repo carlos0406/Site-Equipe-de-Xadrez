@@ -24,7 +24,7 @@ public class LoginFilter implements Filter {
 	 * Se existirem páginas específicas cujo acesso deva ser permitido mesmo sem estar logado,
 	 * devem ser adicionadas neste array. 
 	 * */
-	private final String[] urlsPermitidas = {"index.xhtml", "CadastrarUsuario.xhtml", "erro.xhtml","home.xhtml"};
+	private final String[] urlsPermitidas = {"index.xhtml", "CadzastrarUsuario.xhtml", "erro.xhtml","home.xhtml"};
 	
 	@Override
 	public void destroy() {

@@ -1,9 +1,8 @@
-/META-INF/
 /arquitetura/
 /auxiliares/
+/conversores/
 /dao/
 /dominio/
 /managedbeans/
 /servlet/
 /uteis/
-/conversores/

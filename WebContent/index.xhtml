@@ -27,7 +27,15 @@
 		<style>
 
 			@import url('https://fonts.googleapis.com/css?family=Inconsolata');
-
+			
+			.link{
+				color:white;
+				margin-left:490px;
+				font-size:16px;
+				font-weigth:bold;
+			
+			}
+			
 			body {
 				background-color: #ecf0f1;
 			}
@@ -164,7 +172,10 @@
 				<h:commandButton styleClass="btn btn-lg btn-primary btn-block"
 						value="Entrar" class="botao_enviar" action="#{loginMBean.entrar}">
 				</h:commandButton>
-			</h:form>				
+			
+					<h:commandLink value="Faça seu cadastro agora!" action="/login/CadastrarUsuario.xhtml" styleClass="link" />
+			</h:form>	
+						
 		</div>
 	</div>
 		
