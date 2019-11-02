@@ -88,6 +88,7 @@ public class LoginMBean {
 				usuario = dao.findUsuarioByLoginSenha(usuario.getEmail(),
 						CriptografiaUtils.criptografarMD5(usuario.getSenha()));
 			} else {
+				 //com Matricula cadastrada
 				//usuario=dao.findUsuarioByMatricula(usuario.getEmail());
 				
 				
