@@ -1,15 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html 
-	xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-	
-	<h:head>
-		<link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/imagens/favicon.ico" />
-	
-		<link rel="stylesheet"
+
+<h:head>
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{request.contextPath}/imagens/favicon.ico" />
+
+	<link rel="stylesheet"
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 		crossorigin="anonymous" />
@@ -21,7 +21,8 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
 		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 		crossorigin="anonymous"></script>
-	<h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+	<h:outputScript library="primefaces" name="jquery/jquery.js"
+		target="head" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Equipe de Xadrez IFRN-JC</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -57,566 +58,577 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
 		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 		crossorigin="anonymous"></script>
-	
-	<link rel="shortcut icon" href="#{request.contextPath}/imagens/favicon.ico" />
-		
-	<style>
-		@CHARSET "UTF-8";
-		@import url('https://fonts.googleapis.com/css?family=Raleway');
-		
-		/* ###################### PRÉ-DEFINIÇÕES ###################### */
-		
-		* {
-			margin:0;
-			padding:0;
-			font-size:100%;
-			border:none;
-			outline:none;
-			font-weght: 300;
-			box-sizing: border-box;
-			font-family: 'Lato', sans-serif;
-		}
-	
-		body {
-			background-color: #ecf0f1;
-		}
-	
-		a {
-			text-decoration: none;
-			font-family: 'Raleway', sans-serif;
-		}
-		
-		h1, h2, h3, h4, h5, h6 {
-			font-family: 'Raleway', sans-serif;
-		}
-		
-		p {
-			font-family: 'Raleway', sans-serif;
-		}
-	
-		img {
-			max-width: 100%;
-		}
-	
-		/* ###################### CABEÇALHO ###################### */
-	
-		#cabecalho {
-			background-color: #27ae60;
-			display: block;
-			float: left;
-			width: 100%;
-			height: 210px;
-			padding: 10px;		
-			border-bottom: 1px solid rgba(0,0,0,.1);
-		}
-		
-		.logo_cabecalho {
-			margin: 5px 0;
-			float: left;
-		}
-		
-		.nome_da_equipe {
-			margin: 45px 40px;
-			float: left;
-			color: #ecf0f1;
-		}
-		
-		.nome_da_equipe h1 {
-			font-size: 40px;
-		}
-		
-		.nome_da_equipe h2 {
-			font-size: 30px;
-		}
-		
-		.nome_usuario {
-			float: right;
-			margin: 75px 50px 0 0;
-			color: #ecf0f1;
-			font-size: 20px;
-		}
-		
-		/* ###################### MENU ###################### */
-			
-		.menu {
-			width: 100%;
-			background-color: #2ecc71;
-			list-style: none;
-			float: left;
-		}
-		
-		.menu li {
-			position: relative;
-			float: left;
-		}
-		
-		.menu li a {
-			display: block;
-			color: #ecf0f1;
-			text-decoration: none;
-			padding: 10px 15px;
-			font-size: 20px;
-		}
-		 
-		.menu li a:hover {
-			background: #27ae60;
-			color: #ecf0f1;
-		}
-		
-		.menu li  ul {
-			position: absolute;
-			display: none;
-			top: 50px;
-			left: 0;
-			background-color: #2ecc71;
-			width: 200px;
-		}   
-		
-		.menu li:hover ul, .menu li.over ul{
-			display: block;
-		}
-		
-		.menu li ul li{
-			display: block;
-			width: 200px;
-		}
-		
-		/* ###################### CONTEÚDO ###################### */
-		
-		#conteudo {
-			padding: 10px;
-			background-color: #ecf0f1;
-		}
-		
-		#conteudo h1 {
-			text-align: center;
-			padding: 10px;
-			font-size: 30px;
-		}
-		
-		#conteudo form {
-			background-color: #ecf0f1;
-			margin: 0 25%;
-			width: 400px;
-		}
-		
-		#conteudo input {
-			margin: 7px;
-			border-radius: 2px;
-		}
-		
-		#conteudo .botao {
-			padding: 10px;
-			background-color: #27ae60;
-			text-align: center;
-			color: #ecf0f1;
-			border-radius: 5px;
-			cursor: pointer;
-			transition: .5s;
-		}
-		
-		#conteudo .botao:hover {
-			background-color: #2ecc71;
-			transition: .5s;
-		}
-		
-		#conteudo .caixa {
-			
-		}
-		
-		/* ###################### RODAPÉ ###################### */
-		
-		#rodape {
-		    width: 100%;
-		    float: left;
-		}
-		
-		/* ########### PARTE DE CIMA DO RODAPÉ ########### */
-		
-		.rodape_de_cima {
-		    background-color: #e74c3c;
-		    width: 100%;
-		    padding: 5%;
-		    float: left;
-		}
-		
-		.block_rodape {
-		    background-position: 50% 50%;
-		    margin: 2%;
-		    padding: 2% 5%; 
-		    float: left;
-		    width: 100%;
-		    transition: 1s;
-		    border-radius: 7px;
-		}
-		
-		.block_rodape:hover {
-		    background-color: #c0392b;
-			transition: 1s;
-		}
-		
-		.titulo_block_rodape {    
-		    font-size: 25px;
-		    color: #ecf0f1;
-			text-align: center;
-		}
-		
-		.p_block_rodape b {
-			font-size: 18px;
-		}
-		
-		.p_block_rodape {
-		    font-size: 15px;
-		    color: #ecf0f1;
-		}
-		
-		.bloco_contato {
-			float: left;
-			color: #ecf0f1;
-			margin: 10px;
-		}
-		
-		.bloco_contato i {
-			float: left;
-		}		
-		
-		.bloco_contato p {
-			float: left;
-			margin: 2px 0 0 5px;
-		}
-		
-		.bloco_contato .p_redes_sociais {
-			float: left;
-			margin: 15px 0 0 5px;
-		}
-		
-		.bloco_contato .img_redes_sociais {
-			float: left;
-			width: 50px;
-		}
-	
-		/* ########### PARTE DE BAIXO DO RODAPÉ ########### */
-		
-		.rodape_de_baixo {
-		    background-color: #c0392b;
-		    padding: 5%;
-		    float: left;
-		    width: 100%;
-		    text-align: center;
-		}
-		
-		.copyright {
-		    color: #ecf0f1;
-		}
-		
-		.MyGithub {
-		    color: #fff;
-		}
-		
-		/* ############### RESOLUÇÃO DE 768PX ############## */
-	
-		@media screen and (min-width: 768px) {
-		    
-		/* ALTERAÇÃO DO FOOTER PARTE DE CIMA */
-		
-		    .block_rodape {
-		        width: 45%;
-		    }
-		
-		    .titulo_rodape {
-		        color: #fff;
-		        font-size: 30px;
-		        text-align: center;
-		        padding: 0 0 5% 0;
-		    }
-		
-		/* ALTERAÇÃO DO FOOTER PARTE DE BAIXO */
-		
-		    .rodape_de_baixo {
-		        padding: 3%;
-		    }
-		
-		}
-		
-		/* ############### RESOLUÇÃO DE 960PX ############## */
-		
-		@media screen and (min-width: 960px) {
-		    
-		/* ALTERAÇÃO DO FOOTER PARTE DE CIMA */
-		
-		    .block_rodape {
-		        width: 29%;
-		    }
-		
-		    .titulo_rodape {
-		        color: #fff;
-		        font-size: 30px;
-		        text-align: center;
-		        padding: 0 0 2% 0;
-		    }
-		
-		/* ALTERAÇÃO DO FOOTER PARTE DE BAIXO */
-		
-		    .rodape_de_baixo {
-		        padding: 2%;
-		    }
-		
-		}
-		/*###carrousel###*/
-		#carouselExampleIndicators {
-			width: 80%;
-			margin-left: 10%;
-		
-		}
 
-		.texto{
-			text-indent: 2.5em;
-			text-align: justify;
-			margin: 0px 5% 0px 5%;
-		}
-		.torneio_titulos{
-			text-align: left;
-			margin-left: 5%;
-			margin-top: 10px;
-			list-style-type: none;
-			font-size: 25px;
-		}
-		span{
-			margin-left: 2em;
-		}
-		.lista li{
-			margin-left: 5%;
-			text-align:left;
-		}
-		.participacaotorneio{
-			text-align: left;
-			margin-left: 5%;
-			margin-top: 5%;
-		}
-		.cartao{
-			float: left;
-			margin: 5%;
-		}
-		
-		
-		.terminals{
-			margin: 200px auto 100px;
-			display: grid;
-			grid-templace-columns: repeat(auto-fit, minimax(350px 1fr));
-			frid-gap:20px;
-		}
-		
-		.testimonials .cartao{
-			position: relative;
-			width: 350px;
-			margin: 0 auto;
-			background: #333;
-			padding: 20px;
-			box-sizing: border-box;
-			text-align: center;
-			box-shadow: 0 10px 40px rgba(0, 0, 0, .5);
-			overflow: hidden;
-			
-		}
-		 .testimonials .cartao .niet{
-		 position: absolute;
-		 top: calc(100% - 2px);
-		 left: 0;
-		 width: 100%;
-		 height: 100%;
-		 background: linear-gradient(#03a9f4, #e91ee3);
-		 z-inndex:1;
-		 transition: 0.5s;
-		 }
-		.testimonials .cartao:hover .niet{
-			top: 0;
-		}
-		.testimonials .cartao .contem{
-			position: relative;
-			z-index: 2;
-			
-		}
-		
-		.testimonials .cartao .contem p {
-			font-size: 18px;
-			line-height: 24px;
-			color: #fff;
-			box-shadow: 0 10px 40px rgba(0, 0, 0, .2);
-		}
-		
-		.testimonials .cartao .contem .imgpessoa{
-			
-			width: 100px;
-			height: 100px;
-			margin: 0 auto;
-			border-radius: 50%;
-			overflow: hidden;
-			border: 4px solid #fff
-			
-		}
-		.testimonials .cartao .contem .sobre h2{
-			font-size: 18px;
-			color: #fff;
-			
-		}
-		.testimonials .cartao .contem .sobre h2 span{
-			color: #03a9f4;
-			font-size: 14px;
-			transition: 0.5s;
-			
-		}
-		.testimonials .cartao:hover .contem .sobre h2 span{
-			color: #fff;
-		}
-		
-		.dente {
-			
-			background-color: #DCDCDC;
-		}
-		.figure {
-			width: 50%;
-			height: 50%;
-			position: relative;
-		}
-		.ano{
-			font-size: 30px;
-			font-weigth: bold;
-		}
-		.camisa{
-			width:200px;
-		}
-		.botaoMais{
-			width:150px;
-			float:right;
-		}
-		
-		ul li {
-			z-index: 10;
-		}
-		
-		
-		/*cards*/
-		/*card-> cartao
+	<link rel="shortcut icon"
+		href="#{request.contextPath}/imagens/favicon.ico" />
+
+	<style>
+@CHARSET "UTF-8";
+
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+/* ###################### PRÉ-DEFINIÇÕES ###################### */
+* {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	border: none;
+	outline: none;
+	font-weght: 300;
+	box-sizing: border-box;
+	font-family: 'Lato', sans-serif;
+}
+
+body {
+	background-color: #ecf0f1;
+}
+
+a {
+	text-decoration: none;
+	font-family: 'Raleway', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Raleway', sans-serif;
+}
+
+p {
+	font-family: 'Raleway', sans-serif;
+}
+
+img {
+	max-width: 100%;
+}
+
+/* ###################### CABEÇALHO ###################### */
+#cabecalho {
+	background-color: #27ae60;
+	display: block;
+	float: left;
+	width: 100%;
+	height: 210px;
+	padding: 10px;
+	border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+.logo_cabecalho {
+	margin: 5px 0;
+	float: left;
+}
+
+.nome_da_equipe {
+	margin: 45px 40px;
+	float: left;
+	color: #ecf0f1;
+}
+
+.nome_da_equipe h1 {
+	font-size: 40px;
+}
+
+.nome_da_equipe h2 {
+	font-size: 30px;
+}
+
+.nome_usuario {
+	float: right;
+	margin: 75px 50px 0 0;
+	color: #ecf0f1;
+	font-size: 20px;
+}
+
+/* ###################### MENU ###################### */
+.menu {
+	width: 100%;
+	background-color: #2ecc71;
+	list-style: none;
+	float: left;
+}
+
+.menu li {
+	position: relative;
+	float: left;
+}
+
+.menu li a {
+	display: block;
+	color: #ecf0f1;
+	text-decoration: none;
+	padding: 10px 15px;
+	font-size: 20px;
+}
+
+.menu li a:hover {
+	background: #27ae60;
+	color: #ecf0f1;
+}
+
+.menu li  ul {
+	position: absolute;
+	display: none;
+	top: 50px;
+	left: 0;
+	background-color: #2ecc71;
+	width: 200px;
+}
+
+.menu li:hover ul, .menu li.over ul {
+	display: block;
+}
+
+.menu li ul li {
+	display: block;
+	width: 200px;
+}
+
+/* ###################### CONTEÚDO ###################### */
+#conteudo {
+	padding: 10px;
+	background-color: #ecf0f1;
+}
+
+#conteudo h1 {
+	text-align: center;
+	padding: 10px;
+	font-size: 30px;
+}
+
+#conteudo form {
+	background-color: #ecf0f1;
+	margin: 0 25%;
+	width: 400px;
+}
+
+#conteudo input {
+	margin: 7px;
+	border-radius: 2px;
+}
+
+#conteudo .botao {
+	padding: 10px;
+	background-color: #27ae60;
+	text-align: center;
+	color: #ecf0f1;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: .5s;
+}
+
+#conteudo .botao:hover {
+	background-color: #2ecc71;
+	transition: .5s;
+}
+
+#conteudo .caixa {
+	
+}
+
+/* ###################### RODAPÉ ###################### */
+#rodape {
+	width: 100%;
+	float: left;
+}
+
+/* ########### PARTE DE CIMA DO RODAPÉ ########### */
+.rodape_de_cima {
+	background-color: #e74c3c;
+	width: 100%;
+	padding: 5%;
+	float: left;
+}
+
+.block_rodape {
+	background-position: 50% 50%;
+	margin: 2%;
+	padding: 2% 5%;
+	float: left;
+	width: 100%;
+	transition: 1s;
+	border-radius: 7px;
+}
+
+.block_rodape:hover {
+	background-color: #c0392b;
+	transition: 1s;
+}
+
+.titulo_block_rodape {
+	font-size: 25px;
+	color: #ecf0f1;
+	text-align: center;
+}
+
+.p_block_rodape b {
+	font-size: 18px;
+}
+
+.p_block_rodape {
+	font-size: 15px;
+	color: #ecf0f1;
+}
+
+.bloco_contato {
+	float: left;
+	color: #ecf0f1;
+	margin: 10px;
+}
+
+.bloco_contato i {
+	float: left;
+}
+
+.bloco_contato p {
+	float: left;
+	margin: 2px 0 0 5px;
+}
+
+.bloco_contato .p_redes_sociais {
+	float: left;
+	margin: 15px 0 0 5px;
+}
+
+.bloco_contato .img_redes_sociais {
+	float: left;
+	width: 50px;
+}
+
+/* ########### PARTE DE BAIXO DO RODAPÉ ########### */
+.rodape_de_baixo {
+	background-color: #c0392b;
+	padding: 5%;
+	float: left;
+	width: 100%;
+	text-align: center;
+}
+
+.copyright {
+	color: #ecf0f1;
+}
+
+.MyGithub {
+	color: #fff;
+}
+
+/* ############### RESOLUÇÃO DE 768PX ############## */
+@media screen and (min-width: 768px) {
+	/* ALTERAÇÃO DO FOOTER PARTE DE CIMA */
+	.block_rodape {
+		width: 45%;
+	}
+	.titulo_rodape {
+		color: #fff;
+		font-size: 30px;
+		text-align: center;
+		padding: 0 0 5% 0;
+	}
+
+	/* ALTERAÇÃO DO FOOTER PARTE DE BAIXO */
+	.rodape_de_baixo {
+		padding: 3%;
+	}
+}
+
+/* ############### RESOLUÇÃO DE 960PX ############## */
+@media screen and (min-width: 960px) {
+	/* ALTERAÇÃO DO FOOTER PARTE DE CIMA */
+	.block_rodape {
+		width: 29%;
+	}
+	.titulo_rodape {
+		color: #fff;
+		font-size: 30px;
+		text-align: center;
+		padding: 0 0 2% 0;
+	}
+
+	/* ALTERAÇÃO DO FOOTER PARTE DE BAIXO */
+	.rodape_de_baixo {
+		padding: 2%;
+	}
+}
+/*###carrousel###*/
+#carouselExampleIndicators {
+	width: 80%;
+	margin-left: 10%;
+}
+
+.texto {
+	text-indent: 2.5em;
+	text-align: justify;
+	margin: 0px 5% 0px 5%;
+}
+
+.torneio_titulos {
+	text-align: left;
+	margin-left: 5%;
+	margin-top: 10px;
+	list-style-type: none;
+	font-size: 25px;
+}
+
+span {
+	margin-left: 2em;
+}
+
+.lista li {
+	margin-left: 5%;
+	text-align: left;
+}
+
+.participacaotorneio {
+	text-align: left;
+	margin-left: 5%;
+	margin-top: 5%;
+}
+
+.cartao {
+	float: left;
+	margin: 5%;
+}
+
+.terminals {
+	margin: 200px auto 100px;
+	display: grid;
+	grid-templace-columns: repeat(auto-fit, minimax(350px 1fr));
+	frid-gap: 20px;
+}
+
+.testimonials .cartao {
+	position: relative;
+	width: 350px;
+	margin: 0 auto;
+	background: #333;
+	padding: 20px;
+	box-sizing: border-box;
+	text-align: center;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, .5);
+	overflow: hidden;
+}
+
+.testimonials .cartao .niet {
+	position: absolute;
+	top: calc(100% - 2px);
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(#03a9f4, #e91ee3);
+	z-inndex: 1;
+	transition: 0.5s;
+}
+
+.testimonials .cartao:hover .niet {
+	top: 0;
+}
+
+.testimonials .cartao .contem {
+	position: relative;
+	z-index: 2;
+}
+
+.testimonials .cartao .contem p {
+	font-size: 18px;
+	line-height: 24px;
+	color: #fff;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, .2);
+}
+
+.testimonials .cartao .contem .imgpessoa {
+	width: 100px;
+	height: 100px;
+	margin: 0 auto;
+	border-radius: 50%;
+	overflow: hidden;
+	border: 4px solid #fff
+}
+
+.testimonials .cartao .contem .sobre h2 {
+	font-size: 18px;
+	color: #fff;
+}
+
+.testimonials .cartao .contem .sobre h2 span {
+	color: #03a9f4;
+	font-size: 14px;
+	transition: 0.5s;
+}
+
+.testimonials .cartao:hover .contem .sobre h2 span {
+	color: #fff;
+}
+
+.dente {
+	background-color: #DCDCDC;
+}
+
+.figure {
+	width: 50%;
+	height: 50%;
+	position: relative;
+}
+
+.ano {
+	font-size: 30px;
+	font-weigth: bold;
+}
+
+.camisa {
+	width: 200px;
+}
+
+.botaoMais {
+	width: 150px;
+	float: right;
+}
+
+ul li {
+	z-index: 10;
+}
+
+/*cards*/
+/*card-> cartao
 		*layer->niet
 		*image->imgpessoa
 		*details->sobre
 		*/
+</style>
 
-		
-	
-	</style>
-	
-	</h:head>
-	<h:body>
-	
-		<!-- ###################### CABEÇALHO ###################### -->
-	
-		<div id="cabecalho">
-			<h:form>
-				<h:graphicImage url="/imagens/logo.png" alt="" style="width: 170px" class="logo_cabecalho" />
-			</h:form>
-			
-			<div class="nome_da_equipe">
-				<h1>Equipe de xadrez</h1>
-				<br/>
-				<h2>IFRN - João Câmara</h2>
-			</div>
-			
-			<div class="nome_usuario">
-				<form>
-					Bem vindo(a), <h:outputLabel value="#{loginMBean.usuario.nome}" />
-				</form>			
-			</div>
+</h:head>
+<h:body>
+
+	<!-- ###################### CABEÇALHO ###################### -->
+
+	<div id="cabecalho">
+		<h:form>
+			<h:graphicImage url="/imagens/logo.png" alt="" style="width: 170px"
+				class="logo_cabecalho" />
+		</h:form>
+
+		<div class="nome_da_equipe">
+			<h1>Equipe de xadrez</h1>
+			<br />
+			<h2>IFRN - João Câmara</h2>
 		</div>
-		
-		<!-- ###################### MENU ###################### -->
-		
-		<div id="menu">
-			<h:form>
+
+		<div class="nome_usuario">
+			<form>
+				Bem vindo(a),
+				<h:outputLabel value="#{loginMBean.usuario.nome}" />
+			</form>
+			
+		</div>
+		<h:commandLink value="Faça Login!" action="/index.xhtml" />
+	</div>
+
+	<!-- ###################### MENU ###################### -->
+
+	<div id="menu">
+		<h:form>
 			<ul class="menu">
-		        <li><h:commandLink action="/home.xhtml" value="Home" /></li>
-		        <li><a href="#">Sobre a equipe</a>
+				<li><h:commandLink action="/home.xhtml" value="Home" /></li>
+				<li><a href="#">Sobre a equipe</a>
 					<ul>
-						<li><h:commandLink value="História" action="/sobreaequipe/historiaequipe.xhtml" /></li>
-						<li><h:commandLink value="Membros" action="#{buscaUsuariosMBean.buscar}" /></li>
-						<li><a href="sobreaequipe/influenciasnaregiao.xhtml" >Influências</a></li>
-						<li><h:commandLink value="Noticias" action="#{buscaNoticiasMBean.entrarBuscarNoticias}" /></li>
-						<li><h:commandLink value="Camisas" action="#{buscaCamisasMBean.entrarBuscarCamisas}" /></li>
-					</ul>
-				</li>
-		        <li><a href="#">Patrimonio</a>
-		        	<ul>
-		        		<h:commandLink value="Fisico" action="#{buscaLivrosMBean.entrarBuscarLivros}" />
-		        		<h:commandLink value="Solicitações" 
-		        			action="#{buscaSolicitacaoMembroMBean.entrarBuscarSolicitacoes}" 
-		        			rendered="#{usuarioLogado.administrador == false}"/>
-		        		<h:commandLink value="Solicitações" action="/material/busca_solicitacaoLivro.xhtml"
-		        		rendered="#{usuarioLogado.administrador}"></h:commandLink>
-		        	</ul>
-		        </li>
-				<li><a href="#">Eventos</a>
+						<li><h:commandLink value="História"
+								action="/sobreaequipe/historiaequipe.xhtml" /></li>
+						<li><h:commandLink value="Membros"
+								action="#{buscaUsuariosMBean.buscar}" rendered="#{not empty usuarioLogado}" /></li>
+						<li><a href="sobreaequipe/influenciasnaregiao.xhtml">Influências</a></li>
+						<li><h:commandLink value="Noticias"
+								action="#{buscaNoticiasMBean.entrarBuscarNoticias}" /></li>
+						<li><h:commandLink value="Camisas"
+								action="#{buscaCamisasMBean.entrarBuscarCamisas}"  rendered="#{not empty usuarioLogado}"/></li>
+					</ul></li>
+				<li><a href="#">Patrimonio</a>
 					<ul>
-						<li><h:commandLink value="Programação" action="#{buscaEventoTorneioMBean.entrarBuscarEventoTorneio}" /></li>
-						<li><h:commandLink value="Treino" action="#{buscaTreinosMBean.entrarBuscarTreinos}" /></li>
+						<h:commandLink value="Fisico"
+							action="#{buscaLivrosMBean.entrarBuscarLivros}" />
+						<h:commandLink value="Solicitações"
+							action="#{buscaSolicitacaoMembroMBean.entrarBuscarSolicitacoes}"
+							rendered="#{usuarioLogado.administrador == false}" />
+						<h:commandLink value="Solicitações"
+							action="/material/busca_solicitacaoLivro.xhtml"
+							rendered="#{usuarioLogado.administrador}"></h:commandLink>
+					</ul></li>
+				<li>
+				
+				
+				<a href="#">Eventos</a>
+				
+					<ul>
+						<li><h:commandLink value="Programação"
+								action="#{buscaEventoTorneioMBean.entrarBuscarEventoTorneio}"  rendered="#{not empty usuarioLogado}" /></li>
+						<li><h:commandLink value="Treino"
+								action="#{buscaTreinosMBean.entrarBuscarTreinos}"  rendered="#{not empty usuarioLogado}"/></li>
+					</ul></li>
+				<li><h:commandLink value="Sair" action="#{loginMBean.sair}" rendered="#{not empty usuarioLogado}"/></li>
 					</ul>
-				</li>
-				<li><h:commandLink value="" action="#{loginMBean.sair}" rendered="#{!not empty usuarioLogado}"/></li>
-			</ul>
-			</h:form>
-		</div>
-	
-		<ui:insert></ui:insert>
-		
-		<!-- ###################### RODAPÉ ###################### -->
-	
-		<div class="rodape">
-			<div class="rodape_de_cima">
-				<div class="block_rodape">
-					<h1 class="titulo_block_rodape">Horários</h1>
-					<p class="p_block_rodape"><b>Terça - </b>10:30h às 12:00h; 13:00h às 14:30h; </p>
-					<p class="p_block_rodape"><b>Quinta - </b>16:30h às 18:00h</p>
+		</h:form>
+	</div>
+
+	<ui:insert></ui:insert>
+
+	<!-- ###################### RODAPÉ ###################### -->
+
+	<div class="rodape">
+		<div class="rodape_de_cima">
+			<div class="block_rodape">
+				<h1 class="titulo_block_rodape">Horários</h1>
+				<p class="p_block_rodape">
+					<b>Terça - </b>10:30h às 12:00h; 13:00h às 14:30h;
+				</p>
+				<p class="p_block_rodape">
+					<b>Quinta - </b>16:30h às 18:00h
+				</p>
+			</div>
+			<div class="block_rodape">
+				<h1 class="titulo_block_rodape">Contatos</h1>
+				<div class="bloco_contato">
+					<i class="material-icons">email</i>
+					<p class="p_block_rodape">xadrezjc@gmail.com</p>
 				</div>
-				<div class="block_rodape">
-					<h1 class="titulo_block_rodape">Contatos</h1>
-					<div class="bloco_contato">
-						<i class="material-icons">email</i>
-						<p class="p_block_rodape">xadrezjc@gmail.com</p>
-					</div>
-					<div class="bloco_contato">
-						<i class="material-icons">email</i>
-						<p class="p_block_rodape">xadrezjc@gmail.com</p>
-					</div>
-					<div class="bloco_contato">
-						<i class="material-icons">email</i>
-						<p class="p_block_rodape">xadrezjc@gmail.com</p>
-					</div>
-					<div class="bloco_contato">
-						<i class="material-icons">email</i>
-						<p class="p_block_rodape">xadrezjc@gmail.com</p>
-					</div>
+				<div class="bloco_contato">
+					<i class="material-icons">email</i>
+					<p class="p_block_rodape">xadrezjc@gmail.com</p>
 				</div>
-				<div class="block_rodape">					<a href="#">
-						<div class="bloco_contato">
-							<h:graphicImage url="/imagens/facebook.png" styleClass="img_redes_sociais"/>
-							<p class="p_redes_sociais">Facebook</p>
-						</div>
-					</a>
-					<a href="#">
-						<div class="bloco_contato">
-							<h:graphicImage url="/imagens/twitter.png" styleClass="img_redes_sociais"/>
-							<p class="p_redes_sociais">Twitter</p>
-						</div>
-					</a>
+				<div class="bloco_contato">
+					<i class="material-icons">email</i>
+					<p class="p_block_rodape">xadrezjc@gmail.com</p>
+				</div>
+				<div class="bloco_contato">
+					<i class="material-icons">email</i>
+					<p class="p_block_rodape">xadrezjc@gmail.com</p>
 				</div>
 			</div>
-	
-			<div class="rodape_de_baixo">
-				<b>
-					<p class="copyright">Desenvolvido por <a href="#" target="_blank" class="MyGithub">Raíssa Crispim como Trabalho de Conclusão de Curso (TCC)</a></p>
-					<p class="copyright">Alterado por <a href="https://github.com/carlos0406" target="_blank" class="MyGithub">Carlos Henrique de Andrade como Projeto Integrador(PI)</a></p>
-				</b>
+			<div class="block_rodape">
+				<a href="#">
+					<div class="bloco_contato">
+						<h:graphicImage url="/imagens/facebook.png"
+							styleClass="img_redes_sociais" />
+						<p class="p_redes_sociais">Facebook</p>
+					</div>
+				</a> <a href="#">
+					<div class="bloco_contato">
+						<h:graphicImage url="/imagens/twitter.png"
+							styleClass="img_redes_sociais" />
+						<p class="p_redes_sociais">Twitter</p>
+					</div>
+				</a>
 			</div>
 		</div>
-		
-	</h:body>
+
+		<div class="rodape_de_baixo">
+			<b>
+				<p class="copyright">
+					Desenvolvido por <a href="#" target="_blank" class="MyGithub">Raíssa
+						Crispim como Trabalho de Conclusão de Curso (TCC)</a>
+				</p>
+				<p class="copyright">
+					Alterado por <a href="https://github.com/carlos0406"
+						target="_blank" class="MyGithub">Carlos Henrique de Andrade
+						como Projeto Integrador(PI)</a>
+				</p>
+			</b>
+		</div>
+	</div>
+
+</h:body>
 </html>

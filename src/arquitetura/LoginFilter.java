@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Filtro que verifica se um usuário está logado para poder ter acesso a determinadas
  * funcionalidades do sistema.
- * @author Renan
+ * @author Renan	
  */
 public class LoginFilter implements Filter {
 	
@@ -24,7 +24,7 @@ public class LoginFilter implements Filter {
 	 * Se existirem páginas específicas cujo acesso deva ser permitido mesmo sem estar logado,
 	 * devem ser adicionadas neste array. 
 	 * */
-	private final String[] urlsPermitidas = {"index.xhtml", "CadzastrarUsuario.xhtml", "erro.xhtml","home.xhtml"};
+	private final String[] urlsPermitidas = {"index.xhtml", "erro.xhtml","home.xhtml","sobreaequipe","CadastrarUsuario"};
 	
 	@Override
 	public void destroy() {
@@ -53,7 +53,7 @@ public class LoginFilter implements Filter {
    		se for o JSF (Faces) que estiver requisitando acesso, então o acesso
    		deve ser permitido */
    		if (reqUrl.contains("publico")
-   				|| reqUrl.contains(".faces.")) {
+   				|| reqUrl.contains(".faces.")||reqUrl.contains("sobreaequipe")) {
    			permitido = true;
    		}
    		

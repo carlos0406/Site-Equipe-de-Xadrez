@@ -1,11 +1,23 @@
 package managedbeans;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.fluent.Form;
+import org.apache.http.client.fluent.Request;
+
+import com.google.gson.Gson;
 
 import dao.Database;
 import dao.UsuarioDAO;
@@ -131,7 +143,7 @@ public class CadastrarUser {
 					gerenciador.merge(usuario);
 
 				gerenciador.getTransaction().commit();
-				MetodosUteis.addMensagem("Seu cadastro est√° pronto!");
+				MetodosUteis.addMensagem("Seu cadastro est· pronto!");
 				
 
 			} catch (Exception e) {
@@ -165,4 +177,6 @@ public class CadastrarUser {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
+	
 }

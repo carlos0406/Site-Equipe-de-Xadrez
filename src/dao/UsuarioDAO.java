@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
-import dominio.Camisa;
 import dominio.Usuario;
 import uteis.MetodosUteis;
 import uteis.ValidadorUtil;
@@ -162,4 +161,26 @@ public class UsuarioDAO extends DAOGenerico {
 			return null;
 		}
 	}
+	//criando busca por matricula para logar como usuario API
+	
+	public Usuario findUsuarioByMatricula(String matricula) {
+		EntityManager em = getEntityManager();
+		
+		String hql = "SELECT usuario ";
+		hql += "FROM Usuario usuario WHERE "
+				+ "usuario.matricula = :matricula";
+		
+		Query q = em.createQuery(hql);
+		q.setParameter("matricula", matricula);
+		
+		try {
+			Usuario usuario = (Usuario) q.getSingleResult();
+			return usuario;
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+	
+	
+	
 }

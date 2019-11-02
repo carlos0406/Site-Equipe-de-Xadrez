@@ -29,8 +29,10 @@
 			@import url('https://fonts.googleapis.com/css?family=Inconsolata');
 			
 			.link{
+				
+				width:100%;
 				color:white;
-				margin-left:490px;
+				margin-left:430px;
 				font-size:16px;
 				font-weigth:bold;
 			
@@ -148,6 +150,8 @@
 				}
 			
 			}
+			
+			
 		
 		</style>
 	</h:head>
@@ -159,7 +163,7 @@
 			<h:graphicImage value="/imagens/logo.png" styleClass="iconeDoSistema"/>
 			<h1>Xadrez</h1>
 		
-			<h:form>
+			<h:form styleClass="displayMenu">
 						
 				<p:inputText value="#{loginMBean.usuario.email}" placeholder="Email"
 						styleClass="form-control" class="write" />
