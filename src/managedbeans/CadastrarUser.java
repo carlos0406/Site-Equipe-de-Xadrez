@@ -26,6 +26,7 @@ import dominio.Usuario;
 import uteis.CriptografiaUtils;
 import uteis.MetodosUteis;
 import uteis.ValidadorUtil;
+//testando commit
 
 @ManagedBean
 @SessionScoped

@@ -19,6 +19,8 @@ public class ControladorPadraoRespostaAPI implements ResponseHandler<String> {
 			
 			
 			
+			
+			
 		} else {
 			int a=0;
 			throw new ClientProtocolException("Unexpected response status: " + status);

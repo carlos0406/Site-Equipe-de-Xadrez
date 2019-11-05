@@ -74,6 +74,9 @@ public class LoginMBean {
 				System.out.println(usuario);
 				
 			}
+			
+			
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
