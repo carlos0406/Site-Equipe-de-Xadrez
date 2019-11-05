@@ -62,24 +62,6 @@ public class LoginMBean {
 			return null;
 		}
 
-		/*
-		 * try { Form form = Form.form(); form.add("username",
-		 * usuario.getMatricula()+""); form.add("password", usuario.getSenha());
-		 * 
-		 * HttpResponse response =
-		 * Request.Post("https://suap.ifrn.edu.br/api/v2/autenticacao/token/").bodyForm(
-		 * form.build()) .execute().returnResponse();
-		 * 
-		 * System.out.println("Carlos é legal mesmo");
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * } catch (Exception e) { // TODO: handle exception }
-		 * 
-		 */
-
 		try {
 			UsuarioDAO dao = new UsuarioDAO();
 
@@ -88,9 +70,8 @@ public class LoginMBean {
 				usuario = dao.findUsuarioByLoginSenha(usuario.getEmail(),
 						CriptografiaUtils.criptografarMD5(usuario.getSenha()));
 			} else {
-				 //com Matricula cadastrada
-				//usuario=dao.findUsuarioByMatricula(usuario.getEmail());
-				
+				usuario=dao.findUsuarioByMatricula(usuario.getEmail());
+				System.out.println(usuario);
 				
 			}
 

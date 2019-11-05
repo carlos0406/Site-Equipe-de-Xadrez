@@ -16,7 +16,11 @@ public class ControladorPadraoRespostaAPI implements ResponseHandler<String> {
 		if (status >= 200 && status < 300) {
 			HttpEntity entity = r.getEntity();
 			return entity != null ? EntityUtils.toString(entity) : null;
+			
+			
+			
 		} else {
+			int a=0;
 			throw new ClientProtocolException("Unexpected response status: " + status);
 		}
 	}
