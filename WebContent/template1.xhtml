@@ -309,6 +309,10 @@ img {
 	color: #fff;
 }
 
+.linkLogin{
+	color:white;
+}
+
 /* ############### RESOLUÇÃO DE 768PX ############## */
 @media screen and (min-width: 768px) {
 	/* ALTERAÇÃO DO FOOTER PARTE DE CIMA */
@@ -510,13 +514,14 @@ ul li {
 		</div>
 
 		<div class="nome_usuario">
-			<form>
+			<h:form>
 				Bem vindo(a),
 				<h:outputLabel value="#{loginMBean.usuario.nome}" />
-			</form>
+				<h:commandLink value="Faça Login!" action="/index.xhtml" class="linkLogin"  rendered="#{!not empty usuarioLogado}"/>
+			</h:form>
 			
 		</div>
-		<h:commandLink value="Faça Login!" action="/index.xhtml" />
+		
 	</div>
 
 	<!-- ###################### MENU ###################### -->

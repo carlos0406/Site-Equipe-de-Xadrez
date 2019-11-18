@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import dao.Database;
 import dominio.Treino;
+import dominio.Usuario;
 import uteis.MetodosUteis;
 import uteis.ValidadorUtil;
 
@@ -88,6 +89,11 @@ public class CadastrarTreinoMBean {
 
 	public void setTreino(Treino treino) {
 		this.treino = treino;
+	}
+	
+	public void addParticipante(Usuario usuario) {
+		treino.getParticipantes().add(usuario);
+		
 	}
 
 }

@@ -29,7 +29,7 @@ public class Noticia {
 	
 	@Id
 	@GeneratedValue  (strategy=GenerationType.IDENTITY)  
-	@Column(name="id_arquivoNoticia", nullable = false)
+	@Column(name="id_Noticia", nullable = false)
 	private int id_arquivoNoticia;
 	
 	@Column(nullable = false, columnDefinition = "TEXT")

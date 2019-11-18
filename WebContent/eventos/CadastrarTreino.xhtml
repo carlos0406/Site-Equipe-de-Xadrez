@@ -45,9 +45,16 @@
 					requiredMessage="Campo ministrantes obrigatório" />
 				
 				<h:outputLabel for="participantes" value="Participantes: " />
-				<h:inputTextarea id="participantes" value="#{cadastrarTreinoMBean.treino.participantes}" 
+				
+				<!-- <h:inputTextarea id="participantes" value="#{cadastrarTreinoMBean.treino.participantes}" 
 					rows="3" cols="40"/>
-							
+					 -->
+				<p:autoComplete minQueryLength="3"  completeMethod="#{buscaUsuariosMBean.autoCompleteUsuarios}"
+				var="usuario" itemLabel="#{usuario.nome}" itemValue="#{usuario}" size="6"
+					converter="usuarioConverter" id="participantes"/>
+					
+					 
+					 		
 				<p:outputLabel for="data" value="Data: " />
 				<p:calendar id="data" value="#{cadastrarTreinoMBean.treino.data}"
 					disabled="#{usuarioLogado.administrador == false}"/>

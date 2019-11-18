@@ -38,7 +38,6 @@ import uteis.MetodosUteis;
 public class LoginMBean {
 
 	private Usuario usuario = new Usuario();
-	private Usuario u = new Usuario();
 	private boolean suap;
 
 	public boolean validarLogin() {
@@ -62,21 +61,17 @@ public class LoginMBean {
 			return null;
 		}
 
+		Usuario usuarioBanco;
+		
 		try {
 			UsuarioDAO dao = new UsuarioDAO();
 
-
 			if (!isNumeric(usuario.getEmail())) {
-				usuario = dao.findUsuarioByLoginSenha(usuario.getEmail(),
+				usuarioBanco = dao.findUsuarioByLoginSenha(usuario.getEmail(),
 						CriptografiaUtils.criptografarMD5(usuario.getSenha()));
 			} else {
-				usuario=dao.findUsuarioByMatricula(usuario.getEmail());
-				System.out.println(usuario);
-				
+				usuarioBanco = dao.findUsuarioByMatricula(Long.valueOf(usuario.getEmail()));
 			}
-			
-			
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -114,52 +109,64 @@ public class LoginMBean {
 			 * }
 			 */
 
-			u = new Usuario();
-			u.setNome(meusDados.get("nome_usual").toString());
-			u.setEmail((String) meusDados.get("email"));
-			u.setCpf((String) meusDados.get("cpf"));
-			u.setSenha(CriptografiaUtils.criptografarMD5(usuario.getSenha()));
+			String matricula = usuario.getEmail();
+			String senha = usuario.getSenha();
+			
+			usuario = new Usuario();
+			usuario.setNome(meusDados.get("nome_usual").toString());
+			usuario.setEmail((String) meusDados.get("email"));
+			usuario.setCpf((String) meusDados.get("cpf"));
+			usuario.setSenha(CriptografiaUtils.criptografarMD5(senha));
 			EntityManager gerenciador = Database.getInstance().getEntityManager();
-			u.setTipoUsuario(TipoUsuario.MEMBRO);
-			u.setSexo('M');
-			u.setRg("0000000000");
-			u.setMatricula(Long.parseLong(usuario.getEmail()));
-			u.setDataNascimento(new Date(10, 10, 10));
-			u.setAtivo(true);
-			u.setCelular("2345678");
+			usuario.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
+			usuario.setSexo('M');
+			usuario.setRg("0000000000");
+			usuario.setMatricula(Long.parseLong(matricula));
+			String[] data = meusDados.get("data_nascimento").toString().split("-");
+			for (int i = 0; i < data.length; i++) {
+				System.out.print(data[i]);
+			}
+			usuario.setDataNascimento(
+					new Date(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])));
+			usuario.setAtivo(true);
+			usuario.setCelular("2345678");
 
-			if (usuario != null && usuario.getId() != 0) {
-				u.setId(usuario.getId());
+			if (usuarioBanco != null && usuarioBanco.getId() != 0) {
+				usuario.setId(usuarioBanco.getId());
 			}
 
 			gerenciador.getTransaction().begin();
 
-			System.out.println(u);
-			gerenciador.merge(u);
-			gerenciador.getTransaction().commit();
+			if (usuario.getId() == 0)
+				gerenciador.persist(usuario);
+			else
+				gerenciador.merge(usuario);
 			
-			usuario = u;
+			gerenciador.getTransaction().commit();
 
-				// MetodosUteis.getCurrentSession().setAttribute("usuarioLogado", u);
-				/*
-				 * if (usuario.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR)) { return
-				 * "home.xhtml"; } else if
-				 * (usuario.getTipoUsuario().equals(TipoUsuario.BOLSISTA)){ return "home.xhtml";
-				 * } else if (usuario.getTipoUsuario().equals(TipoUsuario.MEMBRO)){ return
-				 * "home.xhtml"; } else if (usuario.getTipoUsuario().equals(TipoUsuario.COMUM)){
-				 * return "home.xhtml"; } else { usuario = new Usuario(); return null; }
-				 */
+			// MetodosUteis.getCurrentSession().setAttribute("usuarioLogado", u);
+			/*
+			 * if (usuario.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR)) { return
+			 * "home.xhtml"; } else if
+			 * (usuario.getTipoUsuario().equals(TipoUsuario.BOLSISTA)){ return "home.xhtml";
+			 * } else if (usuario.getTipoUsuario().equals(TipoUsuario.MEMBRO)){ return
+			 * "home.xhtml"; } else if (usuario.getTipoUsuario().equals(TipoUsuario.COMUM)){
+			 * return "home.xhtml"; } else { usuario = new Usuario(); return null; }
+			 */
 
 		}
 		
-		if (!MetodosUteis.estaVazia(usuario)) {
+		if (usuario.getId() == 0 && usuarioBanco != null && usuarioBanco.getId() != 0)
+			usuario = usuarioBanco;
+
+		if (usuario != null && usuario.getId() != 0) {
 			if (!usuario.isAtivo()) {
 				MetodosUteis.addMensagem("Este usuário foi desabilitado e não possui mais acesso ao sistema.");
 				return null;
 			}
 		} else {
 			this.usuario = new Usuario();
-			MetodosUteis.addMensagem("Usuário/Senha incorretos.");
+			MetodosUteis.addMensagem("Usu�rio/Senha incorretos.");
 			return null;
 		}
 
@@ -223,13 +230,13 @@ public class LoginMBean {
 
 		return null;
 	}
-	
-	public static boolean isNumeric(String str) { 
-		  try {  
-		    Double.parseDouble(str);  
-		    return true;
-		  } catch(NumberFormatException e){  
-		    return false;  
-		  }  
+
+	public static boolean isNumeric(String str) {
+		try {
+			Double.parseDouble(str);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
 		}
+	}
 }

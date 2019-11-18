@@ -523,10 +523,10 @@
 			</div>
 			
 			<div class="nome_usuario">
-				<form>
+					<h:form>
 					Bem vindo(a), <h:outputLabel value="#{loginMBean.usuario.nome}" />
-					<h:commandLink value="Faça Login!" action="/index.xhtml" />
-				</form>			
+					<h:commandLink value="Faça Login!" action="/index.xhtml" rendered="#{!not empty usuarioLogado}"/>
+					</h:form>			
 			</div>
 		</div>
 		

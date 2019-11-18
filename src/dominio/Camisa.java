@@ -16,7 +16,7 @@ public class Camisa {
 	
 	@Id
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
-	@Column(name="id_arquivoCamisa", nullable = false)
+	@Column(name="id_camisa", nullable = false)
 	private int id_arquivo_camisa;
 	
 	@Column (nullable = false, columnDefinition = "TEXT")

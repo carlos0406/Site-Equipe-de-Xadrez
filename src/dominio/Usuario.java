@@ -21,7 +21,7 @@ public class Usuario {
 	
 	@Id
 	@GeneratedValue  (strategy=GenerationType.IDENTITY)  
-	@Column(name="id_arquivo", nullable = false)
+	@Column(name="id_usuario", nullable = false)
 	private int id;
 	
 	@Column(nullable = false, columnDefinition = "TEXT")

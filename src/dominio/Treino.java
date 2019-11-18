@@ -1,7 +1,9 @@
 package dominio;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -16,7 +20,7 @@ public class Treino {
 	
 	@Id
 	@GeneratedValue  (strategy=GenerationType.IDENTITY)  
-	@Column(name="id_arquivoTreino", nullable = false)
+	@Column(name="id_treino", nullable = false)
 	private int id_arquivoTreino;
 	
 	@Column(nullable = false)
@@ -29,8 +33,10 @@ public class Treino {
 	@JoinColumn(name="id_usuario_ministrante",nullable = false)
 	private Usuario ministrantes;
 	
-	@Column(nullable = false, columnDefinition = "TEXT")
-	private String participantes;
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinTable(name="treino_participantes")
+	@Column(nullable = false)
+	private List<Usuario> participantes;
 	
 	@Column(nullable = false)
 	private String turno;
@@ -69,11 +75,11 @@ public class Treino {
 		this.ministrantes = ministrantes;
 	}
 
-	public String getParticipantes() {
+	public List<Usuario> getParticipantes() {
 		return participantes;
 	}
 
-	public void setParticipantes(String participantes) {
+	public void setParticipantes(List<Usuario> participantes) {
 		this.participantes = participantes;
 	}
 

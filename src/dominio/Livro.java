@@ -21,7 +21,7 @@ public class Livro {
 	
 	@Id
 	@GeneratedValue  (strategy=GenerationType.IDENTITY)  
-	@Column(name="id_arquivoLivro", nullable = false)
+	@Column(name="id_livro", nullable = false)
 	private int id_arquivoLivro;
 	
 	@Column(nullable = false, columnDefinition = "TEXT")

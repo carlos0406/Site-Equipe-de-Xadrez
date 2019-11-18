@@ -163,7 +163,7 @@ public class UsuarioDAO extends DAOGenerico {
 	}
 	//criando busca por matricula para logar como usuario API
 	
-	public Usuario findUsuarioByMatricula(String matricula) {
+	public Usuario findUsuarioByMatricula(long matricula) {
 		EntityManager em = getEntityManager();
 		
 		String hql = "SELECT usuario ";
@@ -180,6 +180,7 @@ public class UsuarioDAO extends DAOGenerico {
 			return null;
 		}
 	}
+
 	
 	
 	
