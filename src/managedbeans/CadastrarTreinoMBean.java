@@ -14,6 +14,7 @@ import uteis.ValidadorUtil;
 @SessionScoped
 public class CadastrarTreinoMBean {
 	private Treino treino;
+	private Usuario usuarioTreino;
 
 	public CadastrarTreinoMBean() {
 		treino = new Treino();
@@ -33,7 +34,7 @@ public class CadastrarTreinoMBean {
 			MetodosUteis.addMensagem("Campo Ministrantes obrigatório!");
 			erro = true;
 		}
-		if (MetodosUteis.estaVazia(treino.getParticipantes())) {
+		if (treino.getParticipantes().size()==0) {
 			MetodosUteis.addMensagem("Campo participantes obrigatório!");
 			erro = true;
 		}
@@ -57,8 +58,7 @@ public class CadastrarTreinoMBean {
 
 			EntityManager gerenciador = Database.getInstance().getEntityManager();
 			gerenciador.getTransaction().begin();
-			
-			
+
 			try {
 				if (treino.getId_arquivoTreino() == 0)
 					gerenciador.persist(treino);
@@ -67,7 +67,6 @@ public class CadastrarTreinoMBean {
 
 				gerenciador.getTransaction().commit();
 				MetodosUteis.addMensagem("Seu cadastro está pronto!");
-				
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -82,6 +81,11 @@ public class CadastrarTreinoMBean {
 		treino = new Treino();
 		return null;
 	}
+	
+	public void addParticipante() {
+		treino.getParticipantes().add(usuarioTreino);
+	}
+	
 
 	public Treino getTreino() {
 		return treino;
@@ -91,9 +95,14 @@ public class CadastrarTreinoMBean {
 		this.treino = treino;
 	}
 	
-	public void addParticipante(Usuario usuario) {
-		treino.getParticipantes().add(usuario);
-		
+	public Usuario getUsuarioTreino() {
+		return usuarioTreino;
 	}
+
+	public void setUsuarioTreino(Usuario usuarioTreino) {
+		this.usuarioTreino = usuarioTreino;
+	}
+
+	
 
 }

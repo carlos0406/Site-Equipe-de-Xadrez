@@ -15,7 +15,7 @@
             <!-- Usuário do banco -->
             <property name="javax.persistence.jdbc.user" value="postgres" />
             <!-- Senha do banco -->
-            <property name="javax.persistence.jdbc.password" value="admin"/>
+            <property name="javax.persistence.jdbc.password" value="1234"/>
             
 	    	<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update" /> <!-- create / create-drop / update -->
