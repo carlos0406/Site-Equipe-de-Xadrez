@@ -18,6 +18,7 @@ public class CadastrarTreinoMBean {
 
 	public CadastrarTreinoMBean() {
 		treino = new Treino();
+                usuarioTreino=new Usuario();
 	}
 
 	/** Entra na tela de edi��o de usu�rios. */
