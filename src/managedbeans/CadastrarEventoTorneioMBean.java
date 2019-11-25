@@ -14,9 +14,20 @@ import uteis.MetodosUteis;
 @SessionScoped
 public class CadastrarEventoTorneioMBean {
 	private EventoTorneio evento;
+	private Usuario usuarioTorneio;
 	
+	
+	public Usuario getUsuarioTorneio() {
+		return usuarioTorneio;
+	}
+
+	public void setUsuarioTorneio(Usuario usuarioTorneio) {
+		this.usuarioTorneio = usuarioTorneio;
+	}
+
 	public CadastrarEventoTorneioMBean(){
 		evento = new EventoTorneio();
+		usuarioTorneio=new Usuario();
 	}
 	
 	public String entrarEdicaoEventoTorneio(EventoTorneio evento) {
@@ -78,10 +89,22 @@ public class CadastrarEventoTorneioMBean {
 		evento = new EventoTorneio();
 		return null;
 	}
+	
+	public void addParticipante() {
+		if(!evento.getParticipantes().contains(usuarioTorneio)) {
+		evento.getParticipantes().add(usuarioTorneio);
+		}else {
+			MetodosUteis.addMensagem("Usuario já incluso na lista de participantes");
+		}
+		}
+	
+	
 	public EventoTorneio getEvento() {
 		return evento;
 	}
 	public void setEvento(EventoTorneio evento) {
 		this.evento = evento;
 	}
+	
+	
 }

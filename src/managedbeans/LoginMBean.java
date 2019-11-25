@@ -84,6 +84,7 @@ public class LoginMBean {
 		suap = (token != null) ? true : false;
 
 		if (suap) {
+			// Pegando dados a partir do token gerado para salvar no banco de dados
 			System.out.println(token);
 			CloseableHttpClient httpclient = HttpClients.createDefault();
 			HttpGet httpget = new HttpGet("https://suap.ifrn.edu.br/api/v2/minhas-informacoes/meus-dados/");
@@ -99,15 +100,7 @@ public class LoginMBean {
 
 			System.out.println(meusDados);
 
-			/*
-			 * Logar com o suap diretamente caso o usuario já esteja Usuario
-			 * usuarioBuscaSuap=new UsuarioDAO().findUsuarioByLoginSenha((String)
-			 * meusDados.get("email"),CriptografiaUtils.criptografarMD5(usuario.getSenha())
-			 * ); if(usuarioBuscaSuap!=null) {
-			 * 
-			 * 
-			 * }
-			 */
+			
 
 			String matricula = usuario.getEmail();
 			String senha = usuario.getSenha();

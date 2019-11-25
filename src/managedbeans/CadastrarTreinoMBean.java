@@ -1,5 +1,7 @@
 package managedbeans;
 
+import java.util.ArrayList;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
@@ -14,9 +16,13 @@ import uteis.ValidadorUtil;
 @SessionScoped
 public class CadastrarTreinoMBean {
 	private Treino treino;
+	private Usuario usuarioTreino;
 
 	public CadastrarTreinoMBean() {
 		treino = new Treino();
+		usuarioTreino=new Usuario();
+		
+		
 	}
 
 	/** Entra na tela de ediï¿½ï¿½o de usuï¿½rios. */
@@ -91,9 +97,21 @@ public class CadastrarTreinoMBean {
 		this.treino = treino;
 	}
 	
-	public void addParticipante(Usuario usuario) {
-		treino.getParticipantes().add(usuario);
+	public void addParticipante() {
+		if(!treino.getParticipantes().contains(usuarioTreino)) {
+		treino.getParticipantes().add(usuarioTreino);
+		}else {
+			MetodosUteis.addMensagem("Usuario já incluso na lista de participantes");
+		}
+		}
+
+	public Usuario getUsuarioTreino() {
+		return usuarioTreino;
+	}
+
+	public void setUsuarioTreino(Usuario usuarioTreino) {
 		
+		this.usuarioTreino = usuarioTreino;
 	}
 
 }

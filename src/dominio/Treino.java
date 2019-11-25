@@ -1,5 +1,6 @@
 package dominio;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +19,9 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Treino {
 	
+	public Treino(){
+		participantes=new ArrayList<Usuario>();
+	}
 	@Id
 	@GeneratedValue  (strategy=GenerationType.IDENTITY)  
 	@Column(name="id_treino", nullable = false)
@@ -43,7 +47,7 @@ public class Treino {
 
 	public int getId_arquivoTreino() {
 		return id_arquivoTreino;
-	}
+		}
 
 	public void setId_arquivoTreino(int id_arquivoTreino) {
 		this.id_arquivoTreino = id_arquivoTreino;

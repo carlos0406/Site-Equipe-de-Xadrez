@@ -41,8 +41,14 @@
 					disabled="#{usuarioLogado.administrador == false}"/>
 				
 				<h:outputLabel for="participantes" value="Participantes: " />
-				<h:inputTextarea id="participantes" value="#{cadastrarEventoTorneioMBean.evento.participantes}" 
-					rows="5" cols="40"/>
+				<p:autoComplete value="#{cadastrarEventoTorneioMBean.usuarioTorneio}" minQueryLength="3" 
+				completeMethod="#{buscaUsuariosMBean.autoCompleteUsuarios}"
+				var="usuarioTorneio" itemLabel="#{usuarioTorneio.nome}"
+				itemValue="#{usuarioTorneio}" 
+				size="6" converter="usuarioConverter" id="participantes"/>
+				<h:commandButton class="botao" value="Adicionar participante"
+				 action="#{cadastrarTreinoMBean.addParticipante}"/>
+				
 							
 				<p:outputLabel for="data" value="Data: " />
 				<p:calendar id="data" value="#{cadastrarEventoTorneioMBean.evento.data}"
