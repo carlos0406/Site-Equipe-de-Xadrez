@@ -113,5 +113,10 @@ public class CadastrarTreinoMBean {
 		
 		this.usuarioTreino = usuarioTreino;
 	}
+	
+	public String removerParticipante(Usuario p) {
+		treino.getParticipantes().remove(p);
+		return "Erro ao remover participante";
+	}
 
 }

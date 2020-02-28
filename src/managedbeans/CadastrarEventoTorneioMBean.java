@@ -105,6 +105,10 @@ public class CadastrarEventoTorneioMBean {
 	public void setEvento(EventoTorneio evento) {
 		this.evento = evento;
 	}
+	public void removerParticipante(Usuario p) {
+		evento.getParticipantes().remove(p);
+	}
+
 	
 	
 }

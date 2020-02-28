@@ -1,80 +1,99 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:decorate
-	xmlns="http://www.w3.org/1999/xhtml"
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	template="../template.xhtml">
-	
+	xmlns:p="http://primefaces.org/ui" template="../template.xhtml">
+
 	<!-- ###################### CONTEÚDO ###################### -->
-	
+
 	<style>
-		span {
-			margin-left: 0px;
-		}
-		
-		table {
-			margin-left: auto;
-			margin-right: auto;
-		}
-		
-	</style>
+span {
+	margin-left: 0px;
+}
+
+table {
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
 
 	<div id="conteudo">
-		
+
 		<h1>Cadastrar Treino</h1>
-		
+
 		<h:form enctype="multipart/form-data" style="margin: 0px auto;">
-			<h:messages/>
-			
-			<h:panelGrid columns="4" style="background-color: #ecf0f1; 
+			<h:messages />
+
+			<h:panelGrid columns="5"
+				style="background-color: #ecf0f1; 
                    bottom: 0px; left: 0px; right: 0px; top: 0px; 
                    width: 200px">
-				
+
 				<h:outputLabel for="tema" value="Tema: " />
-				<h:inputText id="tema" value="#{cadastrarTreinoMBean.treino.tema}" 
-					disabled="#{usuarioLogado.administrador == false}"/>
-				
+				<h:inputText id="tema" value="#{cadastrarTreinoMBean.treino.tema}"
+					disabled="#{usuarioLogado.administrador == false}" />
+
 				<h:outputLabel for="ministrantes" value="Ministrantes: " />
 				<p:autoComplete value="#{cadastrarTreinoMBean.treino.ministrantes}"
 					minQueryLength="3"
 					completeMethod="#{buscaUsuariosMBean.autoCompleteUsuarios}"
 					var="usuario" itemLabel="#{usuario.nome}" itemValue="#{usuario}"
 					converter="usuarioConverter" size="20" required="true"
-					requiredMessage="Campo ministrantes obrigatório" />
-				
+					requiredMessage="Campo ministrantes obrigatório"  id="ministrantes"/>
+
 				<h:outputLabel for="participantes" value="Participantes: " />
-				<p:autoComplete value="#{cadastrarTreinoMBean.usuarioTreino}" minQueryLength="3" 
-				completeMethod="#{buscaUsuariosMBean.autoCompleteUsuarios}"
-				var="usuarioTreino" itemLabel="#{usuarioTreino.nome}" itemValue="#{usuarioTreino}" 
-				size="6" converter="usuarioConverter" id="participantes"/>
+				<p:autoComplete value="#{cadastrarTreinoMBean.usuarioTreino}"
+					minQueryLength="3"
+					completeMethod="#{buscaUsuariosMBean.autoCompleteUsuarios}"
+					var="usuarioTreino" itemLabel="#{usuarioTreino.nome}"
+					itemValue="#{usuarioTreino}" size="6" converter="usuarioConverter"
+					id="participantes" />
+
 				<h:commandButton class="botao" value="Adicionar participante"
-				 action="#{cadastrarTreinoMBean.addParticipante}"/>
-				<!-- <h:inputTextarea id="participantes" value="#{cadastrarTreinoMBean.treino.participantes}" 
-					rows="3" cols="40"/>
-					 -->
-					
-					 
-					 		
+					action="#{cadastrarTreinoMBean.addParticipante}" />
+
+
+
+
 				<p:outputLabel for="data" value="Data: " />
 				<p:calendar id="data" value="#{cadastrarTreinoMBean.treino.data}"
-					disabled="#{usuarioLogado.administrador == false}"/>
-				
-				<h:outputLabel for="turno" value="Turno: "/>
-				<h:selectOneRadio id="turno" value="#{cadastrarTreinoMBean.treino.turno}" disabled="#{usuarioLogado.administrador == false}">
-					<f:selectItem 
-						itemLabel="Manhã"
-						itemValue="Manha"/> 
-					<f:selectItem 
-						itemLabel="Tarde" 
-						itemValue="Tarde" />
+					disabled="#{usuarioLogado.administrador == false}" />
+
+				<h:outputLabel for="turno" value="Turno: " />
+				<h:selectOneRadio id="turno"
+					value="#{cadastrarTreinoMBean.treino.turno}"
+					disabled="#{usuarioLogado.administrador == false}">
+					<f:selectItem itemLabel="Manhã" itemValue="Manha" />
+					<f:selectItem itemLabel="Tarde" itemValue="Tarde" />
 				</h:selectOneRadio>
+
+				<h:commandButton class="botao" value="Enviar"
+					action="#{cadastrarTreinoMBean.cadastrar}" />
+					
+					
+			
 				
-				<h:commandButton class="botao" value="Enviar" action="#{cadastrarTreinoMBean.cadastrar}"/>
-		
+
 			</h:panelGrid>
-		
+			<p:dataTable var='p' value="#{cadastrarTreinoMBean.treino.participantes}" 
+>
+				
+					<p:column>
+					<f:facet name="header">
+						<h:outputText value="Usuarios no treino" />
+					</f:facet>
+					<h:panelGrid columns="2">
+						<h:outputText value="#{p.nome}" />
+						<h:commandButton class="botao" value="Remover usuario"
+					action="#{cadastrarTreinoMBean.removerParticipante(p)}" />
+					</h:panelGrid>
+					
+					</p:column>
+					
+				</p:dataTable>
+			
+
 		</h:form>
 	</div>
 </ui:decorate>

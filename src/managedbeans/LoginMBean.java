@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -115,12 +117,17 @@ public class LoginMBean {
 			usuario.setSexo('M');
 			usuario.setRg("0000000000");
 			usuario.setMatricula(Long.parseLong(matricula));
-			String[] data = meusDados.get("data_nascimento").toString().split("-");
-			for (int i = 0; i < data.length; i++) {
-				System.out.print(data[i]);
+			String data = meusDados.get("data_nascimento").toString();
+			
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date date;
+			try {
+				date = formatter.parse(data);
+				usuario.setDataNascimento(date);
+			} catch (ParseException e) {
+				e.printStackTrace();
 			}
-			usuario.setDataNascimento(
-					new Date(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])));
+			
 			usuario.setAtivo(true);
 			usuario.setCelular("2345678");
 
