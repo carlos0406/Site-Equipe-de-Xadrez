@@ -137,11 +137,12 @@ public class LoginMBean {
 
 			gerenciador.getTransaction().begin();
 
-			if (usuario.getId() == 0)
+			if (usuario.getId() == 0) {
+				
 				gerenciador.persist(usuario);
-			else
+			}else {
 				gerenciador.merge(usuario);
-			
+			}
 			gerenciador.getTransaction().commit();
 
 			// MetodosUteis.getCurrentSession().setAttribute("usuarioLogado", u);

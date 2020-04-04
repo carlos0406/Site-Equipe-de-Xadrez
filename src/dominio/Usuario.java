@@ -1,6 +1,7 @@
 package dominio;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -85,6 +86,9 @@ public class Usuario {
 	
 	@Column(nullable=true)
 	private String banco;
+	
+	@Transient
+	private List<EventoTorneio> torneios;
 	
 	@Override
 	public int hashCode() {
@@ -300,6 +304,14 @@ public class Usuario {
 
 	public void setTipoUsuario(TipoUsuario tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
+	}
+
+	public List<EventoTorneio> getTorneios() {
+		return torneios;
+	}
+
+	public void setTorneios(List<EventoTorneio> torneios) {
+		this.torneios = torneios;
 	}
 	
 }

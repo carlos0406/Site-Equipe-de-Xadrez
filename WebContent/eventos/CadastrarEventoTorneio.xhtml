@@ -28,7 +28,7 @@
 		<h:form enctype="multipart/form-data" style="margin: 0px auto;">
 			<h:messages/>
 			
-			<h:panelGrid columns="4" style="background-color: #ecf0f1; 
+			<h:panelGrid columns="5" style="background-color: #ecf0f1; 
                    bottom: 0px; left: 0px; right: 0px; top: 0px; 
                    width: 200px">
 				
@@ -47,7 +47,7 @@
 				itemValue="#{usuarioTorneio}" 
 				size="6" converter="usuarioConverter" id="participantes"/>
 				<h:commandButton class="botao" value="Adicionar participante"
-				 action="#{cadastrarTreinoMBean.addParticipante}"/>
+				 action="#{cadastrarEventoTorneioMBean.addParticipante}"/>
 				
 							
 				<p:outputLabel for="data" value="Data: " />
@@ -62,6 +62,24 @@
 				<h:commandLink value="Ver torneios" action="#{buscaEventoTorneioMBean.entrarBuscarEventoTorneio}" />
 		
 			</h:panelGrid>
+			
+			
+			<p:dataTable var='p' value="#{cadastrarEventoTorneioMBean.evento.participantes}" 
+>
+				
+					<p:column>
+					<f:facet name="header">
+						<h:outputText value="Usuarios no treino" />
+					</f:facet>
+					<h:panelGrid columns="2">
+						<h:outputText value="#{p.nome}" />
+						<h:commandButton class="botao" value="Remover usuario"
+					action="#{cadastrarEventoTorneioMBean.removerParticipante(p)}" />
+					</h:panelGrid>
+					
+					</p:column>
+					
+				</p:dataTable>
 			
 		</h:form>
 	</div>

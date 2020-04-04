@@ -59,19 +59,8 @@
 						<h:outputText value="#{u.descricaoTipoUsuario}" />
 					</p:column>
 						    
-					<p:column headerText="Natalício">
-						<h:outputText value="#{u.dataNascimento}" >
-							<f:convertDateTime pattern="dd/MM/yyyy"/>
-						</h:outputText>
-					</p:column>
 					
-					<p:column headerText="RG" rendered="#{usuarioLogado.administrador}">
-						<h:outputText value="#{u.rg}" />
-					</p:column>
 					
-					<p:column headerText="CPF" rendered="#{usuarioLogado.administrador}">
-						<h:outputText value="#{u.cpf}" />
-					</p:column>
 					
 					<p:column headerText="Email">
 						<h:outputText value="#{u.email}" />
@@ -85,21 +74,17 @@
 						<h:outputText value="#{u.matricula}" />
 					</p:column>
 					
-					<p:column headerText="Banco" rendered="#{usuarioLogado.administrador}">
-						<h:outputText value="#{u.banco}" />
-					</p:column>
-						    
-					<p:column headerText="Conta" rendered="#{usuarioLogado.administrador}">
-						<h:outputText value="#{u.op}" /><br/>
-						<h:outputText value="#{u.ag}"/><br/>
-						<h:outputText value="#{u.conta}"/>
-					</p:column>
 					
-					<p:column headerText="Editar" rendered="#{usuarioLogado.administrador}">
-						<h:commandButton class="botao" value="Editar" ajax="false" 
-						action="#{cadastrarUser.entrarEdicaoUsuarios(u)}"/>
-					</p:column>
 						    
+					
+					<p:column headerText="Opções">
+						<h:commandButton class="botao" value="Ver Perfil" ajax="false" 
+						action="#{perfilMBean.verPerfilUsuario(u)}"/>
+						
+						<h:commandButton class="botao" value="Editar" ajax="false" 
+						action="#{cadastrarUser.entrarEdicaoUsuarios(u)}" rendered="#{usuarioLogado.id == u.id}"/>		    
+						    
+					</p:column>			 
 					</p:dataTable>
 						
 					</h:panelGroup>

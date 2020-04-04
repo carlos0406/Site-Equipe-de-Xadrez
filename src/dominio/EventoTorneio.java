@@ -28,7 +28,7 @@ public class EventoTorneio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_EventoTorneio", nullable = false)
-	private int id_arquivoTorneio;
+	private int id_EventoTorneio;
 
 	@Column(nullable = false)
 	private Date data;
@@ -89,12 +89,14 @@ public class EventoTorneio {
 		this.participantes = participantes;
 	}
 
-	public int getId_arquivoTorneio() {
-		return id_arquivoTorneio;
+	
+
+	public int getId_EventoTorneio() {
+		return id_EventoTorneio;
 	}
 
-	public void setId_arquivoTorneio(int id_arquivoTorneio) {
-		this.id_arquivoTorneio = id_arquivoTorneio;
+	public void setId_EventoTorneio(int id_EventoTorneio) {
+		this.id_EventoTorneio = id_EventoTorneio;
 	}
 
 	public Integer getIdFoto() {

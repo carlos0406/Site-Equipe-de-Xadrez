@@ -48,7 +48,9 @@
 					</p:column>
 					
 					<p:column headerText="Participantes">
-						<h:outputText value="#{e.participantes.nome}" />
+						<p:repeat value="#{e.participantes}" var="p">
+							#{p.nome}<br/>
+						</p:repeat>
 					</p:column>
 					
 					<p:column headerText="Editar">

@@ -2,6 +2,7 @@ package managedbeans;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.persistence.EntityManager;
 
 import dao.Database;
@@ -11,7 +12,7 @@ import dominio.Usuario;
 import uteis.MetodosUteis;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class CadastrarEventoTorneioMBean {
 	private EventoTorneio evento;
 	private Usuario usuarioTorneio;
@@ -77,7 +78,7 @@ public class CadastrarEventoTorneioMBean {
 				evento.setIdFoto(arq.getId());
 			}
 			
-			if (evento.getId_arquivoTorneio() == 0)
+			if (evento.getId_EventoTorneio() == 0)
 				gerenciador.persist(evento);
 			else
 				gerenciador.merge(evento);
@@ -105,8 +106,9 @@ public class CadastrarEventoTorneioMBean {
 	public void setEvento(EventoTorneio evento) {
 		this.evento = evento;
 	}
-	public void removerParticipante(Usuario p) {
+	public String removerParticipante(Usuario p) {
 		evento.getParticipantes().remove(p);
+		return "Erro ao remover participante";
 	}
 
 	

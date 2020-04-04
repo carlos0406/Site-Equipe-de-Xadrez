@@ -13,6 +13,9 @@ public class EventoTorneioDAO extends DAOGenerico{
 	 * Método que permite listar usuários através da busca por
 	 * diversos atributos.
 	 */
+	
+	
+	
 	public List<EventoTorneio> buscarEventoTorneio(){
 		EntityManager em = getEntityManager();
 		
@@ -30,4 +33,29 @@ public class EventoTorneioDAO extends DAOGenerico{
 			return null;
 		}
 	}
-}
+	
+	public List<EventoTorneio> buscarEventoTorneiosUsuario(int idUsuario){
+		
+		EntityManager em = getEntityManager();
+		String hql="select e from EventoTorneio e " + 
+				"join e.participantes p\r\n" + 
+				"where p.id = :idUsuario";
+		
+		Query q=em.createQuery(hql);
+		q.setParameter("idUsuario", idUsuario);
+		try {
+			@SuppressWarnings("unchecked")
+			List<EventoTorneio> result = q.getResultList();
+			
+			return result;
+		} catch (NoResultException e){
+			return null;
+		}
+	}
+		
+		
+	}
+	
+	
+	
+
