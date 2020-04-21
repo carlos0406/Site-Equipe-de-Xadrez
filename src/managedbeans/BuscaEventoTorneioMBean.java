@@ -60,11 +60,27 @@ public class BuscaEventoTorneioMBean {
 		this.dao = dao;
 	}
 	
-	public void deletar(EventoTorneio e) {
-		EntityManager gerenciador = Database.getInstance().getEntityManager();
-		gerenciador.remove(e);
+	public String deletar(EventoTorneio et) {
+		EntityManager em = Database.getInstance().getEntityManager();
 		
+		try {
+			//Iniciando transa��o com o banco de dados
+			em.getTransaction().begin();
+			
+			dao.remover(et);
+			
+			//Transa��o confirmada
+			em.getTransaction().commit();
+			
+		} catch (Exception e){
+			e.printStackTrace();
+			
+			if (em.getTransaction().isActive())
+				//Como ocorreu erro, a transa��o n�o ser� confirmada
+				em.getTransaction().rollback();
+		}
 		
+		return buscar();
 
 	}
 	

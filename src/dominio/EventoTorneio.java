@@ -39,7 +39,7 @@ public class EventoTorneio {
 	@Column(nullable = false, columnDefinition = "TEXT")
 	private String local;
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE,CascadeType.REMOVE})
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name = "torneio_participantes")
 	@Column(nullable = false)
 	private List<Usuario> participantes;

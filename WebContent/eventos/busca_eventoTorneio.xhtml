@@ -24,9 +24,6 @@
 					
 			<h:panelGroup rendered="#{not empty buscaEventoTorneioMBean.eventosEncontrados}"><!--Só exibe algo, se encontrar usuários-->
 				
-				<h:outputLabel value="Nome"><h:inputText value=""/>
-				
-						
 				<p:dataTable var="e" value="#{buscaEventoTorneioMBean.eventosEncontrados}">
 				
 					<p:column headerText="Imagem">
