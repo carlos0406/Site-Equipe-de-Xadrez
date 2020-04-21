@@ -6,7 +6,9 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.persistence.EntityManager;
 
+import dao.Database;
 import dao.EventoTorneioDAO;
 import dominio.EventoTorneio;
 
@@ -57,6 +59,14 @@ public class BuscaEventoTorneioMBean {
 	public void setDao(EventoTorneioDAO dao) {
 		this.dao = dao;
 	}
+	
+	public void deletar(EventoTorneio e) {
+		EntityManager gerenciador = Database.getInstance().getEntityManager();
+		gerenciador.remove(e);
+		
+		
 
+	}
+	
 	
 }
