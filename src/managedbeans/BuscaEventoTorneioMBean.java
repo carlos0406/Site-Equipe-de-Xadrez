@@ -1,5 +1,6 @@
 package managedbeans;
 
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,12 @@ public class BuscaEventoTorneioMBean {
 	/** Permite o acesso ao banco. */
 	private EventoTorneioDAO dao;
 	
+	
+	/*Atributos usados na busca de torneios*/
+		private String nomeBusca;
+		private Date dataEspecificaBusca;
+		private boolean eventosFuturosBusca;
+		
 	/** Inicializa��o do MBean */
 	@PostConstruct/*Construtor para instanciar alguns objetos*/
 	private void init() {
@@ -32,6 +39,7 @@ public class BuscaEventoTorneioMBean {
 	
 	/** Entra na pagina de busca de usu�rios */
 	public String entrarBuscarEventoTorneio(){
+		
 		return buscar();
 	}
 	
@@ -39,7 +47,8 @@ public class BuscaEventoTorneioMBean {
 	public String buscar(){
 		dao = new EventoTorneioDAO();
 		
-		eventosEncontrados = dao.buscarEventoTorneio();
+		eventosEncontrados = dao.buscarEventoTorneio(nomeBusca,dataEspecificaBusca,eventosFuturosBusca);
+		
 			
 		return "/eventos/busca_eventoTorneio.xhtml";
 	}
@@ -60,6 +69,30 @@ public class BuscaEventoTorneioMBean {
 		this.dao = dao;
 	}
 	
+	public String getNomeBusca() {
+		return nomeBusca;
+	}
+
+	public void setNomeBusca(String nomeBusca) {
+		this.nomeBusca = nomeBusca;
+	}
+
+	public Date getDataEspecificaBusca() {
+		return dataEspecificaBusca;
+	}
+
+	public void setDataEspecificaBusca(Date dataEspecificaBusca) {
+		this.dataEspecificaBusca = dataEspecificaBusca;
+	}
+
+	public boolean isEventosFuturosBusca() {
+		return eventosFuturosBusca;
+	}
+
+	public void setEventosFuturosBusca(boolean eventosFuturosBusca) {
+		this.eventosFuturosBusca = eventosFuturosBusca;
+	}
+
 	public String deletar(EventoTorneio et) {
 		EntityManager em = Database.getInstance().getEntityManager();
 		

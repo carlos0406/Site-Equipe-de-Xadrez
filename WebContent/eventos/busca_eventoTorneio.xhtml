@@ -16,9 +16,21 @@
 		<h1>Programação</h1>
 		
 		<h:form prependId="false" style=" margin: 0 10%;">
+		<!--Busca usuarios no banco sem filtro caso nenhum campo seja preenchido, busca com os campos preenchidos  -->
+		<h:outputLabel  for="nomeBusca" value="Nome :" /> <h:inputText id="nomeBusca" value="#{buscaEventoTorneioMBean.nomeBusca}"/> 
+		<h:commandButton  class="botao" value="Buscar" action="#{buscaEventoTorneioMBean.buscar}"/>
+		<h:outputLabel value="Data:" for ="data"/>
+		<p:calendar id="data" value="#{buscaEventoTorneioMBean.dataEspecificaBusca}"/>
+		<h:outputLabel  for="nomeBusca" value="Apenas eventos futuros ?" />
+		
+		<h:selectOneRadio value = "#{buscaEventoTorneioMBean.eventosFuturosBusca}"> 
+   			<f:selectItem itemValue = "true" itemLabel = "Sim" />
+		</h:selectOneRadio>    
+		
 			<h:panelGroup rendered="#{empty buscaEventoTorneioMBean.eventosEncontrados}">
 			<br/>
-				<h3>Nenhum registro</h3>
+				<!-- Caso o usario não faça uma busca  este texto aparece -->
+				<h3>Por favor faço uma busca</h3>
 			</h:panelGroup>
 			
 					
