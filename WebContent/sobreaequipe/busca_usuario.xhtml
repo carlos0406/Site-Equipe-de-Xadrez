@@ -74,14 +74,11 @@
 						<h:outputText value="#{u.matricula}" />
 					</p:column>
 					
-					
-						    
-					
 					<p:column headerText="Opções">
-						<h:commandButton class="botao" value="Ver Perfil" ajax="false" 
+						<h:commandButton class="botao" value="Ver Perfil"  
 						action="#{perfilMBean.verPerfilUsuario(u)}"/>
 						
-						<h:commandButton class="botao" value="Editar" ajax="false" 
+						<h:commandButton class="botao" value="Editar"  
 						action="#{cadastrarUser.entrarEdicaoUsuarios(u)}" rendered="#{usuarioLogado.id == u.id}"/>		    
 						    
 					</p:column>			 
