@@ -87,7 +87,7 @@ public class LoginMBean {
 
 		if (suap) {
 			// Pegando dados a partir do token gerado para salvar no banco de dados
-			System.out.println(token);
+			
 			CloseableHttpClient httpclient = HttpClients.createDefault();
 			HttpGet httpget = new HttpGet("https://suap.ifrn.edu.br/api/v2/minhas-informacoes/meus-dados/");
 
@@ -95,12 +95,12 @@ public class LoginMBean {
 			httpget.addHeader("Authorization", "JWT " + buscarToken());
 
 			String responseGET = httpclient.execute(httpget, new ControladorPadraoRespostaAPI());
-			System.out.println(responseGET);
+			
 
 			Gson gson = new Gson();
 			HashMap meusDados = gson.fromJson(responseGET, HashMap.class);
-
-			System.out.println(meusDados);
+			
+			
 
 			
 
@@ -109,13 +109,19 @@ public class LoginMBean {
 			
 			usuario = new Usuario();
 			usuario.setNome(meusDados.get("nome_usual").toString());
+			System.out.println("meus Dados:");
+			System.out.println(meusDados);
+		
+				System.out.println("Vinculo :");
+				System.out.println(meusDados.get("vinculo"));
+				
 			usuario.setEmail((String) meusDados.get("email"));
 			usuario.setCpf((String) meusDados.get("cpf"));
 			usuario.setSenha(CriptografiaUtils.criptografarMD5(senha));
 			EntityManager gerenciador = Database.getInstance().getEntityManager();
-			usuario.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
-			usuario.setSexo('M');
-			usuario.setRg("0000000000");
+			usuario.setTipoUsuario(TipoUsuario.MEMBRO);
+			usuario.setSexo(' ');
+			usuario.setRg("");
 			usuario.setMatricula(Long.parseLong(matricula));
 			String data = meusDados.get("data_nascimento").toString();
 			
@@ -129,7 +135,7 @@ public class LoginMBean {
 			}
 			
 			usuario.setAtivo(true);
-			usuario.setCelular("2345678");
+			usuario.setCelular("");
 
 			if (usuarioBanco != null && usuarioBanco.getId() != 0) {
 				usuario.setId(usuarioBanco.getId());
@@ -225,7 +231,7 @@ public class LoginMBean {
 			String token = null;
 			if (tokenHM.get("token") != null)
 				token = tokenHM.get("token").toString();
-			System.out.println("Token:" + token);
+		
 			return token;
 		}
 

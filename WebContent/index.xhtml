@@ -1,193 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html 
-	xmlns="http://www.w3.org/1999/xhtml"
+<ui:decorate
+	xmlns="http://www.w3.org/1999/xhtml" 
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	template="template.xhtml">
 	
-	<h:head>
-		<link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/imagens/favicon.ico" />
-		
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>Equipe de Xadrez IFRN-JC</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="description" content="Site responsável pela transmissão de 
-		informações sobre a equipe de xadrez do IFRN campus Joâo Câmara/RN"/>
-		<meta name="keywords" content="xadrez, IFRN, joao camara"/>
-		<meta name="robots" content="index, follow" />
-		<meta name="author" content="Raissa Crispim, Eudes Romão, Larissa 
-		Cavalcanti, Gean, Débora, João Victor" />
-		<h:link rel="stylesheet" href="css/style.css"/>
-		<h:link rel="icon" href="imagens/logo.png" />
-		<h:link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
-				integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" 
-				crossorigin="anonymous"/>
+	<!-- ###################### CONTEÚDO ###################### -->
 
-		<style>
-
-			@import url('https://fonts.googleapis.com/css?family=Inconsolata');
-			
-			.link{
-				
-				width:100%;
-				color:white;
-				margin-left:430px;
-				font-size:16px;
-				font-weigth:bold;
-			
-			}
-			
-			body {
-				background-color: #ecf0f1;
-			}
-			
-			.main {
-				margin: 20px 0;
-				padding: 10px;
-			}
-			
-			.block_login {
-				margin: 5px auto;
-				width: 85%;
-				padding: 20px;
-				color: #fff;
-				border-radius: 10px;
-				background-color: #2f3640;
-			}
-			
-			.iconeDoSistema {
-				width: 50%;
-				margin: 0;
-			}
-			
-			h1 {
-				text-align: center;
-				font-family: 'Inconsolata', monospace;
-			}
-			
-			.write {
-				background: transparent;
-				width: 80%;
-				color: #ecf0f1;
-				padding: 10px 0;
-				margin: 10px 10%;
-				border-top: none;
-				border-bottom: 2px solid #ecf0f1;
-				border-left: none;
-				border-right: none;
-				outline: none;
-			}
-			
-			.botao_enviar {
-				background-color: #ecf0f1;
-				border: none;
-				border-radius: 5px;
-				cursor: pointer;
-				padding: 10px;
-				width: 50%;
-				margin: 10px 25%;
-			}
-			
-			.botao_enviar:hover {
-				background-color: #ddd;
-			}
-			
-			p {
-				text-align: center;
-			}
-			
-			.esqueceuSenha {
-				color: #ecf0f1;
-				text-decoration: none;
-				font-family: 'Inconsolata', monospace;
-			}
-			
-			/* ###################### RESOLUÇÕES ###################### */
-			
-			@media screen and (min-width: 580px) {
-				
-				.iconeDoSistema {
-					width: 30%;
-					margin: 0 35%;
-				}
-			
-				.write {
-					width: 80%;
-					padding: 10px 0;
-					margin: 10px 10%;
-				}
-			
-				.botao_enviar {
-					width: 50%;
-					padding: 10px 0;
-					margin: 10px 25%;
-				}
-			
-			}
-			
-			@media screen and (min-width: 840px) {
-				
-				.iconeDoSistema {
-					width: 25%;
-					margin: 0 37%;
-				}	
-			
-				.block_login {
-					width: 60%;
-				}
-			
-				.write {
-					width: 50%;
-					padding: 10px 0;
-					margin: 10px 25%;
-				}
-			
-				.botao_enviar {
-					width: 30%;
-					padding: 10px 0;
-					margin: 10px 35%;
-				}
-			
-			}
-			
-			
-		
-		</style>
-	</h:head>
-	<h:body>
-		
-	<div class="main">
-		<div class="block_login">
-		
-			<h:graphicImage value="/imagens/logo.png" styleClass="iconeDoSistema"/>
-			<h1>Xadrez</h1>
-			
-			<h:messages/>
-		
-			<h:form styleClass="displayMenu">
-						
-				<p:inputText value="#{loginMBean.usuario.email}" placeholder="Email"
-						styleClass="form-control" class="write" />
-	
-				<p:password value="#{loginMBean.usuario.senha}" placeholder="Senha"
-						styleClass="form-control" id="inputPassword" class="write" />
-			
-
-				<!-- BOTÃO DE LOGIN UTILIZANDO AJAX -->			
-				<h:commandButton styleClass="btn btn-lg btn-primary btn-block"
-						value="Entrar" class="botao_enviar" action="#{loginMBean.entrar}">
-				</h:commandButton>
-			
-					<h:commandLink value="Faça seu cadastro agora!" action="/login/CadastrarUsuario.xhtml" styleClass="link" />
-					<br/>
-					<br/>
-					<h:commandLink value="Acesse nossa pagina inicial!" action="/home.xhtml" styleClass="link" />
-					
-			</h:form>	
-						
-		</div>
+	<div id="conteudo">
+		<h:graphicImage url="/imagens/logo.png" style="position:relative; left:40%; width: 20%"/>
+		<br/><p class="texto">O projeto de extensão "Xadrez na Região do Mato Grande" do IFRN-JC (Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte, campus João Câmara/RN), teve início no ano de 2010 com a participação nos jogos intercampi do IFRN, seguido de um curso de xadrez básico com duração de 3 meses que terminou com cerca de 20 alunos. De 2011 até os dias atuais, o projeto mantém uma rotina semanal de treinos na sala de xadrez, que por sua conta com uma infraestrutura adequada, formada por: um inventário material com mais de 70 livros, 5 DVDs, 12 mesas, mais de 50 jogos de peças e 48 relógios, ambos específicos para a prática do xadrez, bolsa para 2 alunos anualmente (nos anos em que conseguiu passar no edital de extensão do IFRN), um mural, 2 tabuleiros-murais, um armário para guardar seus mais de 25 troféus.</p><br/>
+		<p class="texto">A equipe de xadrez do IFRN-JC, ao longo desses 8 anos tem participado dos principais torneios estudantis (ou não) do estado: JERNS, Juverns (que classifica para o campeonato brasileiro - JEJs), Intercampi do IFRN (o qual classifica para os JIFs Nordeste, que por sua vez classifica para o JIF Nacional), Interiorano, SESC, Onofre Lopes, Campeonato Estadual, entre outros. Isso sem falar em torneios fora do estado, como: Memorial Bobby Fischer, FENAJ e Nordestão. O que implica em uma rotina de viagens, treinamentos e preparações, uma vez que parte destes torneios tem sua participação condicionada a torneios seletivos.</p><br/>
+		<p class="texto">O projeto possui, atualmente, mais de 150 membros e ex-membros que frequentam (ou frequentaram) a sala de xadrez diariamente. Nesse contato, o lazer se manifesta de maneira clara. Já nos mais de 200 torneios com participação dos membros da equipe, a faceta esporte do xadrez se manifesta gerando várias conquistas materiais (troféus e medalhas).</p><br/>
+		<p class="texto">A prática regular do xadrez possibilitou a seus membros o desenvolvimento de diversas habilidades, como por exemplo: planejamento, memorização, visualização espacial, noção de prioridades, abstração, fair-play. A aquisição de tais habilidades se constitui no objetivo principal do projeto. Sendo de fato uma equipe com logomarca, uniformes feitos anualmente e um espírito de grupo que torna a vitória uma mera consequência da habilidade adquirida.</p><br/>
 	</div>
-		
-	</h:body>
-</html>
+	
+</ui:decorate>
