@@ -24,7 +24,7 @@ public class LoginFilter implements Filter {
 	 * Se existirem páginas específicas cujo acesso deva ser permitido mesmo sem estar logado,
 	 * devem ser adicionadas neste array. 
 	 * */
-	private final String[] urlsPermitidas = {"index.xhtml", "erro.xhtml","home.xhtml","sobreaequipe","CadastrarUsuario"};
+	private final String[] urlsPermitidas = {"index.xhtml", "erro.xhtml","login.xhtml","sobreaequipe","CadastrarUsuario.xhtml"};
 	
 	@Override
 	public void destroy() {
@@ -79,7 +79,7 @@ public class LoginFilter implements Filter {
         	chain.doFilter(request, response);
         } else {
         	//Neste caso, não foi permitido, então redireciona para a página de login
-        	response.sendRedirect("/XadrezIFRNJC/index.xhtml");
+        	response.sendRedirect("/XadrezIFRNJC/login.xhtml");
         	return;
         }
 		
