@@ -40,7 +40,7 @@ public class EventoTorneioDAO extends DAOGenerico {
 		if (!MetodosUteis.estaVazia(nome)) {
 			hql += " AND upper(e.nome_torneio) like :nome";
 		}
-		if (!MetodosUteis.estaVazia(dataInicial)&MetodosUteis.estaVazia(dataFinal)) {
+		if (!MetodosUteis.estaVazia(dataInicial) && !MetodosUteis.estaVazia(dataFinal)) {
 			hql += " AND e.data BETWEEN (:dataInicial) AND (:dataFinal)";
 		}
 
@@ -50,7 +50,7 @@ public class EventoTorneioDAO extends DAOGenerico {
 
 		Query q = gerenciador.createQuery(hql);
 
-		if (dataInicial!= null&&dataFinal!=null) {
+		if (dataInicial!= null && dataFinal!=null) {
 			q.setParameter("dataInicial", dataInicial);
 			q.setParameter("dataFinal", dataFinal);
 		}
