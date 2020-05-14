@@ -18,22 +18,22 @@
 			<p:growl id="mensagens"/>
 			
 			<h:panelGrid columns="2" style="width: 100%;">
-				<h:outputLabel for="TituloNoticia" value="Título: " />
+				<h:outputLabel for="TituloNoticia " value="Título:* " />
 				<h:inputText id="TituloNoticia" value="#{cadastrarNoticiaMBean.noticia.titulo_noticia}" 
 					style="width:100%;"/>
 				
-				<h:outputLabel for="NomeAutor" value="Autor: " />
+				<h:outputLabel for="NomeAutor " value="Autor: *" />
 				<h:inputText id="NomeAutor" value="#{cadastrarNoticiaMBean.noticia.nome_autor}" 
 					style="width:100%;"/>
 				
-				<h:outputLabel for="PalavraChave" value="Palavras-chave: " style="width: 30px;" />
+				<h:outputLabel for="PalavraChave" value="Palavras-chave:* " style="width: 30px;" />
 				<h:inputText id="PalavraChave" value="#{cadastrarNoticiaMBean.noticia.palavraChave}" 
 					style="width:100%;"/>
 			</h:panelGrid>
 			
 			<br/>
 			
-			<h:outputLabel for="fotoNoticia" value="Fotos da notícia: "/>
+			<h:outputLabel for="fotoNoticia" value="Fotos da notícia: *"/>
 			<p:fileUpload id="fotoNoticia" mode="advanced" dragDropSupport="false"
                  multiple="true" fileUploadListener="#{cadastrarNoticiaMBean.fazerUploadFotos}"
                  fileLimit="10" label="Escolher arquivos" cancelLabel="Cancelar envio" 
@@ -50,7 +50,7 @@
 			
 			<br/>
 			
-			<h:outputLabel for="texto" value="Texto: " />
+			<h:outputLabel for="texto" value="Texto: *" />
 			<p:textEditor id="texto" widgetVar="editor1" value="#{cadastrarNoticiaMBean.noticia.texto_noticia}" height="300" style="margin-bottom:10px"/>
 			
 			<h:commandButton class="botao" value="Enviar" action="#{cadastrarNoticiaMBean.cadastrar}" />

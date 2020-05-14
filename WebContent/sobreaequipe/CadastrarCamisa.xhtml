@@ -19,13 +19,13 @@
                     bottom: 0px; left: 0px; right: 0px; top: 0px; 
                     width: 200px">
 			
-					<h:outputLabel for="autor_camisa" value="Desenhista: " />
+					<h:outputLabel for="autor_camisa" value="Desenhista: *" />
 					<h:inputText id="autor_camisa" value="#{cadastrarCamisaMBean.camisa.autor_camisa}" />
 				
-					<h:outputLabel for="ano_camisa" value="Ano: " />
+					<h:outputLabel for="ano_camisa" value="Ano: *" />
 					<h:inputText id="ano_camisa" value="#{cadastrarCamisaMBean.camisa.ano_camisa}" />
 					
-					<h:outputLabel for="fotoCamisa" value="Foto: "/>
+					<h:outputLabel for="fotoCamisa" value="Foto: *"/>
 					<p:fileUpload id="fotoCamisa" mode="simple" value="#{cadastrarCamisaMBean.camisa.fotoCamisa}"/>
 					
 					<h:commandButton class="botao" value="Enviar" action="#{cadastrarCamisaMBean.cadastrar}"/>

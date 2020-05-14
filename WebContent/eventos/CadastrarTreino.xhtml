@@ -30,11 +30,11 @@ table {
                    bottom: 0px; left: 0px; right: 0px; top: 0px; 
                    width: 200px">
 
-				<h:outputLabel for="tema" value="Tema: " />
+				<h:outputLabel for="tema" value="Tema: *" />
 				<h:inputText id="tema" value="#{cadastrarTreinoMBean.treino.tema}"
 					disabled="#{usuarioLogado.administrador == false}" />
 
-				<h:outputLabel for="ministrantes" value="Ministrantes: " />
+				<h:outputLabel for="ministrantes" value="Ministrantes: *" />
 				<p:autoComplete value="#{cadastrarTreinoMBean.treino.ministrantes}"
 					minQueryLength="3"
 					completeMethod="#{buscaUsuariosMBean.autoCompleteUsuarios}"
@@ -56,11 +56,11 @@ table {
 
 
 
-				<p:outputLabel for="data" value="Data: " />
+				<p:outputLabel for="data" value="Data: *" />
 				<p:calendar id="data" value="#{cadastrarTreinoMBean.treino.data}"
 					disabled="#{usuarioLogado.administrador == false}" />
 
-				<h:outputLabel for="turno" value="Turno: " />
+				<h:outputLabel for="turno" value="Turno: *" />
 				<h:selectOneRadio id="turno"
 					value="#{cadastrarTreinoMBean.treino.turno}"
 					disabled="#{usuarioLogado.administrador == false}">

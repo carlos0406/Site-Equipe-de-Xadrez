@@ -28,15 +28,15 @@
 		<h:form enctype="multipart/form-data" style="margin: 0px auto;">
 			<h:messages/>
 			
-			<h:panelGrid columns="6" style="background-color: #ecf0f1; 
+			<h:panelGrid columns="4" style="background-color: #ecf0f1; 
                    bottom: 0px; left: 0px; right: 0px; top: 0px; 
                    width: 200px">
 				
-				<h:outputLabel for="local" value="Local: " />
+				<h:outputLabel for="local" value="Local: *" />
 				<h:inputText id="local" value="#{cadastrarEventoTorneioMBean.evento.local}" 
 					disabled="#{usuarioLogado.administrador == false}"/>
 				
-				<h:outputLabel for="nome" value="Torneio: " />
+				<h:outputLabel for="nome" value="Torneio: *" />
 				<h:inputText id="nome" value="#{cadastrarEventoTorneioMBean.evento.nome_torneio}" 
 					disabled="#{usuarioLogado.administrador == false}"/>
 				
@@ -51,7 +51,8 @@
 				 action="#{cadastrarEventoTorneioMBean.addParticipante}"/>
 				</h:panelGroup>
 							
-				<p:outputLabel for="data" value="Data: " />
+							
+				<p:outputLabel for="data" value="Data: *" />
 				<p:calendar id="data" value="#{cadastrarEventoTorneioMBean.evento.data}"
 					disabled="#{usuarioLogado.administrador == false}"/>
 				

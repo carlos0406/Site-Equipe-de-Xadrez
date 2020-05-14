@@ -19,74 +19,60 @@ td {
 </style>
 
 	<div id="conteudo">
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<h:panelGrid columns="1">
-			
+		<br /> <br /> <br /> <br /> <br /> <br /> <br />
+		
+
 			<p:column headerText="Imagem">
-				<h:graphicImage url="/imagens/anonimo.png" alt="Perfil" styleClass="fotoUsuario" 
-		            			rendered="#{perfilMBean.usuario.idFoto == null and perfilMBean.usuario.sexoMasculino}"/>
-	            <h:graphicImage url="/imagens/anonima.png" alt="Perfil" styleClass="fotoUsuario"
-	            			rendered="#{perfilMBean.usuario.idFoto == null and perfilMBean.usuario.sexoFeminino}" />
-	            			
-            	<h:graphicImage style="width:90px;" styleClass="fotoUsuario" url="#{perfilMBean.usuario.urlFotoUsuario}"
-            				alt="Perfil" rendered="#{u.idFoto != null}"/>
+				<h:graphicImage url="/imagens/anonimo.png" alt="Perfil"
+					styleClass="fotoUsuario"
+					rendered="#{perfilMBean.usuario.idFoto == null and perfilMBean.usuario.sexoMasculino}" />
+				<h:graphicImage url="/imagens/anonima.png" alt="Perfil"
+					styleClass="fotoUsuario"
+					rendered="#{perfilMBean.usuario.idFoto == null and perfilMBean.usuario.sexoFeminino}" />
+
+				<h:graphicImage style="width:90px;" styleClass="fotoUsuario"
+					url="#{perfilMBean.usuario.urlFotoUsuario}" alt="Perfil"
+					rendered="#{u.idFoto != null}" />
 			</p:column>
-			
+
 			<h:outputText value="#{perfilMBean.usuario.nome}" />
-			<!-- <h:outputText value="#{perfilMBean.usuario.dataNascimento}" /> -->
+			<h:outputText value="#{perfilMBean.usuario.dataNascimento}" />
 			<h:outputText value="#{perfilMBean.usuario.email}" />
 			<h:outputText value="#{perfilMBean.usuario.celular}" />
 			<h:outputText value="#{perfilMBean.usuario.matricula}" />
+			
+		
+
+
+
+		
 			<p:dataTable var="t" value="#{perfilMBean.usuario.torneios}">
-			<p:column headerText="Banco" rendered="#{usuarioLogado.administrador}">
-						<h:outputText value="#{u.banco}" />
-					</p:column>
+				<p:column headerText="Torneios que participou">
+					<h:outputText value="#{t.nome_torneio}" />
+				</p:column>
+				<p:column headerText="Data do torneio">
+					<h:outputText value="#{t.data}" />
+				</p:column>
+				<p:column headerText="Local">
+					<h:outputText value="#{t.local}" />
+				</p:column>
 				
-			<p:column headerText="Conta" rendered="#{usuarioLogado.administrador}">
-						<h:outputText value="#{u.op}" /><br/>
-						<h:outputText value="#{u.ag}"/><br/>
-						<h:outputText value="#{u.conta}"/>
-					</p:column>
-						
-			<p:column headerText="Natalício">
-						<h:outputText value="#{u.dataNascimento}" >
-							<f:convertDateTime pattern="dd/MM/yyyy"/>
-						</h:outputText>
-					</p:column>	
-					
-						 
-					<p:column headerText="Torneios que participou">
-						<h:outputText value="#{t.nome_torneio}" />
-					</p:column>
-					
-						
-					<p:column headerText="RG" rendered="#{usuarioLogado.administrador}">
-						<h:outputText value="#{u.rg}" />
-					</p:column>
-					
-					<p:column headerText="CPF" rendered="#{usuarioLogado.administrador}">
-						<h:outputText value="#{u.cpf}" />
-					</p:column>
-					
-
-				</p:dataTable>	
-				
+			
 
 
-		</h:panelGrid>
 
+
+
+
+			</p:dataTable>
 		
-			
-						
-			
-			
-		
+
+
+
+
+
+
+
 
 
 

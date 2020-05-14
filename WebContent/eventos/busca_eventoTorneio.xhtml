@@ -17,15 +17,29 @@
 		
 		<h:form prependId="false" style=" margin: 0 10%;">
 		<!--Busca usuarios no banco sem filtro caso nenhum campo seja preenchido, busca com os campos preenchidos  -->
-		<h:outputLabel  for="nomeBusca" value="Nome :" /> <h:inputText id="nomeBusca" value="#{buscaEventoTorneioMBean.nomeBusca}"/> 
-		<h:commandButton  class="botao" value="Buscar" action="#{buscaEventoTorneioMBean.buscar}"/>
-		<h:outputLabel value="Data:" for ="data"/>
-		<p:calendar id="data" value="#{buscaEventoTorneioMBean.dataEspecificaBusca}"/>
-		<h:outputLabel  for="nomeBusca" value="Apenas eventos futuros ?" />
+		<h:panelGrid columns="4">
+		<h:panelGroup>
+		<h:outputLabel  for="nomeBusca" value="Nome :" />
+		 <h:inputText id="nomeBusca" value="#{buscaEventoTorneioMBean.nomeBusca}"/> 
+		</h:panelGroup>
+		<h:panelGroup>
+		<h:outputLabel value="Data:" for ="dataInicial"/>
+		<p:calendar id="dataInicial" value="#{buscaEventoTorneioMBean.dataInicial}"/>
+		</h:panelGroup>
+		
+		<h:panelGroup>
+		<h:outputLabel value="Data:" for ="dataFinal"/>
+		<p:calendar id="dataFinal" value="#{buscaEventoTorneioMBean.dataFinal}"/>
+		</h:panelGroup>
+		
+		<h:outputLabel  for="eventosFuturos" value="Apenas eventos futuros ?" />
 		
 		<h:selectOneRadio value = "#{buscaEventoTorneioMBean.eventosFuturosBusca}"> 
    			<f:selectItem itemValue = "true" itemLabel = "Sim" />
-		</h:selectOneRadio>    
+   			<f:selectItem itemValue = "false" itemLabel = "Não" />
+		</h:selectOneRadio>
+		<h:commandButton  class="botao" value="Buscar" action="#{buscaEventoTorneioMBean.buscar}"/>    
+		</h:panelGrid>
 		
 			<h:panelGroup rendered="#{empty buscaEventoTorneioMBean.eventosEncontrados}">
 			<br/>
@@ -69,7 +83,7 @@
 					<p:column headerText="Opções">
 						
 						<h:commandButton class="botao" value="#{usuarioLogado.administrador? 'Editar' : 'Inscrever-se'}" action="#{cadastrarEventoTorneioMBean.entrarEdicaoEventoTorneio(e)}"/>
-						<h:commandButton  class="botao" value='Excluir'  rendered="#{usuarioLogado.administrador}" action="#{buscaEventoTorneioMBean.deletar(e)}"/>
+						<h:commandButton onclick="confirmamaçãoExcluirTorneio()"  class="botao" value='Excluir'  rendered="#{usuarioLogado.administrador}" action="#{buscaEventoTorneioMBean.deletar(e)}"/>
 					</p:column>
 
 				</p:dataTable>	
@@ -81,4 +95,9 @@
 		</h:form>
 		
 	</div>
+	<script type="text/javascript">
+	function confirmamaçãoExcluirTorneio(){
+	}
+
+</script>
 </ui:composition>

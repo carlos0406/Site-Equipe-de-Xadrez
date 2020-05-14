@@ -32,7 +32,7 @@ public class EventoTorneioDAO extends DAOGenerico {
 		}
 	}
 
-	public List<EventoTorneio> buscarEventoTorneio(String nome, Date data, boolean futuro) {
+	public List<EventoTorneio> buscarEventoTorneio(String nome, Date dataInicial, Date dataFinal, boolean futuro) {
 		EntityManager gerenciador = getEntityManager();
 		Date dataAtual;
 		String hql = "SELECT e FROM EventoTorneio e WHERE 1=1 ";
@@ -40,8 +40,8 @@ public class EventoTorneioDAO extends DAOGenerico {
 		if (!MetodosUteis.estaVazia(nome)) {
 			hql += " AND upper(e.nome_torneio) like :nome";
 		}
-		if (!MetodosUteis.estaVazia(data)) {
-			hql += " AND e.data= :data";
+		if (!MetodosUteis.estaVazia(dataInicial)&MetodosUteis.estaVazia(dataFinal)) {
+			hql += " AND e.data BETWEEN (:dataInicial) AND (:dataFinal)";
 		}
 
 		if (futuro) {
@@ -50,8 +50,9 @@ public class EventoTorneioDAO extends DAOGenerico {
 
 		Query q = gerenciador.createQuery(hql);
 
-		if (data != null) {
-			q.setParameter("data", data);
+		if (dataInicial!= null&&dataFinal!=null) {
+			q.setParameter("dataInicial", dataInicial);
+			q.setParameter("dataFinal", dataFinal);
 		}
 		if (!MetodosUteis.estaVazia(nome)) {
 			q.setParameter("nome", nome.toUpperCase()+"%");

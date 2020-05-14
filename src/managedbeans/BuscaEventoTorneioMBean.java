@@ -26,7 +26,8 @@ public class BuscaEventoTorneioMBean {
 	
 	/*Atributos usados na busca de torneios*/
 		private String nomeBusca;
-		private Date dataEspecificaBusca;
+		private Date dataInicial;
+		private Date dataFinal;
 		private boolean eventosFuturosBusca;
 		
 	/** Inicializa��o do MBean */
@@ -47,7 +48,7 @@ public class BuscaEventoTorneioMBean {
 	public String buscar(){
 		dao = new EventoTorneioDAO();
 		
-		eventosEncontrados = dao.buscarEventoTorneio(nomeBusca,dataEspecificaBusca,eventosFuturosBusca);
+		eventosEncontrados = dao.buscarEventoTorneio(nomeBusca,dataInicial,dataFinal,eventosFuturosBusca);
 		
 			
 		return "/eventos/busca_eventoTorneio.xhtml";
@@ -77,12 +78,22 @@ public class BuscaEventoTorneioMBean {
 		this.nomeBusca = nomeBusca;
 	}
 
-	public Date getDataEspecificaBusca() {
-		return dataEspecificaBusca;
+	
+
+	public Date getDataInicial() {
+		return dataInicial;
 	}
 
-	public void setDataEspecificaBusca(Date dataEspecificaBusca) {
-		this.dataEspecificaBusca = dataEspecificaBusca;
+	public void setDataInicial(Date dataInicial) {
+		this.dataInicial = dataInicial;
+	}
+
+	public Date getDataFinal() {
+		return dataFinal;
+	}
+
+	public void setDataFinal(Date dataFinal) {
+		this.dataFinal = dataFinal;
 	}
 
 	public boolean isEventosFuturosBusca() {
@@ -115,6 +126,7 @@ public class BuscaEventoTorneioMBean {
 		
 		return buscar();
 
+		
 	}
 	
 	

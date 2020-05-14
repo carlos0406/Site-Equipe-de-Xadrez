@@ -119,7 +119,7 @@ public class LoginMBean {
 			usuario.setCpf((String) meusDados.get("cpf"));
 			usuario.setSenha(CriptografiaUtils.criptografarMD5(senha));
 			EntityManager gerenciador = Database.getInstance().getEntityManager();
-			usuario.setTipoUsuario(TipoUsuario.MEMBRO);
+			usuario.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
 			usuario.setSexo(' ');
 			usuario.setRg("");
 			usuario.setMatricula(Long.parseLong(matricula));
@@ -181,13 +181,13 @@ public class LoginMBean {
 		MetodosUteis.getCurrentSession().setAttribute("usuarioLogado", usuario);
 
 		if (usuario.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR)) {
-			return "home.xhtml";
+			return "index.xhtml";
 		} else if (usuario.getTipoUsuario().equals(TipoUsuario.BOLSISTA)) {
-			return "home.xhtml";
+			return "index.xhtml";
 		} else if (usuario.getTipoUsuario().equals(TipoUsuario.MEMBRO)) {
-			return "home.xhtml";
+			return "index.xhtml";
 		} else if (usuario.getTipoUsuario().equals(TipoUsuario.COMUM)) {
-			return "home.xhtml";
+			return "index.xhtml";
 		} else {
 			usuario = new Usuario();
 			return null;

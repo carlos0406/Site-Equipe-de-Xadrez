@@ -19,19 +19,19 @@
                    bottom: 0px; left: 0px; right: 0px; top: 0px; 
                    width: 150px">
 		
-				<h:outputLabel for="nomeLivro" value="Nome da obra: " />
+				<h:outputLabel for="nomeLivro" value="Nome da obra: *" />
 				<h:inputText id="nomeLivro" value="#{cadastrarLivroMBean.livro.nome_livro}" />
 			
-				<h:outputLabel for="ano_livro" value="Ano: " />
+				<h:outputLabel for="ano_livro" value="Ano: *" />
 				<h:inputText id="ano_livro" value="#{cadastrarLivroMBean.livro.ano_livro}" />
 				
-				<h:outputLabel for="nome_autor" value="Nome do autor: " />
+				<h:outputLabel for="nome_autor" value="Nome do autor: *" />
 				<h:inputText id="nome_autor" value="#{cadastrarLivroMBean.livro.nome_autor}" />
 				
 				<h:outputLabel for="fotoLivro" value="Foto da capa: "/>
 				<p:fileUpload id="fotoLivro" mode="simple" value="#{cadastrarLivroMBean.livro.fotoLivro}"/>
 				
-				<h:outputLabel for="tipo" value="Tipo: "/>
+				<h:outputLabel for="tipo" value="Tipo: *"/>
 				<h:selectOneRadio id="tipo" value="#{cadastrarLivroMBean.livro.tipo}">
 					<f:selectItem 
 						itemLabel="Livro"
