@@ -83,7 +83,7 @@
 					<p:column headerText="Opções">
 						
 						<h:commandButton class="botao" value="#{usuarioLogado.administrador? 'Editar' : 'Inscrever-se'}" action="#{cadastrarEventoTorneioMBean.entrarEdicaoEventoTorneio(e)}"/>
-						<h:commandButton onclick="confirmamaçãoExcluirTorneio()"  class="botao" value='Excluir'  rendered="#{usuarioLogado.administrador}" action="#{buscaEventoTorneioMBean.deletar(e)}"/>
+						<h:commandButton onclick="return confirmamaçãoExcluirTorneio()"  class="botao" value='Excluir'  rendered="#{usuarioLogado.administrador}" action="#{buscaEventoTorneioMBean.deletar(e)}"/>
 					</p:column>
 
 				</p:dataTable>	
@@ -97,6 +97,8 @@
 	</div>
 	<script type="text/javascript">
 	function confirmamaçãoExcluirTorneio(){
+		if (!confirm('Deseja realmente excluir o torneio selecionado?'))
+			return false;
 	}
 
 </script>
