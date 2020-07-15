@@ -49,7 +49,7 @@
 						</p:repeat>
 					</p:column>
 					
-					<p:column headerText="Editar">
+					<p:column headerText="Opções" rendered="#{usuarioLogado != null}">
 						<h:commandButton class="botao" value="#{usuarioLogado.administrador? 'Editar' : 'Inscrever-se'}" action="#{cadastrarTreinoMBean.entrarEdicaoTreinos(tr)}"/>
 					</p:column>
 

@@ -63,7 +63,9 @@ td {
 
 					<h:outputText value="DATA DE NASCIMENTO:" styleClass='descricao' />
 
-					<h:outputText value="#{perfilMBean.usuario.dataNascimento}" />
+					<h:outputText value="#{perfilMBean.usuario.dataNascimento}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
 
 					<h:outputText value="E-MAIL:" styleClass='descricao' />
 
@@ -123,14 +125,16 @@ td {
 			</div>
 
 
-			<div class="col-sm-6 col-md-4">
+			<div class="col-sm-6 col-md-8">
 
-				<p:dataTable var="t" value="#{perfilMBean.usuario.torneios}">
+				<p:dataTable var="t" value="#{perfilMBean.usuario.torneios}" style="width: 100%;">
 					<p:column headerText="Torneios que participou">
 						<h:outputText value="#{t.nome_torneio}" />
 					</p:column>
 					<p:column headerText="Data do torneio">
-						<h:outputText value="#{t.data}" />
+						<h:outputText value="#{t.data}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
 					</p:column>
 					<p:column headerText="Local">
 						<h:outputText value="#{t.local}" />

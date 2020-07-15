@@ -10,11 +10,7 @@
 	template="../template.xhtml">
 	
 	<style>
-		.eventos-futuros{
-			margin-left:-2;
-			display:flex;
-			flex-direction: row;
-		}
+		
 	</style>
 	
 	<!-- ###################### CONTEÚDO ###################### -->
@@ -26,36 +22,35 @@
 		<h:form prependId="false" style=" margin: 0 10%;">
 		<!--Busca usuarios no banco sem filtro caso nenhum campo seja preenchido, busca com os campos preenchidos  -->
 		
-		<h:panelGrid columns="1">
-		<h:panelGroup>
-		<h:outputLabel  for="nomeBusca" value="Nome :" />
-		 <h:inputText id="nomeBusca" value="#{buscaEventoTorneioMBean.nomeBusca}"/> 
-		</h:panelGroup>
-		
-		<h:panelGroup>
+		<h:panelGrid columns="2">
+			<h:outputLabel  for="nomeBusca" value="Nome :" />
+			<p:inputText id="nomeBusca" value="#{buscaEventoTorneioMBean.nomeBusca}"/> 
+			
 			<h:outputLabel value="Data:" for ="dataInicial"/>
-			<p:calendar id="dataInicial" value="#{buscaEventoTorneioMBean.dataInicial}"/>
-			<h:outputLabel value=" a" />
-			<p:calendar id="dataFinal" value="#{buscaEventoTorneioMBean.dataFinal}"/>
-		</h:panelGroup>
-		
-		<h:panelGroup class='eventos-futuros'>
-		<h:outputLabel  for="eventosFuturos" value="Apenas eventos futuros ?" />
-		
-		<h:selectOneRadio value = "#{buscaEventoTorneioMBean.eventosFuturosBusca}"> 
-   			<f:selectItem itemValue = "true" itemLabel = "Sim" />
-   			<f:selectItem itemValue = "false" itemLabel = "Não" />
-		</h:selectOneRadio>
-		</h:panelGroup>
-		
-		<h:commandButton  class="botao" value="Buscar" action="#{buscaEventoTorneioMBean.buscar}"/>    
+			
+			<h:panelGroup>
+				<p:calendar id="dataInicial" value="#{buscaEventoTorneioMBean.dataInicial}" style="margin-left: 0px;"/>
+				a
+				<p:calendar id="dataFinal" value="#{buscaEventoTorneioMBean.dataFinal}" style="margin-left: 0px;"/>
+			</h:panelGroup>	
+			
+			<h:outputLabel  for="eventosFuturos" value="Apenas eventos futuros?" />
+			
+			<h:panelGroup class='eventos-futuros'>
+				<h:selectOneRadio value = "#{buscaEventoTorneioMBean.eventosFuturosBusca}"> 
+		   			<f:selectItem itemValue = "true" itemLabel = "Sim" />
+		   			<f:selectItem itemValue = "false" itemLabel = "Não" />
+				</h:selectOneRadio>
+			</h:panelGroup>
+			
+			<h:commandButton  class="botao" value="Buscar" action="#{buscaEventoTorneioMBean.buscar}"/>    
 		</h:panelGrid>
 		
 		
 			<h:panelGroup rendered="#{empty buscaEventoTorneioMBean.eventosEncontrados}">
 			<br/>
 				<!-- Caso o usario não faça uma busca  este texto aparece -->
-				<h3>Por favor faço uma busca</h3>
+				<h3>Por favor faça uma busca</h3>
 			</h:panelGroup>
 			
 					
@@ -91,9 +86,9 @@
 						</p:repeat>
 					</p:column>
 					
-					<p:column headerText="Opções">
+					<p:column headerText="Opções" rendered="#{usuarioLogado != null}">
 						
-						<h:commandButton class="botao" value="#{usuarioLogado.administrador? 'Editar' : 'Inscrever-se'}" action="#{cadastrarEventoTorneioMBean.entrarEdicaoEventoTorneio(e)}"/>
+						<h:commandButton class="botao" value="#{usuarioLogado.administrador? 'Editar' : 'Inscrever-se'}" action="#{cadastrarEventoTorneioMBean.entrarEdicaoEventoTorneio(e)}" />
 						<h:commandButton onclick="return confirmamaçãoExcluirTorneio()"  class="botao" value='Excluir'  rendered="#{usuarioLogado.administrador}" action="#{buscaEventoTorneioMBean.deletar(e)}"/>
 					</p:column>
 

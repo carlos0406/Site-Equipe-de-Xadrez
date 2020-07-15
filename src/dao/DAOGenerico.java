@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -17,7 +18,7 @@ import org.hibernate.Session;
  * incluindo métodos prontos para acesso a informações de quaisquer
  * tabelas.
  */
-public class DAOGenerico {
+public class DAOGenerico implements Serializable {
 	
 	/** Obt�m o EntityManager para poder fazer opera��es no banco. */
 	public EntityManager getEntityManager() {

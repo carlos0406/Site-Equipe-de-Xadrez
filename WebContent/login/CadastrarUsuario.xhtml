@@ -43,7 +43,7 @@
 				<p:calendar id="data" value="#{cadastrarUser.usuario.dataNascimento}" locale="br" navigator="true" pattern="dd/MM/yyyy" mask="true" />
 				
 				<h:outputLabel for="rg" value="Registro Geral (RG): *" />
-				<p:inputMask id="rg" value="#{cadastrarUser.usuario.rg}" mask="999.999.999"
+				<p:inputText id="rg" value="#{cadastrarUser.usuario.rg}" 
                      required="true"
                      requiredMessage="RG INVÁLIDO!" />
 				
@@ -57,7 +57,7 @@
 				<h:outputLabel for="senha" value="Senha: *" />
 				<h:inputSecret id="senha" value="#{cadastrarUser.usuario.senha}" />
 				
-				<h:outputLabel for="confirm" value="Confirmar Senha: " />
+				<h:outputLabel for="confirm" value="Confirmar Senha: *" />
 				<h:inputSecret id="confirm" value="#{cadastrarUser.usuario.confirmarSenha}" />
 				
 				

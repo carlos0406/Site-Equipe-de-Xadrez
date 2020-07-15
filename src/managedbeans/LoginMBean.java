@@ -95,15 +95,10 @@ public class LoginMBean {
 			httpget.addHeader("Authorization", "JWT " + buscarToken());
 
 			String responseGET = httpclient.execute(httpget, new ControladorPadraoRespostaAPI());
-			
 
 			Gson gson = new Gson();
 			HashMap meusDados = gson.fromJson(responseGET, HashMap.class);
 			
-			
-
-			
-
 			String matricula = usuario.getEmail();
 			String senha = usuario.getSenha();
 			
@@ -121,8 +116,12 @@ public class LoginMBean {
 			EntityManager gerenciador = Database.getInstance().getEntityManager();
 			usuario.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
 			usuario.setSexo(' ');
-			usuario.setRg((String)meusDados.get("rg"));
 			usuario.setMatricula(Long.parseLong(matricula));
+			
+			String rg = (String)meusDados.get("rg");
+			rg = rg.substring(0, rg.indexOf(" "));
+			usuario.setRg(rg);
+			
 			String data = meusDados.get("data_nascimento").toString();
 			
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -173,7 +172,7 @@ public class LoginMBean {
 			}
 		} else {
 			this.usuario = new Usuario();
-			MetodosUteis.addMensagem("Usuário/Senha incorretos.");
+			MetodosUteis.addMensagem("Usuï¿½rio/Senha incorretos.");
 			return null;
 		}
 

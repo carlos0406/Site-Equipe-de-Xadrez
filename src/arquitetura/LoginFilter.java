@@ -24,7 +24,10 @@ public class LoginFilter implements Filter {
 	 * Se existirem páginas específicas cujo acesso deva ser permitido mesmo sem estar logado,
 	 * devem ser adicionadas neste array. 
 	 * */
-	private final String[] urlsPermitidas = {"index.xhtml", "erro.xhtml","login.xhtml","sobreaequipe","CadastrarUsuario.xhtml"};
+	private final String[] urlsPermitidas = {"index.xhtml", "erro.xhtml","login.xhtml","CadastrarUsuario.xhtml",
+			"busca_noticia.xhtml", "busca_usuario.xhtml", "historiaequipe.xhtml", "influenciasnaregiao.xhtml",
+			"membrosdaequipe.xhtml", "modelosdascamisas.xhtml", "mostra_noticia.xhtml", "perfilUsuario.xhtml",
+			"busca_eventoTorneio.xhtml", "busca_treino.xhtml"};
 	
 	@Override
 	public void destroy() {
@@ -52,8 +55,8 @@ public class LoginFilter implements Filter {
    		/* Se a URL contiver o nome "público" ou se for a URL inicial do sistema ou 
    		se for o JSF (Faces) que estiver requisitando acesso, então o acesso
    		deve ser permitido */
-   		if (reqUrl.contains("publico")
-   				|| reqUrl.contains(".faces.")||reqUrl.contains("sobreaequipe")) {
+   		if (reqUrl.contains("publico") || reqUrl.equals("/XadrezIFRNJC/")
+   				|| reqUrl.contains(".faces.")) {
    			permitido = true;
    		}
    		
