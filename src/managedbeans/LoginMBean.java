@@ -108,20 +108,21 @@ public class LoginMBean {
 			String senha = usuario.getSenha();
 			
 			usuario = new Usuario();
+			
 			usuario.setNome(meusDados.get("nome_usual").toString());
 			System.out.println("meus Dados:");
 			System.out.println(meusDados);
-		
-				System.out.println("Vinculo :");
-				System.out.println(meusDados.get("vinculo"));
+			System.out.println("Vinculo :");
+			System.out.println(meusDados.get("vinculo"));
 				
 			usuario.setEmail((String) meusDados.get("email"));
 			usuario.setCpf((String) meusDados.get("cpf"));
 			usuario.setSenha(CriptografiaUtils.criptografarMD5(senha));
 			EntityManager gerenciador = Database.getInstance().getEntityManager();
-			usuario.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
+			
+			usuario.setTipoUsuario(TipoUsuario.MEMBRO);
 			usuario.setSexo(' ');
-			usuario.setRg("");
+			usuario.setRg((String) meusDados.get("rg"));
 			usuario.setMatricula(Long.parseLong(matricula));
 			String data = meusDados.get("data_nascimento").toString();
 			
