@@ -9,6 +9,14 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="../template.xhtml">
 	
+	<style>
+		.eventos-futuros{
+			margin-left:-2;
+			display:flex;
+			flex-direction: row;
+		}
+	</style>
+	
 	<!-- ###################### CONTEÚDO ###################### -->
 
 	<div id="conteudo">
@@ -17,29 +25,32 @@
 		
 		<h:form prependId="false" style=" margin: 0 10%;">
 		<!--Busca usuarios no banco sem filtro caso nenhum campo seja preenchido, busca com os campos preenchidos  -->
-		<h:panelGrid columns="4">
+		
+		<h:panelGrid columns="1">
 		<h:panelGroup>
 		<h:outputLabel  for="nomeBusca" value="Nome :" />
 		 <h:inputText id="nomeBusca" value="#{buscaEventoTorneioMBean.nomeBusca}"/> 
 		</h:panelGroup>
-		<h:panelGroup>
-		<h:outputLabel value="Data:" for ="dataInicial"/>
-		<p:calendar id="dataInicial" value="#{buscaEventoTorneioMBean.dataInicial}"/>
-		</h:panelGroup>
 		
 		<h:panelGroup>
-		<h:outputLabel value="Data:" for ="dataFinal"/>
-		<p:calendar id="dataFinal" value="#{buscaEventoTorneioMBean.dataFinal}"/>
+			<h:outputLabel value="Data:" for ="dataInicial"/>
+			<p:calendar id="dataInicial" value="#{buscaEventoTorneioMBean.dataInicial}"/>
+			<h:outputLabel value=" a" />
+			<p:calendar id="dataFinal" value="#{buscaEventoTorneioMBean.dataFinal}"/>
 		</h:panelGroup>
 		
+		<h:panelGroup class='eventos-futuros'>
 		<h:outputLabel  for="eventosFuturos" value="Apenas eventos futuros ?" />
 		
 		<h:selectOneRadio value = "#{buscaEventoTorneioMBean.eventosFuturosBusca}"> 
    			<f:selectItem itemValue = "true" itemLabel = "Sim" />
    			<f:selectItem itemValue = "false" itemLabel = "Não" />
 		</h:selectOneRadio>
+		</h:panelGroup>
+		
 		<h:commandButton  class="botao" value="Buscar" action="#{buscaEventoTorneioMBean.buscar}"/>    
 		</h:panelGrid>
+		
 		
 			<h:panelGroup rendered="#{empty buscaEventoTorneioMBean.eventosEncontrados}">
 			<br/>

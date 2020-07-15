@@ -121,7 +121,7 @@ public class LoginMBean {
 			EntityManager gerenciador = Database.getInstance().getEntityManager();
 			usuario.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
 			usuario.setSexo(' ');
-			usuario.setRg("");
+			usuario.setRg((String)meusDados.get("rg"));
 			usuario.setMatricula(Long.parseLong(matricula));
 			String data = meusDados.get("data_nascimento").toString();
 			
