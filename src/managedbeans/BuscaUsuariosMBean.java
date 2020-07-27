@@ -1,16 +1,19 @@
 package managedbeans;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.persistence.EntityManager;
 
 import arquitetura.ControladorGeral;
 import dao.Database;
 import dao.UsuarioDAO;
+import dominio.TipoUsuario;
 import dominio.Usuario;
 import uteis.MetodosUteis;
 
@@ -19,8 +22,67 @@ import uteis.MetodosUteis;
  */
 @SuppressWarnings("serial") /*Parar de exibir falsos erros*/
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class BuscaUsuariosMBean extends ControladorGeral {
+	/*Atributos usados na busca de usuarios*/
+	private String nomeBusca;
+	private TipoUsuario tipoUsuarioBusca;
+	private String cpfBusca;
+	private long matriculaBusca;
+	private boolean ativoBusca;
+	
+
+	public String getNomeBusca() {
+		return nomeBusca;
+	}
+
+	public void setNomeBusca(String nomeBusca) {
+		this.nomeBusca = nomeBusca;
+	}
+
+	
+
+	
+
+	public TipoUsuario getTipoUsuarioBusca() {
+		return tipoUsuarioBusca;
+	}
+
+	public void setTipoUsuarioBusca(TipoUsuario tipoUsuarioBusca) {
+		this.tipoUsuarioBusca = tipoUsuarioBusca;
+	}
+
+	public String getCpfBusca() {
+		return cpfBusca;
+	}
+
+	public void setCpfBusca(String cpfBusca) {
+		this.cpfBusca = cpfBusca;
+	}
+
+	public long getMatriculaBusca() {
+		return matriculaBusca;
+	}
+
+	public void setMatriculaBusca(long matriculaBusca) {
+		this.matriculaBusca = matriculaBusca;
+	}
+
+	public boolean isAtivoBusca() {
+		return ativoBusca;
+	}
+
+	public void setAtivoBusca(boolean ativoBusca) {
+		this.ativoBusca = ativoBusca;
+	}
+
+	public UsuarioDAO getDao() {
+		return dao;
+	}
+
+	public void setDao(UsuarioDAO dao) {
+		this.dao = dao;
+	}
 
 	/** Armazena as informacoes preenchidas na pagina de busca de usuarios. */
 	private Usuario usuarioBusca;
@@ -49,8 +111,8 @@ public class BuscaUsuariosMBean extends ControladorGeral {
 	public String buscar(){
 		dao = new UsuarioDAO();
 		
-		//usuariosEncontrados = dao.findUsuarioGeral(usuarioBusca.getNome());
-			
+		usuariosEncontrados = dao.buscarUsuarios(nomeBusca,tipoUsuarioBusca,cpfBusca,matriculaBusca,ativoBusca);
+	
 		return "/sobreaequipe/busca_usuario.xhtml";
 	}
 	
@@ -104,9 +166,8 @@ public class BuscaUsuariosMBean extends ControladorGeral {
 	}
 
 	public List<Usuario> getUsuariosEncontrados() {
-		if (MetodosUteis.estaVazia(usuariosEncontrados)) {
-			usuariosEncontrados = dao.findUsuarioGeral(usuarioBusca.getNome());
-		}
+		//if (MetodosUteis.estaVazia(usuariosEncontrados)) {
+		//}
 		
 		return usuariosEncontrados;
 	}
@@ -120,4 +181,6 @@ public class BuscaUsuariosMBean extends ControladorGeral {
 		return new UsuarioDAO().buscarPelaColunaLike("nome", query, Usuario.class);
 
 	}
+	
+	
 }

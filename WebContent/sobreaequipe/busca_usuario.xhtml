@@ -32,9 +32,48 @@
 		</h:form>
 		
 		<h:form prependId="false" style=" margin: 0 0%;">
+		
+		<h:panelGrid columns="2">
+		
+			<h:outputLabel  for="nomeBusca" value="Nome :" />
+			<p:inputText id="nomeBusca" value="#{buscaUsuariosMBean.nomeBusca}"/> 
+			<h:outputLabel  for="cpfBusca" value="cpf :" />	
+			<p:inputMask mask="999.999.999-99" id="cpfBusca" value="#{buscaUsuariosMBean.cpfBusca}"/>
+                     
+			<h:outputLabel  for="matriculaBusca" value="Matricula :" />
+			<p:inputText id="matriculaBusca" value="#{buscaUsuariosMBean.matriculaBusca}"/> 
+			
+			<h:outputLabel  for="matriculaBusca" value="Tipo do Usuario:"  rendered="#{usuarioLogado.administrador}"/>
+			
+			<h:selectOneMenu value="#{buscaUsuariosMBean.tipoUsuarioBusca}"
+					id="tipoUsuario"  rendered="#{usuarioLogado.administrador}">
+					<f:selectItem itemValue="#{null}" itemLabel="--SELECIONE--"
+						itemDescription="--SELECIONE--" />
+						<f:selectItem itemValue="ADMINISTRADOR" itemLabel="Administrador"
+						itemDescription="Administrador" />
+					<f:selectItem itemValue="MEMBRO" itemLabel="Membro"
+						itemDescription="Membro" />
+						
+				</h:selectOneMenu>
+			
+			
+			<h:outputLabel  for="usuariosAtivos" value="Apenas usuarios ativos?" rendered="#{usuarioLogado.administrador}" />
+			
+			<h:panelGroup  rendered="#{usuarioLogado.administrador}" id="usuariosAtivos">
+				<h:selectOneRadio value = "#{buscaUsuariosMBean.ativoBusca}"> 
+		   			<f:selectItem itemValue = "true" itemLabel = "Sim" />
+		   			<f:selectItem itemValue = "false" itemLabel = "Não" />
+				</h:selectOneRadio>
+			</h:panelGroup>
+			
+			<h:commandButton  class="botao" value="Buscar" action="#{buscaUsuariosMBean.buscar}"/>    
+		</h:panelGrid>
+			
+		
+		
 			<h:panelGroup rendered="#{empty buscaUsuariosMBean.usuariosEncontrados}">
 			<br/>
-				<h3>Nenhum usuário encontrado.</h3>
+				<h3>Por favor faça uma busca.</h3>
 			</h:panelGroup>
 					
 			<h:panelGroup rendered="#{not empty buscaUsuariosMBean.usuariosEncontrados}"><!--Só exibe algo, se encontrar usuários-->

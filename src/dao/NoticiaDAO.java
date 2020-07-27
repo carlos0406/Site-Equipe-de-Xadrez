@@ -33,5 +33,26 @@ public class NoticiaDAO extends DAOGenerico{
 		}
 	}
 	
+	
+	
+	public List<Noticia> buscarNoticiaPaginaInicial(){
+		EntityManager em = getEntityManager();
+		
+		String hql = "SELECT n FROM Noticia n ";
+		hql += " ORDER BY n.dataCadastro DESC ";
+		
+		Query q = em.createQuery(hql);
+		q.setMaxResults(5);
+		
+		try {
+			@SuppressWarnings("unchecked")
+			List<Noticia> result = q.getResultList();
+			
+			return result;
+		} catch (NoResultException e){
+			return null;
+		}
+	}
+	
 }
 

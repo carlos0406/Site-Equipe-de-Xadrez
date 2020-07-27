@@ -24,7 +24,6 @@ public class BuscaNoticiasMBean {
 	
 	/** Armazena os usu�rios encontrados no banco de acordo com os par�metros de busca. */
 	private List<Noticia> noticiasEncontradas;
-	
 	private Noticia noticiaVisualizada;
 	
 	/** Permite o acesso ao banco. */
@@ -51,6 +50,16 @@ public class BuscaNoticiasMBean {
 			
 		return "/sobreaequipe/busca_noticia.xhtml";
 	}
+	
+	public List<Noticia> getBuscarPaginaInicial(){
+		dao = new NoticiaDAO();
+		
+		
+			
+		return dao.buscarNoticiaPaginaInicial();
+	}
+	
+	
 	
 	public String verTexto(Noticia noticia){
 		dao = new NoticiaDAO();
