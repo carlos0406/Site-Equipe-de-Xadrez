@@ -8,39 +8,37 @@
 	<!-- ###################### CONTEÚDO ###################### -->
 
 	<div id="conteudo">	
-	
-		<p:dataTable var="n" value="#{buscaNoticiasMBean.buscarPaginaInicial}"
-					style="width: 80%; margin: auto;">
-					<p:column headerText="Imagem">
-						<h:graphicImage url="/imagens/iconeNoticia.png" rendered="#{empty n.idsFotos}"/>
-			            			
-		            	<h:graphicImage style="width:90px; margin: auto; display: block;" styleClass="fotoNoticia" url="#{n.urlPrimeiraFoto}" rendered="#{not empty n.idsFotos}"/>
-					</p:column>
-						 
-					<p:column headerText="Título">
-						<h:outputText value="#{n.titulo_noticia}" />
-					</p:column>
-						    
-					<p:column headerText="Data">
-						<h:outputText value="#{n.dataCadastro}" >
-							<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
-						</h:outputText>
-					</p:column>
-					
-					<p:column headerText="Opções">
-						<h:commandButton class="botao" value="Ler" action="#{buscaNoticiasMBean.verTexto(n)}"/>
-						<h:commandButton class="botao" value="Remover" action="#{buscaNoticiasMBean.removerNoticia(n)}"
-							rendered="#{usuarioLogado.administrador}"
-							onclick="if (!confirm('Deseja realmente remover a notícia selecionada? Essa ação não poderá ser desfeita.')) return false;"/>
-					</p:column>
-
-				</p:dataTable>	
 		
-	
-
-
 		<h:graphicImage url="/imagens/logo.png"
 			style="position:relative; left:40%; width: 20%" />
+			
+		<p:dataTable var="n" value="#{buscaNoticiasMBean.buscarPaginaInicial}"
+					style="width: 80%; margin: auto;" id="noticias">
+			<p:column headerText="Imagem">
+				<h:graphicImage url="/imagens/iconeNoticia.png" rendered="#{empty n.idsFotos}"/>
+	            			
+            	<h:graphicImage style="width:90px; margin: auto; display: block;" styleClass="fotoNoticia" url="#{n.urlPrimeiraFoto}" rendered="#{not empty n.idsFotos}"/>
+			</p:column>
+				 
+			<p:column headerText="Título">
+				<h:outputText value="#{n.titulo_noticia}" />
+			</p:column>
+				    
+			<p:column headerText="Data">
+				<h:outputText value="#{n.dataCadastro}" >
+					<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+				</h:outputText>
+			</p:column>
+			
+			<p:column headerText="Opções">
+				<h:commandButton class="botao" value="Ler" action="#{buscaNoticiasMBean.verTexto(n)}"/>
+				<h:commandButton class="botao" value="Remover" action="#{buscaNoticiasMBean.removerNoticia(n)}"
+					rendered="#{usuarioLogado.administrador}"
+					onclick="if (!confirm('Deseja realmente remover a notícia selecionada? Essa ação não poderá ser desfeita.')) return false;"/>
+			</p:column>
+
+		</p:dataTable>
+		
 		<br />
 		<p class="texto">O projeto de extensão "Xadrez na Região do Mato
 			Grande" do IFRN-JC (Instituto Federal de Educação, Ciência e
@@ -83,17 +81,7 @@
 			torna a vitória uma mera consequência da habilidade adquirida.</p>
 		<br />
 
-
-
-
-
-
-
 	</div>
-
-
-
-
 
 
 </ui:decorate>

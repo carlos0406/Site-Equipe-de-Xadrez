@@ -25,7 +25,7 @@ public class VerArquivoServlet extends HttpServlet {
 
 	private String URL = "jdbc:postgresql://localhost/xadrez";
 	private String usuario = "postgres";
-	private String pass = "password$ERVIDOR001";
+	private String pass = "admin";
 	
 	/** Faz o download do arquivo. Basta informar seu ID e uma chave de confirma��o criptografada. */
 	@Override

@@ -9,6 +9,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.persistence.EntityManager;
 
+import org.apache.commons.validator.util.ValidatorUtils;
+
 import dao.NoticiaDAO;
 import dao.DAOGenerico;
 import dao.Database;
@@ -24,6 +26,9 @@ public class BuscaNoticiasMBean {
 	
 	/** Armazena os usu�rios encontrados no banco de acordo com os par�metros de busca. */
 	private List<Noticia> noticiasEncontradas;
+	
+	private List<Noticia> noticiasPagInicial;
+	
 	private Noticia noticiaVisualizada;
 	
 	/** Permite o acesso ao banco. */
@@ -52,11 +57,14 @@ public class BuscaNoticiasMBean {
 	}
 	
 	public List<Noticia> getBuscarPaginaInicial(){
-		dao = new NoticiaDAO();
 		
+		if (MetodosUteis.estaVazia(noticiasPagInicial)) {
+			dao = new NoticiaDAO();
+			return dao.buscarNoticiaPaginaInicial();
+		} else {
+			return noticiasPagInicial;
+		}
 		
-			
-		return dao.buscarNoticiaPaginaInicial();
 	}
 	
 	

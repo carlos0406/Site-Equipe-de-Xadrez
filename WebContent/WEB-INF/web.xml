@@ -50,5 +50,9 @@
 		<param-name>primefaces.THEME</param-name>
 		<param-value>bootstrap</param-value>
 	</context-param>
+	
+	<session-config>
+        <session-timeout>20</session-timeout>
+	</session-config>
     
 </web-app>
