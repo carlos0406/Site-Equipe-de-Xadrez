@@ -12,32 +12,48 @@
 		<h:graphicImage url="/imagens/logo.png"
 			style="position:relative; left:40%; width: 20%" />
 			
-		<p:dataTable var="n" value="#{buscaNoticiasMBean.buscarPaginaInicial}"
+		<p:repeat var="n" value="#{buscaNoticiasMBean.buscarPaginaInicial}"
 					style="width: 80%; margin: auto;" id="noticias">
-			<p:column headerText="Imagem">
-				<h:graphicImage url="/imagens/iconeNoticia.png" rendered="#{empty n.idsFotos}"/>
+					
+		<p:growl id="msg" showDetail="true" skipDetailIfEqualsSummary="true" />
+			
+		<p:panel id="toggleable" header="Toggleable" toggleable="true" closable="true" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-bottom:20px">
+ 
+        <p:ajax event="close" listener="#{panelView.onClose}" update="msg" />
+        <p:ajax event="toggle" listener="#{panelView.onToggle}" update="msg" />
+			
+			
+				<h:graphicImage url="/imagens/iconeNoticia.png" rendered="#{empty n.idsFotos}" style="max-width:200px"/>
 	            			
             	<h:graphicImage style="width:90px; margin: auto; display: block;" styleClass="fotoNoticia" url="#{n.urlPrimeiraFoto}" rendered="#{not empty n.idsFotos}"/>
-			</p:column>
+			
 				 
-			<p:column headerText="Título">
+			
 				<h:outputText value="#{n.titulo_noticia}" />
-			</p:column>
+			
 				    
-			<p:column headerText="Data">
+			
 				<h:outputText value="#{n.dataCadastro}" >
 					<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
 				</h:outputText>
-			</p:column>
 			
-			<p:column headerText="Opções">
+			
+			
 				<h:commandButton class="botao" value="Ler" action="#{buscaNoticiasMBean.verTexto(n)}"/>
-				<h:commandButton class="botao" value="Remover" action="#{buscaNoticiasMBean.removerNoticia(n)}"
-					rendered="#{usuarioLogado.administrador}"
-					onclick="if (!confirm('Deseja realmente remover a notícia selecionada? Essa ação não poderá ser desfeita.')) return false;"/>
-			</p:column>
+		
+			<f:facet name="options">
+            <p:menu>
+                <p:submenu label="Settings">
+                    <p:menuitem value="Toggle" url="#" icon="pi pi-clone" onclick="PF('panel').toggle()" />
+                    <p:menuitem value="Remove" url="#" icon="pi pi-times" onclick="PF('panel').close()" />
+                </p:submenu>
+            </p:menu>
+        </f:facet>
+    </p:panel>
+			
+			
 
-		</p:dataTable>
+		</p:repeat>
 		
 		<br />
 		<p class="texto">O projeto de extensão "Xadrez na Região do Mato
