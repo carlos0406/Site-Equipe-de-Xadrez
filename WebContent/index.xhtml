@@ -11,50 +11,43 @@
 		
 		<h:graphicImage url="/imagens/logo.png"
 			style="position:relative; left:40%; width: 20%" />
-			
-		<p:repeat var="n" value="#{buscaNoticiasMBean.buscarPaginaInicial}"
+		
+		
+		<p:repeat var="n" varStatus="loop" value="#{buscaNoticiasMBean.buscarPaginaInicial}"
 					style="width: 80%; margin: auto;" id="noticias">
+		
+			<div id="accordion">
+			  <div class="card">
+			    <div class="card-header" id="heading#{loop.index}">
+			      <h5 class="mb-0">
+			        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse#{loop.index}" aria-expanded="true" aria-controls="collapse#{loop.index}">
+			          <h:outputText value="#{n.titulo_noticia}" />
+			        </button>
+			      </h5>
+			    </div>
+			
+			    <div id="collapse#{loop.index}" class="collapse" aria-labelledby="heading#{loop.index}" data-parent="#accordion">
+			      <div class="card-body">
+			        
+			        <h:graphicImage url="/imagens/iconeNoticia.png" rendered="#{empty n.idsFotos}" style="max-width:200px"/>
+			        
+			        <h:outputText value="#{n.dataCadastro}" >
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+					</h:outputText>
 					
-		<p:growl id="msg" showDetail="true" skipDetailIfEqualsSummary="true" />
-			
-		<p:panel id="toggleable" header="Toggleable" toggleable="true" closable="true" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-bottom:20px">
- 
-        <p:ajax event="close" listener="#{panelView.onClose}" update="msg" />
-        <p:ajax event="toggle" listener="#{panelView.onToggle}" update="msg" />
-			
-			
-				<h:graphicImage url="/imagens/iconeNoticia.png" rendered="#{empty n.idsFotos}" style="max-width:200px"/>
-	            			
-            	<h:graphicImage style="width:90px; margin: auto; display: block;" styleClass="fotoNoticia" url="#{n.urlPrimeiraFoto}" rendered="#{not empty n.idsFotos}"/>
-			
-				 
-			
-				<h:outputText value="#{n.titulo_noticia}" />
-			
-				    
-			
-				<h:outputText value="#{n.dataCadastro}" >
-					<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
-				</h:outputText>
-			
-			
-			
-				<h:commandButton class="botao" value="Ler" action="#{buscaNoticiasMBean.verTexto(n)}"/>
+	            	<h:outputText value="#{n.texto_noticia}" escape="false"/>
+		           	
+		           	<h:graphicImage style="width:90px; margin: auto; display: block;" styleClass="fotoNoticia" url="#{n.urlPrimeiraFoto}" rendered="#{not empty n.idsFotos}"/>
+					
+					<h:commandButton class="botao" value="Ler" action="#{buscaNoticiasMBean.verTexto(n)}"/>
+					
+			      </div>
+			    </div>
+			  </div>
+		</div>	
 		
-			<f:facet name="options">
-            <p:menu>
-                <p:submenu label="Settings">
-                    <p:menuitem value="Toggle" url="#" icon="pi pi-clone" onclick="PF('panel').toggle()" />
-                    <p:menuitem value="Remove" url="#" icon="pi pi-times" onclick="PF('panel').close()" />
-                </p:submenu>
-            </p:menu>
-        </f:facet>
-    </p:panel>
-			
-			
-
 		</p:repeat>
-		
+			
 		<br />
 		<p class="texto">O projeto de extensão "Xadrez na Região do Mato
 			Grande" do IFRN-JC (Instituto Federal de Educação, Ciência e
