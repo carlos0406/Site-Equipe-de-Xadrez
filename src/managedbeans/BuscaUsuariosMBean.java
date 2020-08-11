@@ -182,5 +182,36 @@ public class BuscaUsuariosMBean extends ControladorGeral {
 
 	}
 	
+	public String alterarAtivo(Usuario u) {
+	EntityManager em = Database.getInstance().getEntityManager();
+		
+		try {
+			
+			em.getTransaction().begin();
+			if(u.isAtivo()) {
+				u.setAtivo(false);
+				
+			}else {
+				u.setAtivo(true);
+			}
+			
+			em.merge(u);
+			
+			
+			
+			em.getTransaction().commit();
+			
+		} catch (Exception e){
+			e.printStackTrace();
+			
+			if (em.getTransaction().isActive())
+				
+				em.getTransaction().rollback();
+		}
+		
+		return "/sobreaequipe/busca_usuario.xhtml";
+		
+	}
+	
 	
 }

@@ -5,49 +5,89 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
 
-	<!-- ###################### CONTEÚDO ###################### -->
 
-	<div id="conteudo">	
-		
+<style>
+
+.descricao {
+	font-family: roboto;
+	font-weigth: bold;
+	color: #e74c3c;
+	margin-left: -10;
+	padding: 10px;
+}
+</style>
+	<!-- ###################### CONTEÚDO ###################### -->
+	
+
+
+	<div id="conteudo">
+
 		<h:graphicImage url="/imagens/logo.png"
 			style="position:relative; left:40%; width: 20%" />
+
 		
+			<p:repeat var="n" varStatus="loop"
+				value="#{buscaNoticiasMBean.buscarPaginaInicial}"
+				style="width: 80%; margin: auto;" id="noticias">
+
+				<div id="accordion">
+					<div class="card" style="max-width: 80%; margin: auto">
+						<div class="card-header" id="heading#{loop.index}">
+							<h5 class="mb-0">
+								<button class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapse#{loop.index}" aria-expanded="true"
+									aria-controls="collapse#{loop.index}">
+									<h:outputText value="#{n.titulo_noticia}" />
+								</button>
+							</h5>
+						</div>
+
+						<div id="collapse#{loop.index}" class="collapse"
+							aria-labelledby="heading#{loop.index}" data-parent="#accordion">
+							<div class="card-body"
+								style="display: flex; flex-direction: column; margin: auto">
+
+								<h:graphicImage url="/imagens/iconeNoticia.png"
+									rendered="#{empty n.idsFotos}" style="max-width:200px" />
+								<h3>
+									<h:outputText value="Autor:" class="descricao"/>
+									<h:outputText value="#{n.nome_autor}"/>
+								</h3>
+								
+								
+								<h4>
+									<h:outputText value="Data&amp;Hora:" class="descricao"/>
+									<h:outputText value="#{n.dataCadastro}">
+										<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+									</h:outputText>
+								</h4>
+
+								
+
+
+								<h:outputText value="#{n.texto_noticia}" escape="false" style="margin: auto;font-size:20px " />
+
+
+
+								<h:graphicImage
+									style="width:90px; margin: auto; display: block;"
+									styleClass="fotoNoticia" url="#{n.urlPrimeiraFoto}"
+									rendered="#{not empty n.idsFotos}" />
+									
+								<h:form >
+								<h:commandButton class="botao" value="Ler Noticia completa" 
+									action="#{buscaNoticiasMBean.verTexto(n)}" style="width:100%; padding:10px"  />
+
+								</h:form>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</p:repeat>
+
 		
-		<p:repeat var="n" varStatus="loop" value="#{buscaNoticiasMBean.buscarPaginaInicial}"
-					style="width: 80%; margin: auto;" id="noticias">
-		
-			<div id="accordion">
-			  <div class="card">
-			    <div class="card-header" id="heading#{loop.index}">
-			      <h5 class="mb-0">
-			        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse#{loop.index}" aria-expanded="true" aria-controls="collapse#{loop.index}">
-			          <h:outputText value="#{n.titulo_noticia}" />
-			        </button>
-			      </h5>
-			    </div>
-			
-			    <div id="collapse#{loop.index}" class="collapse" aria-labelledby="heading#{loop.index}" data-parent="#accordion">
-			      <div class="card-body">
-			        
-			        <h:graphicImage url="/imagens/iconeNoticia.png" rendered="#{empty n.idsFotos}" style="max-width:200px"/>
-			        
-			        <h:outputText value="#{n.dataCadastro}" >
-						<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
-					</h:outputText>
-					
-	            	<h:outputText value="#{n.texto_noticia}" escape="false"/>
-		           	
-		           	<h:graphicImage style="width:90px; margin: auto; display: block;" styleClass="fotoNoticia" url="#{n.urlPrimeiraFoto}" rendered="#{not empty n.idsFotos}"/>
-					
-					<h:commandButton class="botao" value="Ler" action="#{buscaNoticiasMBean.verTexto(n)}"/>
-					
-			      </div>
-			    </div>
-			  </div>
-		</div>	
-		
-		</p:repeat>
-			
+
 		<br />
 		<p class="texto">O projeto de extensão "Xadrez na Região do Mato
 			Grande" do IFRN-JC (Instituto Federal de Educação, Ciência e
