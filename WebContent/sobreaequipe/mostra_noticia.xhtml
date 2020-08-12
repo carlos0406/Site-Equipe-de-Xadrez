@@ -34,20 +34,21 @@
 			<div style="text-align: center;">
 			
 				<p:commandButton type="button" onclick="PF('switcher').previous();"
-				    id="prev" style="margin-bottom: 5px;" value="Anterior"/>
+				    id="prev" style="margin-bottom: 5px;" value="Anterior" />
 				<p:commandButton type="button" onclick="PF('switcher').next();"
-				    id="next" style="margin-bottom: 5px;" value="Próxima"/>
-				 
+				    id="next" style="margin-bottom: 5px;" value="Próxima" />
+				
 				<p:imageSwitch effect="wipe" widgetVar="switcher" id="manuelSwitcher"
-				    slideshowAuto="false" style="margin: 0px auto;">
+				    slideshowAuto="true" style="margin: 0px auto;">
 				    
 				    <ui:repeat value="#{buscaNoticiasMBean.noticiaVisualizada.idsFotos}" 
 				    	var="foto" id="manuelSwitcherImages">
 				        
 				        <p:graphicImage url="#{foto.urlFoto}" id="image"
-				        	style="max-width:768px; display: block;"/>
+				        	style="max-width:768px;"/>
 				    </ui:repeat>
 				</p:imageSwitch>
+				
 			</div>
 		</h:panelGroup>
 		

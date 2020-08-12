@@ -505,7 +505,7 @@ ul li {
 
 		<div class="nome_usuario">
 			<h:form>
-					Bem vindo(a), <h:outputLabel value="#{loginMBean.usuario.nome}" />
+					Bem vindo(a), <h:outputLabel value="#{usuarioLogado.nome}" />
 				<h:commandLink class="link-login" value="Faça Login!"
 					action="/login.xhtml" rendered="#{!not empty usuarioLogado}" />
 			</h:form>

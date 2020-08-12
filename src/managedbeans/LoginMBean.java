@@ -78,6 +78,7 @@ public class LoginMBean {
 		} catch (Exception e) {
 			e.printStackTrace();
 			MetodosUteis.addMensagem("Ocorreu um erro!");
+			usuario = new Usuario();
 			return null;
 		}
 
@@ -168,24 +169,29 @@ public class LoginMBean {
 		if (usuario != null && usuario.getId() != 0) {
 			if (!usuario.isAtivo()) {
 				MetodosUteis.addMensagem("Este usuário foi desabilitado e não possui mais acesso ao sistema.");
+				usuario = new Usuario();
 				return null;
 			}
 		} else {
 			this.usuario = new Usuario();
-			MetodosUteis.addMensagem("Usu�rio/Senha incorretos.");
+			MetodosUteis.addMensagem("Usuário/Senha incorretos.");
 			return null;
 		}
 
 		// Salvar usuário permamentemente na memória do sistema
 		MetodosUteis.getCurrentSession().setAttribute("usuarioLogado", usuario);
-
+		
 		if (usuario.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR)) {
+			usuario = new Usuario();
 			return "index.xhtml";
 		} else if (usuario.getTipoUsuario().equals(TipoUsuario.BOLSISTA)) {
+			usuario = new Usuario();
 			return "index.xhtml";
 		} else if (usuario.getTipoUsuario().equals(TipoUsuario.MEMBRO)) {
+			usuario = new Usuario();
 			return "index.xhtml";
 		} else if (usuario.getTipoUsuario().equals(TipoUsuario.COMUM)) {
+			usuario = new Usuario();
 			return "index.xhtml";
 		} else {
 			usuario = new Usuario();
