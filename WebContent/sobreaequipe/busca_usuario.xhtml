@@ -119,7 +119,7 @@
 						<h:commandButton class="botao" value="Editar"  
 						action="#{cadastrarUser.entrarEdicaoUsuarios(u)}" rendered="#{usuarioLogado.id == u.id}"/>		    
 						
-						<h:commandButton class="botao" value="#{u.ativo? 'Tornar Usuario Inativo' : 'Tornar Usuario Ativo'}" 
+						<h:commandButton class="botao" value="#{u.ativo? 'Inativar' : 'Ativar'}" 
 						action="#{buscaUsuariosMBean.alterarAtivo(u)}" rendered="#{usuarioLogado.administrador}"/>
 						    
 					</p:column>			 

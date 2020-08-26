@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?>  
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE ui:composition PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
@@ -6,51 +6,68 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:p="http://primefaces.org/ui"
-	template="../template.xhtml">
+	xmlns:p="http://primefaces.org/ui" template="../template.xhtml">
 	
+
+
 	<!-- ###################### CONTEÚDO ###################### -->
 
 	<div id="conteudo">
-	
-		<h1>
-			#{buscaNoticiasMBean.noticiaVisualizada.titulo_noticia}
-		</h1>
-		
-		#{buscaNoticiasMBean.noticiaVisualizada.nome_autor}<br/>
-		<h:outputText value="#{buscaNoticiasMBean.noticiaVisualizada.dataCadastro}">
-			<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+
+		<h1>#{buscaNoticiasMBean.noticiaVisualizada.titulo_noticia}</h1>
+
+		#{buscaNoticiasMBean.noticiaVisualizada.nome_autor}<br />
+		<h:outputText
+			value="#{buscaNoticiasMBean.noticiaVisualizada.dataCadastro}">
+			<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
 		</h:outputText>
-		<br/>
-		Palavras-chave: #{buscaNoticiasMBean.noticiaVisualizada.palavraChave}<br/>
+		<br /> Palavras-chave:
+		#{buscaNoticiasMBean.noticiaVisualizada.palavraChave}<br /> <br />
+
+		<h:outputText
+			value="#{buscaNoticiasMBean.noticiaVisualizada.texto_noticia}"
+			escape="false" />
+
 		
-		<br/>
-		
-		<h:outputText value="#{buscaNoticiasMBean.noticiaVisualizada.texto_noticia}" escape="false"/>
-		
-		<h:panelGroup rendered="#{not empty buscaNoticiasMBean.noticiaVisualizada.idsFotos}">
-			<br/>
-			
+			<br />
+
 			<div style="text-align: center;">
-			
-				<p:commandButton type="button" onclick="PF('switcher').previous();"
-				    id="prev" style="margin-bottom: 5px;" value="Anterior" />
-				<p:commandButton type="button" onclick="PF('switcher').next();"
-				    id="next" style="margin-bottom: 5px;" value="Próxima" />
-				
-				<p:imageSwitch effect="wipe" widgetVar="switcher" id="manuelSwitcher"
-				    slideshowAuto="true" style="margin: 0px auto;">
-				    
-				    <ui:repeat value="#{buscaNoticiasMBean.noticiaVisualizada.idsFotos}" 
-				    	var="foto" id="manuelSwitcherImages">
-				        
-				        <p:graphicImage url="#{foto.urlFoto}" id="image"
-				        	style="max-width:768px;"/>
-				    </ui:repeat>
-				</p:imageSwitch>
-				
+
+
+
+				<div id="carouselExampleControls" class="carousel slide"
+					data-ride="carousel">
+					
+					<div class="carousel-inner">
+
+						<ui:repeat
+							value="#{buscaNoticiasMBean.noticiaVisualizada.idsFotos}"
+							var="foto" id="manuelSwitcherImages">
+
+							<div class="carousel-item active">
+								<p:graphicImage url="#{foto.urlFoto}" id="image"
+									style="max-width:768px;" />
+							</div>
+
+						</ui:repeat>
+
+					</div>
+					
+					<a class="carousel-control-prev" href="#carouselExampleControls"
+						role="button" data-slide="prev"> <span
+						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+						class="sr-only">Previous</span>
+					</a> <a class="carousel-control-next" href="#carouselExampleControls"
+						role="button" data-slide="next"> <span
+						class="carousel-control-next-icon" aria-hidden="true"></span> <span
+						class="sr-only">Next</span>
+					</a>
+
+
+				</div>
+
 			</div>
-		</h:panelGroup>
 		
+
 	</div>
 </ui:composition>

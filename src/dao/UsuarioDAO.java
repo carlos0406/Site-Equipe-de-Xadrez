@@ -199,6 +199,7 @@ public class UsuarioDAO extends DAOGenerico {
 
 	public List<Usuario> buscarUsuarios(String nome, TipoUsuario tipoUsuario, String cpf, Long matricula, boolean ativo) {
 		EntityManager gerenciador = getEntityManager();
+		
 
 		String hql = "SELECT u FROM Usuario u WHERE 1=1 ";
 

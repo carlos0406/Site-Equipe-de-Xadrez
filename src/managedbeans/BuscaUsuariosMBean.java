@@ -28,21 +28,19 @@ public class BuscaUsuariosMBean extends ControladorGeral {
 	private String nomeBusca;
 	private TipoUsuario tipoUsuarioBusca;
 	private String cpfBusca;
-	private long matriculaBusca;
+	private Long matriculaBusca ;
 	private boolean ativoBusca;
 	
-
+	
+	
 	public String getNomeBusca() {
 		return nomeBusca;
 	}
 
 	public void setNomeBusca(String nomeBusca) {
 		this.nomeBusca = nomeBusca;
+		
 	}
-
-	
-
-	
 
 	public TipoUsuario getTipoUsuarioBusca() {
 		return tipoUsuarioBusca;
@@ -60,11 +58,11 @@ public class BuscaUsuariosMBean extends ControladorGeral {
 		this.cpfBusca = cpfBusca;
 	}
 
-	public long getMatriculaBusca() {
+	public Long getMatriculaBusca() {
 		return matriculaBusca;
 	}
 
-	public void setMatriculaBusca(long matriculaBusca) {
+	public void setMatriculaBusca(Long matriculaBusca) {
 		this.matriculaBusca = matriculaBusca;
 	}
 
