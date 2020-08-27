@@ -28,46 +28,52 @@
 			value="#{buscaNoticiasMBean.noticiaVisualizada.texto_noticia}"
 			escape="false" />
 
-		
 			<br />
 
-			<div style="text-align: center;">
-
-
-
-				<div id="carouselExampleControls" class="carousel slide"
-					data-ride="carousel">
+			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+			  
+			  <ol class="carousel-indicators">
+			    
+			    <ui:repeat
+					value="#{buscaNoticiasMBean.noticiaVisualizada.idsFotos}"
+					var="foto" varStatus="loop">
 					
-					<div class="carousel-inner">
-
-						<ui:repeat
-							value="#{buscaNoticiasMBean.noticiaVisualizada.idsFotos}"
-							var="foto" id="manuelSwitcherImages">
-
-							<div class="carousel-item active">
-								<p:graphicImage url="#{foto.urlFoto}" id="image"
-									style="max-width:768px;" />
-							</div>
-
-						</ui:repeat>
-
-					</div>
+					<h:panelGroup rendered="#{loop.index == 0}">
+						<li data-target="#carouselExampleIndicators" data-slide-to="#{loop.index}" class="active"></li>
+					</h:panelGroup>
 					
-					<a class="carousel-control-prev" href="#carouselExampleControls"
-						role="button" data-slide="prev"> <span
-						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-						class="sr-only">Previous</span>
-					</a> <a class="carousel-control-next" href="#carouselExampleControls"
-						role="button" data-slide="next"> <span
-						class="carousel-control-next-icon" aria-hidden="true"></span> <span
-						class="sr-only">Next</span>
-					</a>
+					<h:panelGroup rendered="#{loop.index != 0}">
+						<li data-target="#carouselExampleIndicators" data-slide-to="#{loop.index}"></li>
+					</h:panelGroup>
 
+				</ui:repeat>
+			    
+			  </ol>
+			  
+			  <div class="carousel-inner">
+			  
+			    <ui:repeat
+					value="#{buscaNoticiasMBean.noticiaVisualizada.idsFotos}"
+					var="foto" id="manuelSwitcherImages" varStatus="loop">
+					
+					<p:panel styleClass="#{loop.index == 0 ? 'carousel-item active' : 'carousel-item'}">
+						<p:graphicImage url="#{foto.urlFoto}" id="image" />
+					</p:panel>
 
-				</div>
-
+				</ui:repeat>
+			    
+			  </div>
+			  
+			  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			  </a>
+			  
+			  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			  </a>
 			</div>
-		
 
 	</div>
 </ui:composition>
