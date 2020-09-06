@@ -25,34 +25,37 @@ table {
 		<h:form enctype="multipart/form-data" style="margin: 0px auto;">
 			<h:messages />
 
-			<h:panelGrid columns="5"
+			<h:panelGrid columns="4"
 				style="background-color: #ecf0f1; 
                    bottom: 0px; left: 0px; right: 0px; top: 0px; 
                    width: 200px">
+
 
 				<h:outputLabel for="tema" value="Tema: *" />
 				<h:inputText id="tema" value="#{cadastrarTreinoMBean.treino.tema}"
 					disabled="#{usuarioLogado.administrador == false}" />
 
-				<h:outputLabel for="ministrantes" value="Ministrantes: *" />
+				<h:outputLabel for="ministrantes" value="Ministrantes: *" style="margin-top:20px"/>
 				<p:autoComplete value="#{cadastrarTreinoMBean.treino.ministrantes}"
 					minQueryLength="3"
 					completeMethod="#{buscaUsuariosMBean.autoCompleteUsuarios}"
 					var="usuario" itemLabel="#{usuario.nome}" itemValue="#{usuario}"
 					converter="usuarioConverter" size="20" required="true"
-					requiredMessage="Campo ministrantes obrigatório"  id="ministrantes"/>
+					requiredMessage="Campo ministrantes obrigatório" id="ministrantes" />
 
 				<h:outputLabel for="participantes" value="Participantes: " />
-				<p:autoComplete value="#{cadastrarTreinoMBean.usuarioTreino}"
-					minQueryLength="3"
-					completeMethod="#{buscaUsuariosMBean.autoCompleteUsuarios}"
-					var="usuarioTreino" itemLabel="#{usuarioTreino.nome}"
-					itemValue="#{usuarioTreino}" size="6" converter="usuarioConverter"
-					id="participantes" />
+				<h:panelGroup style="display:flex;">
+				
+					<p:autoComplete  value="#{cadastrarTreinoMBean.usuarioTreino}"
+						minQueryLength="3"
+						completeMethod="#{buscaUsuariosMBean.autoCompleteUsuarios}"
+						var="usuarioTreino" itemLabel="#{usuarioTreino.nome}"
+						itemValue="#{usuarioTreino}" size="6" converter="usuarioConverter"
+						id="participantes" />
 
-				<h:commandButton class="botao" value="Adicionar participante"
-					action="#{cadastrarTreinoMBean.addParticipante}" />
-
+					<h:commandButton class="botao" value="Adicionar participante"
+						action="#{cadastrarTreinoMBean.addParticipante}"  />
+				</h:panelGroup>
 
 
 
@@ -70,29 +73,29 @@ table {
 
 				<h:commandButton class="botao" value="Enviar"
 					action="#{cadastrarTreinoMBean.cadastrar}" />
-					
-					
-			
-				
+
+
+
+
 
 			</h:panelGrid>
-			<p:dataTable var='p' value="#{cadastrarTreinoMBean.treino.participantes}" 
->
-				
-					<p:column>
+			<p:dataTable var='p'
+				value="#{cadastrarTreinoMBean.treino.participantes}">
+
+				<p:column>
 					<f:facet name="header">
 						<h:outputText value="Usuarios no treino" />
 					</f:facet>
 					<h:panelGrid columns="2">
 						<h:outputText value="#{p.nome}" />
 						<h:commandButton class="botao" value="Remover usuario"
-					action="#{cadastrarTreinoMBean.removerParticipante(p)}" />
+							action="#{cadastrarTreinoMBean.removerParticipante(p)}" />
 					</h:panelGrid>
-					
-					</p:column>
-					
-				</p:dataTable>
-			
+
+				</p:column>
+
+			</p:dataTable>
+
 
 		</h:form>
 	</div>
