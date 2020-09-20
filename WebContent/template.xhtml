@@ -552,6 +552,10 @@ ul li {
 						<li><h:commandLink value="Treino"
 								action="#{buscaTreinosMBean.entrarBuscarTreinos}"
 								 /></li>
+								 
+								 <li><h:commandLink value="Torneios futuros"
+								action="#{buscaTorneiosFuturosMBean.entrarBuscarEventoTorneio}"
+								 /></li>
 					</ul></li>
 				<li><h:commandLink value="Sair" action="#{loginMBean.sair}"
 						rendered="#{not empty usuarioLogado}" /></li>

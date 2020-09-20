@@ -12,7 +12,7 @@ import dominio.Usuario;
 import uteis.MetodosUteis;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class CadastrarEventoTorneioMBean {
 	private EventoTorneio evento;
 	private Usuario usuarioTorneio;

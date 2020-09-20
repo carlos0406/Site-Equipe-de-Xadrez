@@ -69,5 +69,23 @@ public class EventoTorneioDAO extends DAOGenerico {
 			return null;
 		}
 	}
+	
+	public List<EventoTorneio> buscarEventoTorneiosFuturos() {
+		EntityManager gerenciador = getEntityManager();
+		Date dataAtual;
+		String hql = "SELECT e FROM EventoTorneio e WHERE e.data>= :dataAtual ";
+		Query q = gerenciador.createQuery(hql);
+		
+		dataAtual = new Date(System.currentTimeMillis());
+		q.setParameter("dataAtual", dataAtual);
+
+
+		try {
+			List<EventoTorneio> resultado = q.getResultList();
+			return resultado;
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
 
 }
