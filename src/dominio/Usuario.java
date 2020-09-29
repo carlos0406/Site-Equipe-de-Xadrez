@@ -65,6 +65,9 @@ public class Usuario {
 	@Column(name="id_foto")
 	private Integer idFoto;
 	
+	@Column(nullable=false)
+	private int rating;
+	
 	/** 
 	 * Atributo n�o persisitido que armazena uma foto que o usu�rio deseja
 	 * para seu perfil.
@@ -313,5 +316,14 @@ public class Usuario {
 	public void setTorneios(List<EventoTorneio> torneios) {
 		this.torneios = torneios;
 	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+	
 	
 }

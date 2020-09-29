@@ -212,4 +212,32 @@ public class BuscaUsuariosMBean extends ControladorGeral {
 	}
 	
 	
+	public String alterarRating(Usuario u) {
+		EntityManager em = Database.getInstance().getEntityManager();
+			
+			try {
+				
+				em.getTransaction().begin();
+				
+				u.setRating(u.getRating());
+				
+				em.merge(u);
+				
+				
+				
+				em.getTransaction().commit();
+				
+			} catch (Exception e){
+				e.printStackTrace();
+				
+				if (em.getTransaction().isActive())
+					
+					em.getTransaction().rollback();
+			}
+			
+			return "/sobreaequipe/busca_usuario.xhtml";
+			
+		}
+	
+	
 }

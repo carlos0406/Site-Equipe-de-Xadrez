@@ -33,7 +33,9 @@
 		
 		<h:form prependId="false" style=" margin: 0 0%;">
 		
-		<h:panelGrid columns="2">
+	<h:panelGrid columns="4" style="background-color: #ecf0f1; 
+                   bottom: 0px; left: 0px; right: 0px; top: 0px; 
+                   margin:auto">
 		
 			<h:outputLabel  for="nomeBusca" value="Nome :" />
 			<p:inputText id="nomeBusca" value="#{buscaUsuariosMBean.nomeBusca}"/> 
@@ -110,6 +112,13 @@
 					
 					<p:column headerText="Matrícula" rendered="#{usuarioLogado.administrador}">
 						<h:outputText value="#{u.matricula}" />
+					</p:column>
+					
+					<p:column headerText="Rating Interno">
+						<h:inputText value="#{u.rating}"  rendered="#{usuarioLogado.administrador}"/>
+						<h:outputText value="#{u.rating}"  rendered="#{!usuarioLogado.administrador}"/>
+						<h:commandButton class="botao" value="Alterar Rating"  
+						action="#{buscaUsuariosMBean.alterarRating(u)}" rendered="#{usuarioLogado.administrador}"/>
 					</p:column>
 					
 					<p:column headerText="Opções">
