@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.persistence.EntityManager;
 
 import org.apache.http.HttpResponse;
@@ -29,7 +30,7 @@ import uteis.ValidadorUtil;
 //testando commit
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class CadastrarUser {
 
 	private Usuario usuario;
