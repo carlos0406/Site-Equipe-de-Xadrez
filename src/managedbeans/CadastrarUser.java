@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.persistence.EntityManager;
@@ -30,7 +31,7 @@ import uteis.ValidadorUtil;
 //testando commit
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class CadastrarUser {
 
 	private Usuario usuario;
@@ -41,12 +42,13 @@ public class CadastrarUser {
 
 	/** Entra na tela de ediï¿½ï¿½o de usuarios. */
 	public String entrarEdicaoUsuarios(Usuario usuario) {
-		this.usuario = usuario; // o usuï¿½rio a ser editado serï¿½ o recebido pelo
-								// parï¿½metro
+		this.usuario = usuario; 
 		return "/login/CadastrarUsuario.xhtml";
 	}
-
+	
+	
 	public String cadastrar() {
+		
 		boolean erro = false;
 
 		if (MetodosUteis.estaVazia(usuario.getNome())) {
@@ -99,6 +101,7 @@ public class CadastrarUser {
 			erro = true;
 		}
 		
+		
 		if (erro)
 			return null;
 		else {
@@ -145,7 +148,10 @@ public class CadastrarUser {
 					gerenciador.merge(usuario);
 
 				gerenciador.getTransaction().commit();
+				usuario = new Usuario();
+				
 				MetodosUteis.addMensagem("Seu cadastro está pronto!");
+				
 				
 
 			} catch (Exception e) {
@@ -153,12 +159,14 @@ public class CadastrarUser {
 
 				if (gerenciador.getTransaction().isActive()) {
 					gerenciador.getTransaction().rollback();
+					usuario = new Usuario();
 				}
+				
 			}
 
 		}
 
-		usuario = new Usuario();
+		
 		return null;
 	}
 

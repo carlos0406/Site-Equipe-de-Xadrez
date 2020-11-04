@@ -21,11 +21,11 @@
 		
 		<h:form enctype="multipart/form-data" prependId="false">
 			<h:messages/>
-			
+			<h:inputHidden value="#{cadastrarUser.usuario.id}" />
 			<h:panelGrid columns="4" style="background-color: #ecf0f1; 
                    bottom: 0px; left: 0px; right: 0px; top: 0px; 
                    width: 150px">
-		
+				
 				<h:outputLabel for="nome" value="Nome completo: *" />
 				<h:inputText id="nome" value="#{cadastrarUser.usuario.nome}" />
 				
