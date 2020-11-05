@@ -72,7 +72,7 @@ public class CadastrarUser {
 			erro = true;
 		}
 
-		if (ValidadorUtil.isEmpty(usuario.getSexo())) {
+		if (((int) usuario.getSexo()) == 0) {
 			MetodosUteis.addMensagem("Campo Sexo obrigatÃ³rio!");
 			erro = true;
 		}
@@ -150,7 +150,7 @@ public class CadastrarUser {
 				gerenciador.getTransaction().commit();
 				usuario = new Usuario();
 				
-				MetodosUteis.addMensagem("Seu cadastro está pronto!");
+				MetodosUteis.addMensagem("Seu cadastro estï¿½ pronto!");
 				
 				
 

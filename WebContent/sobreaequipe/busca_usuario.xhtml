@@ -131,9 +131,6 @@
 					</p:column>
 					
 					<p:column headerText="Rating Interno">
-						<h:outputText value="O Campo pode ser"  rendered="#{usuarioLogado.administrador}" class='rating-text'/>
-						<h:outputText value="modificado!!!"  rendered="#{usuarioLogado.administrador}" class='rating-text'/>
-						
 						<h:inputText value="#{u.rating}" id="rating" rendered="#{usuarioLogado.administrador}" class='rating'/>
 						<h:outputText value="#{u.rating}"  rendered="#{!usuarioLogado.administrador}"/>
 						<h:commandButton class="botao" value="Alterar Rating"  
