@@ -468,15 +468,14 @@ ul li {
 	z-index: 10;
 }
 
-.link-login{
-	color:white;
-	border-radius:4px;
+.link-login {
+	color: white;
+	border-radius: 4px;
 }
+
 .link-login:hover {
-	background-color:white;
-	color:#27ae60;
-	
-	
+	background-color: white;
+	color: #27ae60;
 }
 
 /*cards*/
@@ -527,6 +526,9 @@ ul li {
 								action="/sobreaequipe/influenciasnaregiao.xhtml" /></li>
 						<li><h:commandLink value="Noticias"
 								action="#{buscaNoticiasMBean.entrarBuscarNoticias}" /></li>
+								
+						<li><h:commandLink value="Depoimentos"
+								action="#{buscaDepoimentoMBean.entrarBuscardepoimentos}" /></li>
 						<li><h:commandLink value="Camisas"
 								action="#{buscaCamisasMBean.entrarBuscarCamisas}"
 								rendered="#{not empty usuarioLogado}" /></li>
@@ -542,20 +544,18 @@ ul li {
 						<h:commandLink value="Solicitações"
 							action="/material/busca_solicitacaoLivro.xhtml"
 							rendered="#{usuarioLogado.administrador}"></h:commandLink>
-						<h:commandLink value="Material do curso" action="/material/aulasCurso.xhtml"/>
+						<h:commandLink value="Material do curso"
+							action="/material/aulasCurso.xhtml" />
 					</ul></li>
 				<li><a href="#">Eventos</a>
 					<ul>
 						<li><h:commandLink value="Torneios"
-								action="/eventos/busca_eventoTorneio.xhtml"
-								 /></li>
+								action="/eventos/busca_eventoTorneio.xhtml" /></li>
 						<li><h:commandLink value="Treino"
-								action="#{buscaTreinosMBean.entrarBuscarTreinos}"
-								 /></li>
-								 
-								 <li><h:commandLink value="Torneios futuros"
-								action="#{buscaTorneiosFuturosMBean.entrarBuscarEventoTorneio}"
-								 /></li>
+								action="#{buscaTreinosMBean.entrarBuscarTreinos}" /></li>
+
+						<li><h:commandLink value="Torneios futuros"
+								action="#{buscaTorneiosFuturosMBean.entrarBuscarEventoTorneio}" /></li>
 					</ul></li>
 				<li><h:commandLink value="Sair" action="#{loginMBean.sair}"
 						rendered="#{not empty usuarioLogado}" /></li>
