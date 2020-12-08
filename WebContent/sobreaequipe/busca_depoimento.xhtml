@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>  
+<!DOCTYPE ui:composition PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="../template.xhtml">
+	
+	<style>
+		th span {
+			margin-left: 0px;
+		}
+		
+		
+	</style>
+	
+	<!-- ###################### CONTEÚDO ###################### -->
+
+	<div id="conteudo">
+		
+		<h1>Depoimentos</h1>
+		
+		<h:form prependId="false" style="width: 100%; margin: 0 0;">
+			<h:panelGroup rendered="#{empty buscaDepoimentoMBean.depoimentosEncontradas}">
+			<br/>
+				<h3>Nenhum registro</h3>
+			</h:panelGroup>
+					
+			<h:panelGroup rendered="#{not empty buscaDepoimentoMBean.depoimentosEncontradas}"
+				style="width: 100%;"><!--Só exibe algo, se encontrar usuários-->
+						
+				<p:dataTable var="d" value="#{buscaDepoimentoMBean.depoimentosEncontradas}"
+					style="width: 80%; margin: auto;">
+					<p:column headerText="Imagem">
+						<h:graphicImage url="/imagens/iconeNoticia.png" rendered="#{empty d.idsFotos}"/>
+			            			
+		            	<h:graphicImage style="width:90px; margin: auto; display: block;" styleClass="fotoNoticia" url="#{d.urlPrimeiraFoto}" rendered="#{not empty d.idsFotos}"/>
+					</p:column>
+						 
+					<p:column headerText="Título">
+						<h:outputText value="#{d.titulo_depoimento}" />
+					</p:column>
+						    
+					<p:column headerText="Data">
+						<h:outputText value="#{d.dataCadastro}" >
+							<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+						</h:outputText>
+					</p:column>
+					
+					<p:column headerText="Opções">
+						<h:commandButton class="botao" value="Ler" action="#{buscaDepoimentoMBean.verTexto(d)}"/>
+						<h:commandButton class="botao" value="Remover" action="#{buscaDepoimentoMBean.removerdepoimento(d)}"
+							rendered="#{usuarioLogado.administrador}"
+							onclick="if (!confirm('Deseja realmente remover a notícia selecionada? Essa ação não poderá ser desfeita.')) return false;"/>
+					</p:column>
+
+				</p:dataTable>			
+			</h:panelGroup>
+			<h:commandLink action="CadastrarDepoimento.xhtml" rendered="#{usuarioLogado.administrador}">
+			<h:graphicImage class="botaoMais" url="/imagens/iconeMais.png" /></h:commandLink>
+		</h:form>
+	</div>
+</ui:composition>

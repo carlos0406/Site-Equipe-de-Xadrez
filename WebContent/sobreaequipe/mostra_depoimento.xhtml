@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE ui:composition PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="../template.xhtml">
+	
+
+
+	<!-- ###################### CONTEÚDO ###################### -->
+
+	<div id="conteudo">
+
+		<h1>#{buscaDepoimentoMBean.depoimentoVisualizada.titulo_depoimento}</h1>
+
+		#{buscaDepoimento.depoimentoVizualizada.nome_depoimento}<br />
+		<h:outputText
+			value="#{buscaDepoimentoMBean.depoimentoVisualizada.dataCadastro}">
+			<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+		</h:outputText>
+		<br /> 
+
+		<h:outputText
+			value="#{buscaDepoimentoMBean.depoimentoVisualizada.texto_depoimento}"
+			escape="false" />
+
+			<br />
+
+			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+			  
+			  <ol class="carousel-indicators">
+			    
+			    <ui:repeat
+					value="#{buscaDepoimentoMBean.depoimentoVisualizada.idsFotos}"
+					var="foto" varStatus="loop">
+					
+					<h:panelGroup rendered="#{loop.index == 0}">
+						<li data-target="#carouselExampleIndicators" data-slide-to="#{loop.index}" class="active"></li>
+					</h:panelGroup>
+					
+					<h:panelGroup rendered="#{loop.index != 0}">
+						<li data-target="#carouselExampleIndicators" data-slide-to="#{loop.index}"></li>
+					</h:panelGroup>
+
+				</ui:repeat>
+			    
+			  </ol>
+			  
+			  <div class="carousel-inner">
+			  
+			    <ui:repeat
+					value="#{buscaDepoimentoMBean.depoimentoVisualizada.idsFotos}"
+					var="foto" id="manuelSwitcherImages" varStatus="loop">
+					
+					<p:panel styleClass="#{loop.index == 0 ? 'carousel-item active' : 'carousel-item'}">
+						<p:graphicImage url="#{foto.urlFoto}" id="image" />
+					</p:panel>
+
+				</ui:repeat>
+			    
+			  </div>
+			  
+			  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			  </a>
+			  
+			  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			  </a>
+			</div>
+
+	</div>
+</ui:composition>

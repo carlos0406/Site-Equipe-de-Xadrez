@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="../template.xhtml">
+		
+	<!-- ###################### CONTEÚDO ###################### -->
+
+	<div id="conteudo">
+		
+		<h1>Cadastrar Depoimento</h1>
+	
+
+		<h:form enctype="multipart/form-data">
+			<p:growl id="mensagens"/>
+			
+			<h:panelGrid columns="2" style="width: 100%;">
+				<h:outputLabel for="Titulo " value="Título:* " />
+				<h:inputText id="TituloDepoimento" value="#{cadastrarDepoimentoMBean.depoimento.titulo_depoimento}" 
+					style="width:100%;"/>
+				
+				<h:outputLabel for="NomeAutor " value="Autor: *" />
+				<h:inputText id="NomeAutor" value="#{cadastrarDepoimentoMBean.depoimento.nome_depoimento}" 
+					style="width:100%;"/>
+				
+				
+			</h:panelGrid>
+			
+			<br/>
+			
+			<h:outputLabel for="fotoDepoimento" value="Fotos da notícia:"/>
+			<p:fileUpload id="fotoDepoimento" mode="advanced" dragDropSupport="false"
+                 multiple="true" fileUploadListener="#{cadastrarDepoimentoMBean.fazerUploadFotos}"
+                 fileLimit="10" label="Escolher arquivos" cancelLabel="Cancelar envio" 
+                 uploadLabel="Enviar fotos" fileLimitMessage="São permitidas no máximo 10 fotos para envio. "
+                 update="mensagens"/>
+            
+            <div style="color: red; font-weight: bold;">
+				Atenção: para anexar as fotos, é necessário selecioná-las e, em seguida, clicar no botão Enviar fotos. 
+			</div>
+            
+            <ui:remove>
+            	<p:fileUpload id="fotoDepoimento" mode="simple" value="#{cadastrarDepoimentoMBean.depoimento.fotosDepoimento}"/>
+            </ui:remove>
+			
+			<br/>
+			
+			<h:outputLabel for="texto" value="Texto: *" />
+			<p:textEditor id="texto" widgetVar="editor1" value="#{cadastrarDepoimentoMBean.depoimento.texto_depoimento}" height="300" style="margin-bottom:10px"/>
+			
+			<h:commandButton class="botao" value="Enviar" action="#{cadastrarDepoimentoMBean.cadastrar}" />
+			<h:commandLink value="Ver Depoimentos" action="#{buscaDepoimentoMBean.entrarBuscardepoimentos}" />
+		
+		</h:form>
+	
+	</div>
+
+</ui:decorate>
