@@ -8,6 +8,17 @@
 	template="../template.xhtml">
 		
 	<!-- ###################### CONTEÚDO ###################### -->
+	
+	<style>
+		.auto {
+			margin: 0px;
+			width: 100%;
+		}
+		
+		.auto input {
+			width: 100%;
+		}
+	</style>
 
 	<div id="conteudo">
 		
@@ -23,7 +34,7 @@
 					style="width:100%;"/>
 				
 				<h:outputLabel for="Autor " value="Autor: *" />
-				<p:autoComplete panelStyle="width:100%" value="#{cadastrarNoticiaMBean.noticia.autor_noticia}" minQueryLength="3" 
+				<p:autoComplete styleClass="auto" panelStyle="width:100%" value="#{cadastrarNoticiaMBean.noticia.autor_noticia}" minQueryLength="3" 
 				completeMethod="#{buscaUsuariosMBean.autoCompleteUsuarios}"
 				var="autorNoticia" itemLabel="#{autorNoticia.nome}"
 				itemValue="#{autorNoticia}" 

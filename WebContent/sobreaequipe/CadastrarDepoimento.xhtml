@@ -7,12 +7,16 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="../template.xhtml">
 	
-	
 	<style>
-	.auto{
-		width:300px;
-	}
-</style>
+		.auto {
+			margin: 0px;
+			width: 100%;
+		}
+		
+		.auto input {
+			width: 100%;
+		}
+	</style>
 		
 	<!-- ###################### CONTEÚDO ###################### -->
 
@@ -31,10 +35,10 @@
 				
 				<h:outputLabel for="Autor " value="Autor: *" />
 				<p:autoComplete styleClass="auto" value="#{cadastrarDepoimentoMBean.depoimento.autor_depoimento}" minQueryLength="3" 
-				completeMethod="#{buscaUsuariosMBean.autoCompleteUsuarios}"
-				var="autorDepoimento" itemLabel="#{autorDepoimento.nome}"
-				itemValue="#{autorDepoimento}" 
-				size="6" converter="usuarioConverter" id="Autor"/>
+					completeMethod="#{buscaUsuariosMBean.autoCompleteUsuarios}"
+					var="autorDepoimento" itemLabel="#{autorDepoimento.nome}"
+					itemValue="#{autorDepoimento}" style="width: 100%;"
+					size="6" converter="usuarioConverter" id="Autor"/>
 				
 				
 			</h:panelGrid>
