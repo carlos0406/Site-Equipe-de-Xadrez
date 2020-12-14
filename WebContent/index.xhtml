@@ -28,7 +28,7 @@
 		
 			<p:repeat var="n" varStatus="loop"
 				value="#{buscaNoticiasMBean.buscarPaginaInicial}"
-				style="width: 80%; margin: auto;" id="noticias">
+				style="width: 80%; margin: auto;" id="noticias" rendered="#{not empty buscaNoticiasMBean.buscarPaginaInicial }">
 
 				<div id="accordion">
 					<div class="card" style="max-width: 80%; margin: auto">
@@ -50,7 +50,7 @@
 							
 								<h3>
 									<h:outputText value="Autor:" class="descricao"/>
-									<h:outputText value="#{n.nome_autor}"/>
+									<h:outputText value="#{n.autor_noticia.nome}"/>
 								</h3>
 								
 								

@@ -14,17 +14,18 @@
 
 	<div id="conteudo">
 
-		<h1>#{buscaDepoimentoMBean.depoimentoVisualizada.titulo_depoimento}</h1>
-
-		#{buscaDepoimento.depoimentoVizualizada.nome_depoimento}<br />
+		<h1>#{buscaDepoimentoMBean.depoimentoVisualizado.titulo_depoimento}</h1>
+		#{buscaDepoimentoMBean.depoimentoVisualizado.autor_depoimento.nome}
+			
+	<br />
 		<h:outputText
-			value="#{buscaDepoimentoMBean.depoimentoVisualizada.dataCadastro}">
+			value="#{buscaDepoimentoMBean.depoimentoVisualizado.dataCadastro}">
 			<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
 		</h:outputText>
 		<br /> 
 
 		<h:outputText
-			value="#{buscaDepoimentoMBean.depoimentoVisualizada.texto_depoimento}"
+			value="#{buscaDepoimentoMBean.depoimentoVisualizado.texto_depoimento}"
 			escape="false" />
 
 			<br />
@@ -34,7 +35,7 @@
 			  <ol class="carousel-indicators">
 			    
 			    <ui:repeat
-					value="#{buscaDepoimentoMBean.depoimentoVisualizada.idsFotos}"
+					value="#{buscaDepoimentoMBean.depoimentoVisualizado.idsFotos}"
 					var="foto" varStatus="loop">
 					
 					<h:panelGroup rendered="#{loop.index == 0}">
@@ -52,7 +53,7 @@
 			  <div class="carousel-inner">
 			  
 			    <ui:repeat
-					value="#{buscaDepoimentoMBean.depoimentoVisualizada.idsFotos}"
+					value="#{buscaDepoimentoMBean.depoimentoVisualizado.idsFotos}"
 					var="foto" id="manuelSwitcherImages" varStatus="loop">
 					
 					<p:panel styleClass="#{loop.index == 0 ? 'carousel-item active' : 'carousel-item'}">

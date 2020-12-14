@@ -27,7 +27,7 @@ public class LoginFilter implements Filter {
 	private final String[] urlsPermitidas = {"index.xhtml", "erro.xhtml","login.xhtml","CadastrarUsuario.xhtml",
 			"busca_noticia.xhtml", "busca_usuario.xhtml", "historiaequipe.xhtml", "influenciasnaregiao.xhtml",
 			"membrosdaequipe.xhtml", "modelosdascamisas.xhtml", "mostra_noticia.xhtml", "perfilUsuario.xhtml",
-			"busca_eventoTorneio.xhtml", "busca_treino.xhtml"};
+			"busca_eventoTorneio.xhtml", "busca_treino.xhtml","mostra_depoimento.xhtml","busca_depoimento.xhtml"};
 	
 	@Override
 	public void destroy() {

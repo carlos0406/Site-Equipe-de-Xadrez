@@ -22,9 +22,12 @@
 				<h:inputText id="TituloNoticia" value="#{cadastrarNoticiaMBean.noticia.titulo_noticia}" 
 					style="width:100%;"/>
 				
-				<h:outputLabel for="NomeAutor " value="Autor: *" />
-				<h:inputText id="NomeAutor" value="#{cadastrarNoticiaMBean.noticia.nome_autor}" 
-					style="width:100%;"/>
+				<h:outputLabel for="Autor " value="Autor: *" />
+				<p:autoComplete panelStyle="width:100%" value="#{cadastrarNoticiaMBean.noticia.autor_noticia}" minQueryLength="3" 
+				completeMethod="#{buscaUsuariosMBean.autoCompleteUsuarios}"
+				var="autorNoticia" itemLabel="#{autorNoticia.nome}"
+				itemValue="#{autorNoticia}" 
+				size="6" converter="usuarioConverter" id="Autor"/>
 				
 				<h:outputLabel for="PalavraChave" value="Palavras-chave:* " style="width: 30px;" />
 				<h:inputText id="PalavraChave" value="#{cadastrarNoticiaMBean.noticia.palavraChave}" 

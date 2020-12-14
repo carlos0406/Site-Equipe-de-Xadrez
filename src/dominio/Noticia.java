@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -38,8 +39,9 @@ public class Noticia {
 	@Column(nullable = false, columnDefinition="TEXT")
 	private String texto_noticia;
 	
-	@Column(nullable = false, columnDefinition = "TEXT")
-	private String nome_autor;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_usuario_autor_noticia",nullable = false)
+	private Usuario autor_noticia;
 	
 	@Column(nullable = false)
 	private String palavraChave;
@@ -99,12 +101,15 @@ public class Noticia {
 		this.titulo_noticia = titulo_noticia;
 	}
 
-	public String getNome_autor() {
-		return nome_autor;
+
+	
+
+	public Usuario getAutor_noticia() {
+		return autor_noticia;
 	}
 
-	public void setNome_autor(String nome_autor) {
-		this.nome_autor = nome_autor;
+	public void setAutor_noticia(Usuario autor_noticia) {
+		this.autor_noticia = autor_noticia;
 	}
 
 	public String getPalavraChave() {

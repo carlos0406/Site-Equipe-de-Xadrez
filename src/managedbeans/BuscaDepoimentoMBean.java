@@ -30,7 +30,7 @@ public class BuscaDepoimentoMBean {
 	
 	
 	
-	private Depoimento depoimentoVisualizada;
+	private Depoimento depoimentoVisualizado;
 	
 	/** Permite o acesso ao banco. */
 	private DepoimentoDAO dao;
@@ -64,7 +64,7 @@ public class BuscaDepoimentoMBean {
 	public String verTexto(Depoimento depoimento){
 		dao = new DepoimentoDAO();
 		
-		depoimentoVisualizada = dao.encontrarPeloID(depoimento.getId_depoimento(), Depoimento.class);
+		depoimentoVisualizado = dao.encontrarPeloID(depoimento.getId_depoimento(), Depoimento.class);
 		
 		return "/sobreaequipe/mostra_depoimento.xhtml";
 	}
@@ -109,12 +109,21 @@ public class BuscaDepoimentoMBean {
 		this.dao = dao;
 	}
 
-	public Depoimento getdepoimentoVisualizada() {
-		return depoimentoVisualizada;
+	public List<Depoimento> getDepoimentosEncontradas() {
+		return depoimentosEncontradas;
 	}
 
-	public void setdepoimentoVisualizada(Depoimento depoimentoVisualizada) {
-		this.depoimentoVisualizada = depoimentoVisualizada;
+	public void setDepoimentosEncontradas(List<Depoimento> depoimentosEncontradas) {
+		this.depoimentosEncontradas = depoimentosEncontradas;
 	}
 
+	public Depoimento getDepoimentoVisualizado() {
+		return depoimentoVisualizado;
+	}
+
+	public void setDepoimentoVisualizado(Depoimento depoimentoVisualizado) {
+		this.depoimentoVisualizado = depoimentoVisualizado;
+	}
+
+	
 }

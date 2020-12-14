@@ -39,7 +39,7 @@ public class CadastrarNoticiaMBean {
 	public String cadastrar() {
 		boolean erro = false;
 
-		if (MetodosUteis.estaVazia(noticia.getNome_autor())) {
+		if (MetodosUteis.estaVazia(noticia.getAutor_noticia())) {
 			MetodosUteis.addMensagem("Campo Nome do autor obrigatório!");
 			erro = true;
 		}

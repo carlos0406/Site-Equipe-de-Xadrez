@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -38,8 +39,9 @@ public class Depoimento {
 	@Column(nullable = false, columnDefinition="TEXT")
 	private String texto_depoimento;
 	
-	@Column(nullable = false, columnDefinition = "TEXT")
-	private String nome_depoimento;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_usuario_autor_depoimento",nullable = false)
+	private Usuario autor_depoimento;
 	
 	
 	
@@ -117,13 +119,15 @@ public class Depoimento {
 	}
 
 
-	public String getNome_depoimento() {
-		return nome_depoimento;
+
+
+	public Usuario getAutor_depoimento() {
+		return autor_depoimento;
 	}
 
 
-	public void setNome_depoimento(String nome_depoimento) {
-		this.nome_depoimento = nome_depoimento;
+	public void setAutor_depoimento(Usuario autor_depoimento) {
+		this.autor_depoimento = autor_depoimento;
 	}
 
 

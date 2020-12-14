@@ -6,6 +6,13 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	template="../template.xhtml">
+	
+	
+	<style>
+	.auto{
+		width:300px;
+	}
+</style>
 		
 	<!-- ###################### CONTEÚDO ###################### -->
 
@@ -22,9 +29,12 @@
 				<h:inputText id="TituloDepoimento" value="#{cadastrarDepoimentoMBean.depoimento.titulo_depoimento}" 
 					style="width:100%;"/>
 				
-				<h:outputLabel for="NomeAutor " value="Autor: *" />
-				<h:inputText id="NomeAutor" value="#{cadastrarDepoimentoMBean.depoimento.nome_depoimento}" 
-					style="width:100%;"/>
+				<h:outputLabel for="Autor " value="Autor: *" />
+				<p:autoComplete styleClass="auto" value="#{cadastrarDepoimentoMBean.depoimento.autor_depoimento}" minQueryLength="3" 
+				completeMethod="#{buscaUsuariosMBean.autoCompleteUsuarios}"
+				var="autorDepoimento" itemLabel="#{autorDepoimento.nome}"
+				itemValue="#{autorDepoimento}" 
+				size="6" converter="usuarioConverter" id="Autor"/>
 				
 				
 			</h:panelGrid>
