@@ -2,7 +2,9 @@ package managedbeans;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.persistence.EntityManager;
 
+import dao.Database;
 import dao.EventoTorneioDAO;
 import dominio.Usuario;
 @SessionScoped
@@ -17,6 +19,34 @@ public class PerfilMBean {
 		usuario.setTorneios(dao.buscarEventoTorneiosUsuario(usuario.getId()));
 		return "/sobreaequipe/perfilUsuario.xhtml";
 	}
+	
+	public String alterarDestaque() {
+		EntityManager em = Database.getInstance().getEntityManager();
+			
+			try {
+				
+				em.getTransaction().begin();
+				
+				
+				em.merge(usuario);
+				
+				
+				
+				em.getTransaction().commit();
+				
+			} catch (Exception e){
+				e.printStackTrace();
+				
+				if (em.getTransaction().isActive())
+					
+					em.getTransaction().rollback();
+			}
+			
+			return "/sobreaequipe/busca_usuario.xhtml";
+			
+		}
+	
+	
 
 	public Usuario getUsuario() {
 		return usuario;

@@ -31,6 +31,12 @@ public class Usuario {
 	@Column(nullable = false)
 	private boolean ativo = true;
 	
+	@Column(nullable=true)
+	private boolean destaque = false;
+	
+	@Column(nullable=true)
+	private String textoDestaque;
+	
 	@Column(nullable = false)
 	private char sexo;
 	
@@ -323,6 +329,22 @@ public class Usuario {
 
 	public void setRating(int rating) {
 		this.rating = rating;
+	}
+
+	public boolean isDestaque() {
+		return destaque;
+	}
+
+	public void setDestaque(boolean destaque) {
+		this.destaque = destaque;
+	}
+
+	public String getTextoDestaque() {
+		return textoDestaque;
+	}
+
+	public void setTextoDestaque(String textoDestaque) {
+		this.textoDestaque = textoDestaque;
 	}
 	
 	

@@ -34,6 +34,20 @@ td {
 	margin-left: -10;
 	padding: 10px;
 }
+
+.ui-inputswitch-off {
+	background: #e74c3c;
+	color: #e74c3c;
+}
+
+.ui-inputswitch .ui-inputswitch-on {
+	background: #27ae60;
+	color: #27ae60;
+}
+.formulario{
+	bor
+
+} 
 </style>
 
 	<div id="conteudo" class="container">
@@ -57,9 +71,13 @@ td {
 				</p:column>
 
 				<h:panelGrid columns="1">
+
 					<h:outputText value="NOME:" styleClass='descricao' />
 
+
 					<h:outputText value="#{perfilMBean.usuario.nome}" />
+
+
 
 					<h:outputText value="DATA DE NASCIMENTO:" styleClass='descricao' />
 
@@ -103,31 +121,48 @@ td {
 
 						<h:outputText value="#{perfilMBean.usuario.conta}"
 							rendered="#{usuarioLogado.administrador}" />
-							
+
 						<h:outputText value="Agência:" styleClass='descricao'
 							rendered="#{usuarioLogado.administrador}" />
 
 						<h:outputText value="#{perfilMBean.usuario.ag}"
 							rendered="#{usuarioLogado.administrador}" />
-							
-							<h:outputText value="Banco:" styleClass='descricao'
+
+						<h:outputText value="Banco:" styleClass='descricao'
 							rendered="#{usuarioLogado.administrador}" />
 
 						<h:outputText value="#{perfilMBean.usuario.banco}"
 							rendered="#{usuarioLogado.administrador}" />
-							
+
 
 
 					</h:panelGroup>
 
 				</h:panelGrid>
+				<h:form class="formulario">
+					<h:outputText value="Usuario Destaque: " />
+
+					<p:inputSwitch value="#{perfilMBean.usuario.destaque}" rendered="#{usuarioLogado.administrador}"/>
+
+					<h:outputText value="Texto de destaque: "rendered="#{perfilMBean.usuario.destaque}" />
+					<p:inputTextarea rows="6" cols="25"
+						value="#{perfilMBean.usuario.textoDestaque}" 
+						rendered="#{usuarioLogado.administrador}"
+						/>
+						<h:outputText value="#{perfilMBean.usuario.textoDestaque}"
+							rendered="#{!usuarioLogado.administrador}" />
+					<h:commandButton class="botao" value="Salvar Alteração"
+						action="#{perfilMBean.alterarDestaque}"
+						rendered="#{usuarioLogado.administrador}" />
+				</h:form>
 
 			</div>
 
 
 			<div class="col-sm-6 col-md-8">
 
-				<p:dataTable var="t" value="#{perfilMBean.usuario.torneios}" style="width: 100%;">
+				<p:dataTable var="t" value="#{perfilMBean.usuario.torneios}"
+					style="width: 100%;">
 					<p:column headerText="Torneios que participou">
 						<h:outputText value="#{t.nome_torneio}" />
 					</p:column>
