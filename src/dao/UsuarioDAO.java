@@ -196,6 +196,24 @@ public class UsuarioDAO extends DAOGenerico {
 			return null;
 		}
 	}
+	
+	public List<Usuario>buscarDestaques(){
+		EntityManager em = getEntityManager();
+
+		String hql = "SELECT u FROM Usuario u";
+		hql += " where u.destaque = true ";
+
+		Query q = em.createQuery(hql);
+
+		try {
+			@SuppressWarnings("unchecked")
+			List<Usuario> result = q.getResultList();
+
+			return result;
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
 
 	public List<Usuario> buscarUsuarios(String nome, TipoUsuario tipoUsuario, String cpf, Long matricula, boolean ativo) {
 		EntityManager gerenciador = getEntityManager();

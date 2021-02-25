@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 
 import arquitetura.ControladorGeral;
 import dao.Database;
+import dao.NoticiaDAO;
 import dao.UsuarioDAO;
 import dominio.TipoUsuario;
 import dominio.Usuario;
@@ -24,6 +25,7 @@ import uteis.MetodosUteis;
 @ManagedBean
 @SessionScoped
 public class BuscaUsuariosMBean extends ControladorGeral {
+	private List<Usuario>usuariosDestaque;
 	/*Atributos usados na busca de usuarios*/
 	private String nomeBusca;
 	private TipoUsuario tipoUsuarioBusca;
@@ -178,6 +180,18 @@ public class BuscaUsuariosMBean extends ControladorGeral {
 
 		return new UsuarioDAO().buscarPelaColunaLike("nome", query, Usuario.class);
 
+	}
+	
+	
+	
+	public List<Usuario>getUsuariosDestaque(){
+		if (MetodosUteis.estaVazia(usuariosDestaque)) {
+			dao = new UsuarioDAO();
+			return dao.buscarDestaques();
+		} else {
+			return usuariosDestaque;
+		}
+		
 	}
 	
 	public String alterarAtivo(Usuario u) {

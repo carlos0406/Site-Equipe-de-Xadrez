@@ -44,10 +44,17 @@ td {
 	background: #27ae60;
 	color: #27ae60;
 }
-.formulario{
-	bor
 
-} 
+
+form{
+transform:translateX(-50%);
+
+
+}
+
+
+
+
 </style>
 
 	<div id="conteudo" class="container">
@@ -144,13 +151,18 @@ td {
 
 					<p:inputSwitch value="#{perfilMBean.usuario.destaque}" rendered="#{usuarioLogado.administrador}"/>
 
-					<h:outputText value="Texto de destaque: "rendered="#{perfilMBean.usuario.destaque}" />
+					<h:outputText value="Texto de destaque: "
+						/>
+					
 					<p:inputTextarea rows="6" cols="25"
 						value="#{perfilMBean.usuario.textoDestaque}" 
 						rendered="#{usuarioLogado.administrador}"
 						/>
+						
+						
 						<h:outputText value="#{perfilMBean.usuario.textoDestaque}"
 							rendered="#{!usuarioLogado.administrador}" />
+							
 					<h:commandButton class="botao" value="Salvar Alteração"
 						action="#{perfilMBean.alterarDestaque}"
 						rendered="#{usuarioLogado.administrador}" />
