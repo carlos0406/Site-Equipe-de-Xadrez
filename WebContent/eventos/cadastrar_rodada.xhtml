@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="../template.xhtml">
+
+	<!-- ###################### CONTEÚDO ###################### -->
+
+	<style>
+span {
+	margin-left: 0px;
+}
+
+table {
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
+
+	<div id="conteudo">
+
+		<h1>Cadastrar rodada</h1>
+
+		<h:form enctype="multipart/form-data" style="margin: 0px auto;">
+			<h:messages />
+
+			<h:panelGrid columns="4"
+				style="background-color: #ecf0f1; 
+                   bottom: 0px; left: 0px; right: 0px; top: 0px; 
+                   width: 200px">
+
+
+				
+				
+
+				<h:outputLabel for="membro" value="Membro da rodada:" style="margin-top:20px"/>
+				
+				<p:autoComplete value="#{cadastarRodadaTorneioMBean.rodadaTorneio.membro}"
+					minQueryLength="3"
+					completeMethod="#{buscaUsuariosMBean.autoCompleteUsuarios}"
+					var="usuario" itemLabel="#{usuario.nome}" itemValue="#{usuario}"
+					converter="usuarioConverter" size="20" required="true"
+					requiredMessage="Campo membro obrigatório" id="membro" />
+					
+					<h:outputLabel for="adversario" value="Adversário: *" />
+					<h:inputText id="adversario" value="#{cadastarRodadaTorneioMBean.rodadaTorneio.nomeAdversario}" />
+					
+				<h:outputLabel for="torneio" value="Torneio:" style="margin-top:20px"/>
+				
+				<p:autoComplete value="#{cadastarRodadaTorneioMBean.rodadaTorneio.torneio}"
+					minQueryLength="3"
+					completeMethod="#{cadastarRodadaTorneioMBean.autoCompleteTorneios}"
+					var="torneio" itemLabel="#{torneio.nome_torneio}" itemValue="#{torneio}"
+					converter="torneioConverter" size="20" required="true"
+					requiredMessage="Campo torneio obrigatório" id="torneio" />
+				
+				<h:outputLabel for="rodada" value="Rodada: *" />
+				
+				<h:inputText id="rodada" value="#{cadastarRodadaTorneioMBean.rodadaTorneio.rodada}" />	
+
+			
+
+				
+				<h:outputLabel for="resultado" value="Resultado: *" />
+				<h:selectOneRadio id="resultado"
+					value="#{cadastarRodadaTorneioMBean.rodadaTorneio.resultado}"
+					disabled="#{usuarioLogado.administrador == false}">
+					<f:selectItem itemLabel="Vitoria" itemValue="Vitoria" />
+					<f:selectItem itemLabel="Derrota" itemValue="Derrota" />
+					<f:selectItem itemLabel="Empate" itemValue="Empate" />
+				</h:selectOneRadio>
+				
+				
+
+				<h:commandButton class="botao" value="Enviar"
+					action="#{cadastarRodadaTorneioMBean.cadastrar}" />
+				
+
+
+
+
+
+			</h:panelGrid>
+			
+			
+
+
+		</h:form>
+		
+		
+	</div>
+</ui:decorate>

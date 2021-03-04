@@ -37,8 +37,8 @@ public class Usuario {
 	@Column(nullable=true)
 	private String textoDestaque;
 	
-	@Column(nullable = false)
-	private char sexo;
+	@Column(nullable = true)
+	private Character sexo;
 	
 	@Column(nullable = false)
 	private Date dataNascimento;
@@ -48,7 +48,7 @@ public class Usuario {
 	@Column(nullable=false)
 	private TipoUsuario tipoUsuario;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String rg;
 	
 	@Column(nullable = false)
@@ -57,7 +57,7 @@ public class Usuario {
 	@Column(nullable = false)
 	private String email;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String celular;
 	
 	@Column(nullable = false)
@@ -66,6 +66,7 @@ public class Usuario {
 	@Transient
 	private String confirmarSenha;
 	
+	@Column(nullable = true)
 	private long matricula;
 	
 	@Column(name="id_foto")
@@ -156,18 +157,23 @@ public class Usuario {
 		return tipoUsuario.toString();
 	}
 	
-	public char getSexo() {
-		return sexo;
-	}
-	public void setSexo(char sexo) {
-		this.sexo = sexo;
-	}
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	
+	public Character getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(Character sexo) {
+		this.sexo = sexo;
+	}
+
 	public String getNome() {
 		return nome;
 	}

@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE ui:composition PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="../template.xhtml">
+
+	<style>
+th span {
+	margin-left: 0px;
+}
+
+td {
+	word-break: break-all;
+}
+
+.titulo {
+	text-align: center;
+}
+
+.rating {
+	background: #f5f5f5;
+	width: 100%;
+	height: 48px;
+	border-radius: 10px;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	font-weight: 500;
+}
+
+.rating-text {
+	font-weight: bold;
+	background: rgba(200, 10, 10, .5);
+}
+</style>
+
+	<div id="conteudo">
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<h:form enctype="multipart/form-data">
+
+			<h:messages />
+			<h1 class="titulo">Membros da Equipe</h1>
+
+		</h:form>
+
+		<h:form prependId="false" style=" margin: 0 0%;">
+
+			<h:panelGrid columns="4"
+				style="background-color: #ecf0f1; 
+                   bottom: 0px; left: 0px; right: 0px; top: 0px; 
+                   margin:auto">
+				<h:outputLabel for="membro" value="Membro da rodada:"
+					style="margin-top:20px" />
+
+				<p:autoComplete
+					value="#{buscaRodadaTorneioMBean.rodadaBusca.membro}"
+					minQueryLength="3"
+					completeMethod="#{buscaUsuariosMBean.autoCompleteUsuarios}"
+					var="usuario" itemLabel="#{usuario.nome}" itemValue="#{usuario}"
+					converter="usuarioConverter" size="20"
+					requiredMessage="Campo membro obrigatório" id="membro" />
+
+				<h:outputLabel for="torneio" value="Torneio:"
+					style="margin-top:20px" />
+
+				<p:autoComplete
+					value="#{buscaRodadaTorneioMBean.rodadaBusca.torneio}"
+					minQueryLength="3"
+					completeMethod="#{cadastarRodadaTorneioMBean.autoCompleteTorneios}"
+					var="torneio" itemLabel="#{torneio.nome_torneio}"
+					itemValue="#{torneio}" converter="torneioConverter" size="20"
+					requiredMessage="Campo torneio obrigatório" id="torneio" />
+
+
+				<h:outputLabel for="nomeBusca" value="Nome Adversario :" />
+				<p:inputText id="nomeBusca"
+					value="#{buscaRodadaTorneioMBean.rodadaBusca.nomeAdversario}" />
+
+				<h:outputLabel for="rodadaBusca" value="Rodada do torneio :" />
+				<p:inputText id="rodadaBusca"
+					value="#{buscaRodadaTorneioMBean.rodadaBusca.rodada}" />
+
+
+
+
+				<h:commandButton class="botao" value="Buscar"
+					action="#{buscaRodadaTorneioMBean.buscar}" />
+			</h:panelGrid>
+
+			<h:panelGroup
+				rendered="#{empty buscaRodadaTorneioMBean.rodadasEncontradas}">
+				<br />
+				<h3>Por favor faça uma busca.</h3>
+			</h:panelGroup>
+
+			<h:panelGroup
+				rendered="#{not empty buscaRodadaTorneioMBean.rodadasEncontradas}">
+				<!--Só exibe algo, se encontrar usuários-->
+
+				<p:dataTable var="r"
+					value="#{buscaRodadaTorneioMBean.rodadasEncontradas}">
+
+					<p:column headerText="Membro">
+						<h:outputText value="#{r.membro.nome}" />
+					</p:column>
+
+					<p:column headerText="Torneio">
+						<h:outputText value="#{r.torneio.nome_torneio}" />
+					</p:column>
+
+
+
+
+					<p:column headerText="Nome Adversário">
+						<h:outputText value="#{r.nomeAdversario}" />
+					</p:column>
+
+					<p:column headerText="Resultado">
+						<h:outputText value="#{r.resultado}" />
+					</p:column>
+
+
+
+
+
+					<p:column headerText="Opções">
+
+						<h:commandButton class="botao" value="remover"
+							action="#{buscaRodadaTorneioMBean.removerRodada(r)}" />
+						<h:commandButton class="botao" value="Editar"
+							action="#{cadastarRodadaTorneioMBean.entrarEdicaoRodada(r)}" />
+
+
+
+					</p:column>
+
+				</p:dataTable>
+
+
+
+			</h:panelGroup>
+
+			<h:commandLink action="cadastrar_rodada.xhtml"
+				rendered="#{usuarioLogado.administrador}">
+				<h:graphicImage url="/imagens/iconeMais.png" styleClass="botaoMais" />
+			</h:commandLink>
+
+		</h:form>
+	</div>
+
+</ui:composition>

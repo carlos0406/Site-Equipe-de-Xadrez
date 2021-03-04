@@ -559,6 +559,11 @@ ul li {
 
 						<li><h:commandLink value="Torneios futuros"
 								action="#{buscaTorneiosFuturosMBean.entrarBuscarEventoTorneio}" /></li>
+								
+						<li><h:commandLink value="Rodada Dos torneios"
+								rendered="#{usuarioLogado.administrador}"
+								action="/eventos/busca_rodadaTorneio.xhtml"
+								 /></li>		
 					</ul></li>
 				<li><h:commandLink value="Sair" action="#{loginMBean.sair}"
 						rendered="#{not empty usuarioLogado}" /></li>

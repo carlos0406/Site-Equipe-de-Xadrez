@@ -63,8 +63,9 @@
 				
 				
 				<h:outputLabel for="tipoUsuario" value="Tipo de Usuário: *" />
+				
 				<h:selectOneMenu value="#{cadastrarUser.usuario.tipoUsuario}"
-					id="tipoUsuario"  rendered="#{not empty usuarioLogado}">
+					id="tipoUsuario"  rendered="#{usuarioLogado.administrador}">
 					<f:selectItem itemValue="#{null}" itemLabel="--SELECIONE--"
 						itemDescription="--SELECIONE--" />
 						<f:selectItem itemValue="ADMINISTRADOR" itemLabel="Administrador"
@@ -75,7 +76,7 @@
 				</h:selectOneMenu>
 				
 				<h:selectOneMenu value="#{cadastrarUser.usuario.tipoUsuario}"
-					id="tipoUsuario1" rendered="#{!not empty usuarioLogado}">
+					id="tipoUsuario1" rendered="#{usuarioLogado.membro}">
 					<f:selectItem itemValue="#{null}" itemLabel="--SELECIONE--"
 						itemDescription="--SELECIONE--" />
 					<f:selectItem itemValue="MEMBRO" itemLabel="Membro"

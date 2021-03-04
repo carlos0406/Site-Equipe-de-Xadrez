@@ -178,6 +178,26 @@ public class UsuarioDAO extends DAOGenerico {
 			return null;
 		}
 	}
+	
+	public Usuario findUsuarioByMatriculaSenha(long matricula, String senha) {
+		EntityManager em = getEntityManager();
+
+		String hql = "SELECT usuario ";
+		hql += "FROM Usuario usuario WHERE " + "usuario.matricula= :matricula and usuario.senha = :senha";
+
+		Query q = em.createQuery(hql);
+		q.setParameter("matricula", matricula);
+		q.setParameter("senha", senha);
+
+		try {
+			Usuario usuario = (Usuario) q.getSingleResult();
+			return usuario;
+		} catch (NoResultException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 
 	public List<Usuario> buscarUsuariosFiltro() {
 		EntityManager em = getEntityManager();

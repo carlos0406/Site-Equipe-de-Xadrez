@@ -72,7 +72,7 @@ public class LoginMBean {
 				usuarioBanco = dao.findUsuarioByLoginSenha(usuario.getEmail(),
 						CriptografiaUtils.criptografarMD5(usuario.getSenha()));
 			} else {
-				usuarioBanco = dao.findUsuarioByMatricula(Long.valueOf(usuario.getEmail()));
+				usuarioBanco = dao.findUsuarioByMatriculaSenha(Long.valueOf(usuario.getEmail()),CriptografiaUtils.criptografarMD5(usuario.getSenha()));
 			}
 
 		} catch (Exception e) {
@@ -85,8 +85,9 @@ public class LoginMBean {
 		String token = buscarToken();
 
 		suap = (token != null) ? true : false;
-
-		if (suap) {
+		
+		if (suap &&usuarioBanco==null) {
+			UsuarioDAO dao = new UsuarioDAO();
 			// Pegando dados a partir do token gerado para salvar no banco de dados
 			
 			CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -104,19 +105,13 @@ public class LoginMBean {
 			String senha = usuario.getSenha();
 			
 			usuario = new Usuario();
-			usuario.setNome(meusDados.get("nome_usual").toString());
-			System.out.println("meus Dados:");
-			System.out.println(meusDados);
-		
-				System.out.println("Vinculo :");
-				System.out.println(meusDados.get("vinculo"));
-				
+			usuario.setNome(meusDados.get("nome_usual").toString());	
 			usuario.setEmail((String) meusDados.get("email"));
 			usuario.setCpf((String) meusDados.get("cpf"));
 			usuario.setSenha(CriptografiaUtils.criptografarMD5(senha));
 			EntityManager gerenciador = Database.getInstance().getEntityManager();
-			usuario.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
-			usuario.setSexo(' ');
+			usuario.setTipoUsuario(TipoUsuario.MEMBRO);
+			usuario.setSexo(null);
 			usuario.setMatricula(Long.parseLong(matricula));
 			
 			String rg = (String)meusDados.get("rg");
@@ -135,7 +130,7 @@ public class LoginMBean {
 			}
 			
 			usuario.setAtivo(true);
-			usuario.setCelular("");
+			usuario.setCelular(null);
 
 			if (usuarioBanco != null && usuarioBanco.getId() != 0) {
 				usuario.setId(usuarioBanco.getId());
@@ -151,15 +146,7 @@ public class LoginMBean {
 			}
 			gerenciador.getTransaction().commit();
 
-			// MetodosUteis.getCurrentSession().setAttribute("usuarioLogado", u);
-			/*
-			 * if (usuario.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR)) { return
-			 * "home.xhtml"; } else if
-			 * (usuario.getTipoUsuario().equals(TipoUsuario.BOLSISTA)){ return "home.xhtml";
-			 * } else if (usuario.getTipoUsuario().equals(TipoUsuario.MEMBRO)){ return
-			 * "home.xhtml"; } else if (usuario.getTipoUsuario().equals(TipoUsuario.COMUM)){
-			 * return "home.xhtml"; } else { usuario = new Usuario(); return null; }
-			 */
+			
 
 		}
 		
