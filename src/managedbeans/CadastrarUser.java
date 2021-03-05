@@ -72,7 +72,7 @@ public class CadastrarUser {
 			erro = true;
 		}
 
-		if (((int) usuario.getSexo()) == 0) {
+		if (usuario.getSexo() == null || ((int) usuario.getSexo()) == 0) {
 			MetodosUteis.addMensagem("Campo Sexo obrigatório!");
 			erro = true;
 		}
