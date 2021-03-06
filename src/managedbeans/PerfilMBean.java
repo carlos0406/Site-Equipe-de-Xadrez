@@ -27,7 +27,9 @@ public class PerfilMBean {
 				
 				em.getTransaction().begin();
 				
-				usuario.setTextoDestaque(null);
+				if(!usuario.isDestaque()) {
+					usuario.setTextoDestaque(null);
+				}
 				em.merge(usuario);
 				
 				
