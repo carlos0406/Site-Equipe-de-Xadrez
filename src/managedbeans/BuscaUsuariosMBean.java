@@ -30,8 +30,9 @@ public class BuscaUsuariosMBean extends ControladorGeral {
 	private String nomeBusca;
 	private TipoUsuario tipoUsuarioBusca;
 	private String cpfBusca;
-	private Long matriculaBusca ;
-	private boolean ativoBusca;
+	private String matriculaBusca ;
+	private boolean ordeByRating;
+	private boolean ativoBusca=true;
 	
 	
 	
@@ -60,11 +61,21 @@ public class BuscaUsuariosMBean extends ControladorGeral {
 		this.cpfBusca = cpfBusca;
 	}
 
-	public Long getMatriculaBusca() {
+	
+
+	public boolean isOrdeByRating() {
+		return ordeByRating;
+	}
+
+	public void setOrdeByRating(boolean ordeByRating) {
+		this.ordeByRating = ordeByRating;
+	}
+
+	public String getMatriculaBusca() {
 		return matriculaBusca;
 	}
 
-	public void setMatriculaBusca(Long matriculaBusca) {
+	public void setMatriculaBusca(String matriculaBusca) {
 		this.matriculaBusca = matriculaBusca;
 	}
 
@@ -111,7 +122,7 @@ public class BuscaUsuariosMBean extends ControladorGeral {
 	public String buscar(){
 		dao = new UsuarioDAO();
 		
-		usuariosEncontrados = dao.buscarUsuarios(nomeBusca,tipoUsuarioBusca,cpfBusca,matriculaBusca,ativoBusca);
+		usuariosEncontrados = dao.buscarUsuarios(nomeBusca,tipoUsuarioBusca,cpfBusca,matriculaBusca,ativoBusca,ordeByRating);
 	
 		return "/sobreaequipe/busca_usuario.xhtml";
 	}
@@ -185,12 +196,10 @@ public class BuscaUsuariosMBean extends ControladorGeral {
 	
 	
 	public List<Usuario>getUsuariosDestaque(){
-		if (MetodosUteis.estaVazia(usuariosDestaque)) {
+		
 			dao = new UsuarioDAO();
 			return dao.buscarDestaques();
-		} else {
-			return usuariosDestaque;
-		}
+
 		
 	}
 	
@@ -240,6 +249,7 @@ public class BuscaUsuariosMBean extends ControladorGeral {
 				
 				
 				em.getTransaction().commit();
+				MetodosUteis.addMensagem("Rating do membro alterado!");
 				
 			} catch (Exception e){
 				e.printStackTrace();

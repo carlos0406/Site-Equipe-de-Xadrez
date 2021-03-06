@@ -56,11 +56,14 @@
 					<p:column headerText="Solicitar" rendered="#{usuarioLogado.administrador == false}">
 						<h:commandButton class="botao" value="Pedir" action="#{cadastrarSolicitacao.entrarCadastroSolicitacaoLivro(l)}"/>
 					</p:column>
-
+					<p:column headerText="Solicitar" rendered="#{usuarioLogado.administrador}">
+						<h:commandButton class="botao" value="Deletar" action="#{buscaLivrosMBean.deletar(l)}" rendered="#{usuarioLogado.administrador}"/>
+					</p:column>
 				</p:dataTable>	
 			</h:panelGroup>
 			<h:commandLink action="CadastrarLivro.xhtml" rendered="#{usuarioLogado.administrador}">
 			<h:graphicImage class="botaoMais" url="/imagens/iconeMais.png" /></h:commandLink>
+			
 		</h:form>
 	</div>
 </ui:composition>

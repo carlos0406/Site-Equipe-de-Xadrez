@@ -72,7 +72,7 @@ public class LoginMBean {
 				usuarioBanco = dao.findUsuarioByLoginSenha(usuario.getEmail(),
 						CriptografiaUtils.criptografarMD5(usuario.getSenha()));
 			} else {
-				usuarioBanco = dao.findUsuarioByMatriculaSenha(Long.valueOf(usuario.getEmail()),CriptografiaUtils.criptografarMD5(usuario.getSenha()));
+				usuarioBanco = dao.findUsuarioByMatriculaSenha(usuario.getEmail(),CriptografiaUtils.criptografarMD5(usuario.getSenha()));
 			}
 
 		} catch (Exception e) {
@@ -112,7 +112,7 @@ public class LoginMBean {
 			EntityManager gerenciador = Database.getInstance().getEntityManager();
 			usuario.setTipoUsuario(TipoUsuario.MEMBRO);
 			usuario.setSexo(null);
-			usuario.setMatricula(Long.parseLong(matricula));
+			usuario.setMatricula((matricula));
 			
 			String rg = (String)meusDados.get("rg");
 			rg = rg.substring(0, rg.indexOf(" "));

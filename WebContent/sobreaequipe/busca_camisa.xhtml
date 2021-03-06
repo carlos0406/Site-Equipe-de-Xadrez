@@ -38,6 +38,17 @@
 					<p:column headerText="Ano">
 						<h:outputText value="#{c.ano_camisa}" />
 					</p:column>
+					
+					<p:column headerText="Opções">
+
+						<h:commandButton class="botao" value="remover"
+							action="#{buscaCamisasMBean.deletar(c)}" />
+							
+						
+
+
+
+					</p:column>
 
 				</p:dataTable>			
 			</h:panelGroup>

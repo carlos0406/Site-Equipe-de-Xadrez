@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE ui:composition PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -22,7 +22,7 @@ td {
 }
 
 .dados {
-	align-items: center;
+	align-items: left;
 	box-shadow: 2px 3px 3px black;
 	margin-bottom: 20px;
 }
@@ -44,14 +44,19 @@ td {
 	background: #27ae60;
 	color: #27ae60;
 }
- form{
- 	position:relative;
- 	left:-100;
- }
 
-
-
-
+td form {
+	width:100%;
+	display: flex;
+	flex:1;
+	margin-left:-100px;
+	flex-direction: column;
+	box-sizing: border-box;
+	
+}
+#conteudo form{
+	margin:0 0%;
+}
 
 
 </style>
@@ -62,6 +67,7 @@ td {
 		<div class="row">
 
 			<div class="col-sm-6 col-md-4 dados">
+			
 				<p:column headerText="Imagem">
 					<h:graphicImage url="/imagens/anonimo.png" alt="Perfil"
 						styleClass="fotoUsuario"
@@ -70,11 +76,12 @@ td {
 						styleClass="fotoUsuario"
 						rendered="#{perfilMBean.usuario.idFoto == null and perfilMBean.usuario.sexoFeminino}" />
 
-					<h:graphicImage style="width:90px;" styleClass="fotoUsuario"
+					<h:graphicImage style="width:250px;" styleClass="fotoUsuario"
 						url="#{perfilMBean.usuario.urlFotoUsuario}" alt="Perfil"
-						rendered="#{u.idFoto != null}" />
+						rendered="#{perfilMBean.usuario.idFoto != null}" />
 					<br />
 				</p:column>
+				
 
 				<h:panelGrid columns="1">
 
@@ -85,9 +92,11 @@ td {
 
 
 
-					<h:outputText value="DATA DE NASCIMENTO:" styleClass='descricao' />
+					<h:outputText rendered="#{usuarioLogado.administrador}"
+						value="DATA DE NASCIMENTO:" styleClass='descricao' />
 
-					<h:outputText value="#{perfilMBean.usuario.dataNascimento}">
+					<h:outputText rendered="#{usuarioLogado.administrador}"
+						value="#{perfilMBean.usuario.dataNascimento}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 
@@ -99,9 +108,11 @@ td {
 
 					<h:outputText value="#{perfilMBean.usuario.celular}" />
 
-					<h:outputText value="MATRICULA:" styleClass='descricao' />
+					<h:outputText rendered="#{usuarioLogado.administrador}"
+						value="MATRICULA:" styleClass='descricao' />
 
-					<h:outputText value="#{perfilMBean.usuario.matricula}" />
+					<h:outputText rendered="#{usuarioLogado.administrador}"
+						value="#{perfilMBean.usuario.matricula}" />
 
 
 					<h:outputText value="CPF:" styleClass='descricao'
@@ -139,34 +150,32 @@ td {
 
 						<h:outputText value="#{perfilMBean.usuario.banco}"
 							rendered="#{usuarioLogado.administrador}" />
-
-
-
 					</h:panelGroup>
-
-				</h:panelGrid>
-				<h:form class="formulario">
-					<h:outputText value="Usuario Destaque: " />
-
-					<p:inputSwitch value="#{perfilMBean.usuario.destaque}" rendered="#{usuarioLogado.administrador}"/>
-
-					<h:outputText value="Texto de destaque: "
-						/>
 					
-					<p:inputTextarea rows="6" cols="25"
-						value="#{perfilMBean.usuario.textoDestaque}" 
-						rendered="#{usuarioLogado.administrador}"
+					<h:form class="formulario-destaque" rendered="#{perfilMBean.usuario.destaque||usuarioLogado.administrador}">
+						<h:outputText styleClass='descricao' value="Usuario Destaque: " />
+
+						<p:inputSwitch value="#{perfilMBean.usuario.destaque}"
+							rendered="#{usuarioLogado.administrador}" />
+
 						
-						/>
-						
-						
+
+						<p:inputTextarea rows="6" cols="25"
+							value="#{perfilMBean.usuario.textoDestaque}"
+							rendered="#{usuarioLogado.administrador}" />
+
+
 						<h:outputText value="#{perfilMBean.usuario.textoDestaque}"
 							rendered="#{!usuarioLogado.administrador}" />
-							
-					<h:commandButton class="botao" value="Salvar Alteração"
-						action="#{perfilMBean.alterarDestaque}"
-						rendered="#{usuarioLogado.administrador}" />
-				</h:form>
+
+						<h:commandButton class="botao" value="Salvar Alteração"
+							action="#{perfilMBean.alterarDestaque}"
+							rendered="#{usuarioLogado.administrador}" />
+					</h:form>
+
+
+				</h:panelGrid>
+
 
 			</div>
 
@@ -198,4 +207,4 @@ td {
 
 	</div>
 
-</ui:decorate>
+</ui:composition>

@@ -13,6 +13,9 @@
 	<!-- ###################### CONTEÚDO ###################### -->
 
 	<div id="conteudo">
+	<style>
+	
+</style>
 
 		<h1>#{buscaDepoimentoMBean.depoimentoVisualizado.titulo_depoimento}</h1>
 		#{buscaDepoimentoMBean.depoimentoVisualizado.autor_depoimento.nome}
@@ -24,7 +27,7 @@
 		</h:outputText>
 		<br /> 
 
-		<h:outputText
+		<h:outputText 
 			value="#{buscaDepoimentoMBean.depoimentoVisualizado.texto_depoimento}"
 			escape="false" />
 
@@ -65,12 +68,12 @@
 			  </div>
 			  
 			  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="carousel-control-prev-icon" style="background-color: #000" aria-hidden="true"></span>
 			    <span class="sr-only">Previous</span>
 			  </a>
 			  
 			  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="carousel-control-next-icon" style="background-color: #000" aria-hidden="true"></span>
 			    <span class="sr-only">Next</span>
 			  </a>
 			</div>

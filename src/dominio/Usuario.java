@@ -67,13 +67,13 @@ public class Usuario {
 	private String confirmarSenha;
 	
 	@Column(nullable = true)
-	private long matricula;
+	private String matricula;
 	
 	@Column(name="id_foto")
 	private Integer idFoto;
 	
 	@Column(nullable=false)
-	private int rating;
+	private int rating=1500;
 	
 	/** 
 	 * Atributo n�o persisitido que armazena uma foto que o usu�rio deseja
@@ -210,11 +210,11 @@ public class Usuario {
 		this.celular = celular;
 	}
 
-	public long getMatricula() {
+	public String getMatricula() {
 		return matricula;
 	}
 
-	public void setMatricula(long matricula) {
+	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
 

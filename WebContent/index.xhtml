@@ -48,18 +48,18 @@
 								style="display: flex; flex-direction: column; margin: auto">
 
 							
-								<h3>
+								
 									<h:outputText value="Autor:" class="descricao"/>
 									<h:outputText value="#{n.autor_noticia.nome}"/>
-								</h3>
 								
 								
-								<h4>
+								
+							
 									<h:outputText value="Data&amp;Hora:" class="descricao"/>
 									<h:outputText value="#{n.dataCadastro}">
 										<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
 									</h:outputText>
-								</h4>
+								
 
 								
 
@@ -69,7 +69,7 @@
 
 
 								<h:graphicImage
-									style="width:90px; margin: auto; display: block;"
+									style="width:240px; margin: auto; display: block;"
 									styleClass="fotoNoticia" url="#{n.urlPrimeiraFoto}"
 									rendered="#{not empty n.idsFotos}" />
 									

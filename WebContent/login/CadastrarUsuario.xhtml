@@ -7,24 +7,30 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="../template.xhtml">
 	
-	<style>
-		span {
-			margin-left: 0px;
-		}
-	</style>
+	
 	
 	<!-- ###################### CONTEÃšDO ###################### -->
 
 	<div id="conteudo">
+	<style>
+	#conteudo form{
+		margin:0 25%;
+		padding:0;
+		
+	}
+	
+	</style>
+	<br />
 		
 		<h1>Cadastrar usuário</h1>
 		
-		<h:form enctype="multipart/form-data" prependId="false">
+		<h:form enctype="multipart/form-data"  prependId="false" >
 			<h:messages/>
 			<h:inputHidden value="#{cadastrarUser.usuario.id}" />
+			
 			<h:panelGrid columns="4" style="background-color: #ecf0f1; 
                    bottom: 0px; left: 0px; right: 0px; top: 0px; 
-                   width: 150px">
+                   width: 150px;">
 				
 				<h:outputLabel for="nome" value="Nome completo: *" />
 				<h:inputText id="nome" value="#{cadastrarUser.usuario.nome}" />
@@ -76,7 +82,7 @@
 				</h:selectOneMenu>
 				
 				<h:selectOneMenu value="#{cadastrarUser.usuario.tipoUsuario}"
-					id="tipoUsuario1" rendered="#{usuarioLogado.membro}">
+					id="tipoUsuario1" rendered="#{!usuarioLogado.administrador}">
 					<f:selectItem itemValue="#{null}" itemLabel="--SELECIONE--"
 						itemDescription="--SELECIONE--" />
 					<f:selectItem itemValue="MEMBRO" itemLabel="Membro"

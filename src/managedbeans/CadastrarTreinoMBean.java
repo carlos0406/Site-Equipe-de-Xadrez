@@ -98,10 +98,10 @@ public class CadastrarTreinoMBean {
 	}
 	
 	public void addParticipante() {
-		if(!treino.getParticipantes().contains(usuarioTreino)) {
+		if(!treino.getParticipantes().contains(usuarioTreino)&&usuarioTreino!=null) {
 		treino.getParticipantes().add(usuarioTreino);
 		}else {
-			MetodosUteis.addMensagem("Usuario já incluso na lista de participantes");
+			MetodosUteis.addMensagem("Usuario já incluso na lista de participantes ou usuario vazio");
 		}
 		}
 

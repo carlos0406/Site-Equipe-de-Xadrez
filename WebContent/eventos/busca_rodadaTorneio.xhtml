@@ -47,7 +47,7 @@ td {
 		<h:form enctype="multipart/form-data">
 
 			<h:messages />
-			<h1 class="titulo">Membros da Equipe</h1>
+			<h1 class="titulo">Rodadas dos torneios</h1>
 
 		</h:form>
 
@@ -57,7 +57,7 @@ td {
 				style="background-color: #ecf0f1; 
                    bottom: 0px; left: 0px; right: 0px; top: 0px; 
                    margin:auto">
-				<h:outputLabel for="membro" value="Membro da rodada:"
+				<h:outputLabel for="membro" value="Membro:"
 					style="margin-top:20px" />
 
 				<p:autoComplete
@@ -119,14 +119,25 @@ td {
 
 
 
-					<p:column headerText="Nome Adversário">
+					<p:column headerText="Nome do Adversário">
 						<h:outputText value="#{r.nomeAdversario}" />
 					</p:column>
 
 					<p:column headerText="Resultado">
 						<h:outputText value="#{r.resultado}" />
 					</p:column>
-
+					
+					<p:column headerText="Rodada">
+						<h:outputText value="#{r.rodada}" />
+					</p:column>
+					
+					 <p:column headerText="Link da Partida">
+					 <h:outputLink value="#{r.linkPartida}">
+					 	Link da partida
+					 </h:outputLink>
+						
+					</p:column>
+ 
 
 
 
@@ -134,7 +145,8 @@ td {
 					<p:column headerText="Opções">
 
 						<h:commandButton class="botao" value="remover"
-							action="#{buscaRodadaTorneioMBean.removerRodada(r)}" />
+							action="#{buscaRodadaTorneioMBean.deletar(r)}" />
+							
 						<h:commandButton class="botao" value="Editar"
 							action="#{cadastarRodadaTorneioMBean.entrarEdicaoRodada(r)}" />
 

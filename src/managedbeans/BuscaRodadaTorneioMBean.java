@@ -21,7 +21,7 @@ import dominio.Usuario;
 
 @SuppressWarnings("serial") /*Parar de exibir falsos erros*/
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class BuscaRodadaTorneioMBean {
 	private RodadaTorneioDAO dao;
 	private RodadaTorneio rodadaBusca;
@@ -45,6 +45,7 @@ public class BuscaRodadaTorneioMBean {
 		dao = new RodadaTorneioDAO();
 	}
 	
+	
 	public String buscar(){
 	
 		rodadasEncontradas= new ArrayList<>();
@@ -66,7 +67,7 @@ public class BuscaRodadaTorneioMBean {
 	}
 	
 	
-	public String removerRodada(RodadaTorneio r) {
+	public String deletar(RodadaTorneio r) {
 		EntityManager em = Database.getInstance().getEntityManager();
 		
 		try {

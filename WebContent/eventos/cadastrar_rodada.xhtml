@@ -34,7 +34,7 @@ table {
 				
 				
 
-				<h:outputLabel for="membro" value="Membro da rodada:" style="margin-top:20px"/>
+				<h:outputLabel for="membro" value="Membro:" style="margin-top:20px"/>
 				
 				<p:autoComplete value="#{cadastarRodadaTorneioMBean.rodadaTorneio.membro}"
 					minQueryLength="3"
@@ -59,7 +59,9 @@ table {
 				
 				<h:inputText id="rodada" value="#{cadastarRodadaTorneioMBean.rodadaTorneio.rodada}" />	
 
-			
+				<h:outputLabel for="linkPartida" value="Link da partida: *" />
+				
+				<h:inputText id="linkPartida" value="#{cadastarRodadaTorneioMBean.rodadaTorneio.linkPartida}" />	
 
 				
 				<h:outputLabel for="resultado" value="Resultado: *" />

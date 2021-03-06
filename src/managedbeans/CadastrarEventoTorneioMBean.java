@@ -92,10 +92,10 @@ public class CadastrarEventoTorneioMBean {
 	}
 	
 	public void addParticipante() {
-		if(!evento.getParticipantes().contains(usuarioTorneio)) {
+		if(!evento.getParticipantes().contains(usuarioTorneio)&&usuarioTorneio!=null) {
 		evento.getParticipantes().add(usuarioTorneio);
 		}else {
-			MetodosUteis.addMensagem("Usuario já incluso na lista de participantes");
+			MetodosUteis.addMensagem("Usuario já incluso na lista de participantes ou usuario vazio");
 		}
 		}
 	

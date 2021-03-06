@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import dao.CamisaDAO;
 import dao.Database;
 import dominio.Camisa;
+import dominio.Livro;
 
 @SuppressWarnings("serial") /*Parar de exibir falsos erros*/
 @ManagedBean
@@ -61,6 +62,29 @@ public class BuscaCamisasMBean {
 	public void setDao(CamisaDAO dao) {
 		this.dao = dao;
 	}
+	public String deletar(Camisa c) {
+		EntityManager em = Database.getInstance().getEntityManager();
+		
+		try {
+			//Iniciando transa��o com o banco de dados
+			em.getTransaction().begin();
+			
+			dao.remover(c);
+			
+			//Transa��o confirmada
+			em.getTransaction().commit();
+			
+		} catch (Exception e){
+			e.printStackTrace();
+			
+			if (em.getTransaction().isActive())
+				//Como ocorreu erro, a transa��o n�o ser� confirmada
+				em.getTransaction().rollback();
+		}
+		
+		return buscar();
 
+		
+	}
 
 }

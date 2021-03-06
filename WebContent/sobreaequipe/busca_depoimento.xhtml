@@ -35,7 +35,7 @@
 				<p:dataTable var="d" value="#{buscaDepoimentoMBean.depoimentosEncontradas}"
 					style="width: 80%; margin: auto;">
 					<p:column headerText="Imagem">
-						<h:graphicImage style="width:200px;" url="/imagens/iconeNoticia.png" rendered="#{empty d.idsFotos}"/>
+						<h:graphicImage style="width:90px;" url="/imagens/iconeNoticia.png" rendered="#{empty d.idsFotos}"/>
 			            			
 		            	<h:graphicImage style="width:200px; margin: auto; display: block;" styleClass="fotoNoticia" url="#{d.urlPrimeiraFoto}" rendered="#{not empty d.idsFotos}"/>
 					</p:column>

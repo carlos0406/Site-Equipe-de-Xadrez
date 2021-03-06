@@ -54,8 +54,8 @@
 					</p:column>
 					
 					<p:column headerText="Situação">
-						<h:outputText value="Aprovado" rendered="#{s.aprovado}"/>
-						<h:outputText value="Indeferido" rendered="#{s.aprovado == false}"/>
+						<h:outputText value="Aprovado" style="color: #27ae60;font-weight:bold" rendered="#{s.aprovado}"/>
+						<h:outputText value="Indeferido"style="color: #c0392b;font-weight:bold" rendered="#{s.aprovado == false}"/>
 						<h:outputText value="Em análise" rendered="#{s.aprovado == null}"/>
 					</p:column>
 					

@@ -35,9 +35,9 @@
 				<p:dataTable var="n" value="#{buscaNoticiasMBean.noticiasEncontradas}"
 					style="width: 80%; margin: auto;">
 					<p:column headerText="Imagem">
-						<h:graphicImage url="/imagens/iconeNoticia.png" rendered="#{empty n.idsFotos}"/>
+						<h:graphicImage style="width:90px;" url="/imagens/iconeNoticia.png" rendered="#{empty n.idsFotos}" />
 			            			
-		            	<h:graphicImage style="width:90px; margin: auto; display: block;" styleClass="fotoNoticia" url="#{n.urlPrimeiraFoto}" rendered="#{not empty n.idsFotos}"/>
+		            	<h:graphicImage style="width:200px; margin: auto; display: block;" styleClass="fotoNoticia" url="#{n.urlPrimeiraFoto}" rendered="#{not empty n.idsFotos}"/>
 					</p:column>
 						 
 					<p:column headerText="Título">

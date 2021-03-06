@@ -37,6 +37,10 @@ public class RodadaTorneio {
 	
 	@Column(nullable=false)
 	private String resultado;
+	
+	@Column(nullable=true)
+	private String linkPartida;
+
 
 	
 	
@@ -86,6 +90,15 @@ public class RodadaTorneio {
 
 	public void setResultado(String resultado) {
 		this.resultado = resultado;
+	}
+	
+
+	public String getLinkPartida() {
+		return linkPartida;
+	}
+
+	public void setLinkPartida(String linkPartida) {
+		this.linkPartida = linkPartida;
 	}
 
 	@Override

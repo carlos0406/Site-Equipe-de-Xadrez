@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?>  
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE ui:composition PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
@@ -6,107 +6,117 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:p="http://primefaces.org/ui"
-	template="../template.xhtml">
-	
-	<style>
-		th span {
-			margin-left: 0px;
-		}
-		
-		td {
-			word-break: break-all;
-		}
-		
-		.titulo{
-			text-align: center;
-		}
-		
-		.rating{
-			background:#f5f5f5;
-			width:100%;
-			height:48px;
-			border-radius:10px;
-			border:1px solid rgba(0,0,0,0.5);
-			font-weight:500;
-		
-		}
-		.rating-text{
-			font-weight:bold;
-			background:rgba(200,10,10,.5);
-			
-		}
-		
-	</style>
+	xmlns:p="http://primefaces.org/ui" template="../template.xhtml">
 
-	<div id="conteudo"><br/><br/><br/><br/><br/><br/><br/>
-		<h:form enctype="multipart/form-data" >
-		
-			<h:messages/>
-			<h1 class="titulo">Usúarios em destaque</h1>	
-			
+	<style>
+th span {
+	margin-left: 0px;
+}
+
+td {
+	word-break: break-all;
+}
+
+.titulo {
+	text-align: center;
+}
+
+.rating {
+	background: #f5f5f5;
+	width: 100%;
+	height: 48px;
+	border-radius: 10px;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	font-weight: 500;
+}
+
+.rating-text {
+	font-weight: bold;
+	background: rgba(200, 10, 10, .5);
+}
+</style>
+
+	<div id="conteudo">
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<h:form enctype="multipart/form-data">
+
+			<h:messages />
+			<h1 class="titulo">Usuários em destaque</h1>
+
 		</h:form>
-		
+
 		<h:form prependId="false" style="margin: 0 0%;">
-		
-	
-		
-		
+
+
+
+
 			<h:panelGroup rendered="#{empty buscaUsuariosMBean.usuariosDestaque}">
-			<br/>
+				<br />
 				<h3>Nenhum usúario em destaque atualmente</h3>
 			</h:panelGroup>
-					
-			<h:panelGroup rendered="#{not empty buscaUsuariosMBean.usuariosDestaque}"><!--Só exibe algo, se encontrar usuários-->
-						
+
+			<h:panelGroup
+				rendered="#{not empty buscaUsuariosMBean.usuariosDestaque}">
+				<!--Só exibe algo, se encontrar usuários-->
+
 				<p:dataTable var="u" value="#{buscaUsuariosMBean.usuariosDestaque}">
 					<p:column headerText="Imagem">
-						<h:graphicImage url="/imagens/anonimo.png" alt="Perfil" styleClass="fotoUsuario" 
-				            			rendered="#{u.idFoto == null and u.sexoMasculino}"/>
-				            			
-			            <h:graphicImage url="/imagens/anonima.png" alt="Perfil" styleClass="fotoUsuario"
-			            			rendered="#{u.idFoto == null and u.sexoFeminino}" />
-			            			
-		            	<h:graphicImage style="width:90px;" styleClass="fotoUsuario" url="#{u.urlFotoUsuario}"
-		            				alt="Perfil" rendered="#{u.idFoto != null}"/>
+						<h:graphicImage url="/imagens/anonimo.png" alt="Perfil"
+							styleClass="fotoUsuario"
+							rendered="#{u.idFoto == null and u.sexoMasculino}" />
+
+						<h:graphicImage url="/imagens/anonima.png" alt="Perfil"
+							styleClass="fotoUsuario"
+							rendered="#{u.idFoto == null and u.sexoFeminino}" />
+
+						<h:graphicImage style="width:90px;" styleClass="fotoUsuario"
+							url="#{u.urlFotoUsuario}" alt="Perfil"
+							rendered="#{u.idFoto != null}" />
 					</p:column>
-						 
+
 					<p:column headerText="Nome">
 						<h:outputText value="#{u.nome}" />
 					</p:column>
-						    
+
 					<p:column headerText="Texto Destaque">
-						<h:inputTextarea disable="true" value="#{u.textoDestaque}"/>
+						<h:outputText value="#{u.textoDestaque}" />
 					</p:column>
-						    
-					
-					
-					
+
+
+
+
 					<p:column headerText="Email">
 						<h:outputText value="#{u.email}" />
 					</p:column>
-					
-					
-					
-					<p:column headerText="Matrícula" rendered="#{usuarioLogado.administrador}">
+
+
+
+					<p:column headerText="Matrícula"
+						rendered="#{usuarioLogado.administrador}">
 						<h:outputText value="#{u.matricula}" />
 					</p:column>
-					
+
 					<p:column headerText="Rating Interno">
-						<h:outputText value="#{u.rating}"  />
+						<h:outputText value="#{u.rating}" />
 					</p:column>
-					
+
 					<p:column headerText="Opções">
-						<h:commandButton class="botao" value="Ver Perfil"  
-						action="#{perfilMBean.verPerfilUsuario(u)}"/>		    
-					</p:column>			 
-					</p:dataTable>
-						
-					</h:panelGroup>
-					
-					
-					
-				</h:form>
-		</div>
+						<h:commandButton class="botao" value="Ver Perfil"
+							action="#{perfilMBean.verPerfilUsuario(u)}" />
+					</p:column>
+				</p:dataTable>
+
+			</h:panelGroup>
+
+
+
+		</h:form>
+	</div>
 
 </ui:composition>

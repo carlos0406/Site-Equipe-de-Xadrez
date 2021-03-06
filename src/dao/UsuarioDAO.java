@@ -162,11 +162,11 @@ public class UsuarioDAO extends DAOGenerico {
 	}
 	// criando busca por matricula para logar como usuario API
 
-	public Usuario findUsuarioByMatricula(long matricula) {
+	public Usuario findUsuarioByMatricula(String matricula) {
 		EntityManager em = getEntityManager();
 
 		String hql = "SELECT usuario ";
-		hql += "FROM Usuario usuario WHERE " + "usuario.matricula = :matricula";
+		hql += "FROM Usuario usuario WHERE " + "usuario.matricula like :matricula";
 
 		Query q = em.createQuery(hql);
 		q.setParameter("matricula", matricula);
@@ -179,11 +179,11 @@ public class UsuarioDAO extends DAOGenerico {
 		}
 	}
 	
-	public Usuario findUsuarioByMatriculaSenha(long matricula, String senha) {
+	public Usuario findUsuarioByMatriculaSenha(String matricula, String senha) {
 		EntityManager em = getEntityManager();
 
 		String hql = "SELECT usuario ";
-		hql += "FROM Usuario usuario WHERE " + "usuario.matricula= :matricula and usuario.senha = :senha";
+		hql += "FROM Usuario usuario WHERE " + "usuario.matricula like :matricula and usuario.senha = :senha";
 
 		Query q = em.createQuery(hql);
 		q.setParameter("matricula", matricula);
@@ -235,7 +235,7 @@ public class UsuarioDAO extends DAOGenerico {
 		}
 	}
 
-	public List<Usuario> buscarUsuarios(String nome, TipoUsuario tipoUsuario, String cpf, Long matricula, boolean ativo) {
+	public List<Usuario> buscarUsuarios(String nome, TipoUsuario tipoUsuario, String cpf, String matricula, boolean ativo,boolean ordeBy) {
 		EntityManager gerenciador = getEntityManager();
 		
 
@@ -246,7 +246,7 @@ public class UsuarioDAO extends DAOGenerico {
 		}
 
 		if (!MetodosUteis.estaVazia(tipoUsuario)) {
-			hql += " AND u.tipoUsuario=:tipoUsuario";
+			hql += " AND u.tipoUsuario=:tipoUsuario ";
 		}
 
 		if (!MetodosUteis.estaVazia(cpf)) {
@@ -254,11 +254,15 @@ public class UsuarioDAO extends DAOGenerico {
 		}
 
 		if (!MetodosUteis.estaVazia(matricula)) {
-			hql += " AND u.matricula =:matricula";
+			hql += " AND u.matricula like:matricula";
 		}
 
 		if (ativo) {
-			hql += "AND u.ativo=:ativo";
+			hql += " AND u.ativo=:ativo";
+		}
+		
+		if(ordeBy) {
+			hql += " ORDER BY u.rating desc";
 		}
 
 		// set parametes query
@@ -278,12 +282,14 @@ public class UsuarioDAO extends DAOGenerico {
 		}
 
 		if (!MetodosUteis.estaVazia(matricula)) {
-			q.setParameter("matricula",matricula);
+			q.setParameter("matricula",matricula+"%");
 		}
 		
 		if (ativo) {
 			q.setParameter("ativo", ativo);
 		}
+		
+		
 		
 		
 		

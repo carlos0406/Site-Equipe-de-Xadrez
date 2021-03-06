@@ -8,16 +8,20 @@
 	template="../template.xhtml">
 
 	<!-- ###################### CONTEÚDO ###################### -->
+	
 
 	<div id="conteudo">
-		
+	
+		<br/>
 		<h1>Cadastrar patrimônio</h1>
 
-		<h:form enctype="multipart/form-data">
+		<h:form enctype="multipart/form-data"  prependId="false" >
+		
 			<h:messages/>
-			<p:panelGrid columns="4" style=" 
+			
+			<h:panelGrid columns="4" style="background-color: #ecf0f1; 
                    bottom: 0px; left: 0px; right: 0px; top: 0px; 
-                   width: 150px">
+                   width: 150px;">
 		
 				<h:outputLabel for="nomeLivro" value="Nome da obra: *" />
 				<h:inputText id="nomeLivro" value="#{cadastrarLivroMBean.livro.nome_livro}" />
@@ -44,7 +48,7 @@
 				<h:commandButton class="botao" value="Enviar" action="#{cadastrarLivroMBean.cadastrar}"/>
 				<h:commandLink value="Ver patrimônios" action="#{buscaLivrosMBean.entrarBuscarLivros}" />
 		
-			</p:panelGrid>
+			</h:panelGrid>	
 		
 		</h:form>
 	</div>

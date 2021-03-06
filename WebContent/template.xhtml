@@ -523,13 +523,13 @@ ul li {
 						<li><h:commandLink value="Membros"
 								action="/sobreaequipe/busca_usuario.xhtml" /></li>
 						<li><h:commandLink value="Membros em Destaque"
-								action="/sobreaequipe/usuarios_destaque.xhtml" /></li>	
-								
+								action="/sobreaequipe/usuarios_destaque.xhtml" /></li>
+
 						<li><h:commandLink value="Influências"
 								action="/sobreaequipe/influenciasnaregiao.xhtml" /></li>
 						<li><h:commandLink value="Noticias"
 								action="#{buscaNoticiasMBean.entrarBuscarNoticias}" /></li>
-								
+
 						<li><h:commandLink value="Depoimentos"
 								action="#{buscaDepoimentoMBean.entrarBuscardepoimentos}" /></li>
 						<li><h:commandLink value="Camisas"
@@ -554,16 +554,13 @@ ul li {
 					<ul>
 						<li><h:commandLink value="Torneios"
 								action="/eventos/busca_eventoTorneio.xhtml" /></li>
-						<li><h:commandLink value="Treino"
-								action="#{buscaTreinosMBean.entrarBuscarTreinos}" /></li>
-
 						<li><h:commandLink value="Torneios futuros"
 								action="#{buscaTorneiosFuturosMBean.entrarBuscarEventoTorneio}" /></li>
-								
 						<li><h:commandLink value="Rodada Dos torneios"
 								rendered="#{usuarioLogado.administrador}"
-								action="/eventos/busca_rodadaTorneio.xhtml"
-								 /></li>		
+								action="/eventos/busca_rodadaTorneio.xhtml" /></li>
+						<li><h:commandLink value="Treino"
+								action="#{buscaTreinosMBean.entrarBuscarTreinos}" /></li>
 					</ul></li>
 				<li><h:commandLink value="Sair" action="#{loginMBean.sair}"
 						rendered="#{not empty usuarioLogado}" /></li>
@@ -627,13 +624,12 @@ ul li {
 			<b>
 				<p class="copyright">
 					Desenvolvido por <a href="#" target="_blank" class="MyGithub">Raíssa
-						Crispim como Trabalho de Conclusão de Curso (TCC)</a>
+						Crispim como Trabalho de Conclusão de Curso (TCC)</a> e<br /> <a
+						href="https://github.com/carlos0406" target="_blank"
+						class="MyGithub">Carlos Henrique de Andrade como Trabalho de
+						Conclusão de Curso(TCC)</a>
 				</p>
-				<p class="copyright">
-					Alterado por <a href="https://github.com/carlos0406"
-						target="_blank" class="MyGithub">Carlos Henrique de Andrade
-						como Projeto Integrador(PI)</a>
-				</p>
+				<p class="copyright">Alterado por</p>
 			</b>
 		</div>
 	</div>

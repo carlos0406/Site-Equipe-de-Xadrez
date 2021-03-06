@@ -50,7 +50,17 @@ public class CadastrarUser {
 	public String cadastrar() {
 		
 		boolean erro = false;
-
+		UsuarioDAO dao = new UsuarioDAO();
+		
+		if (dao.findUsuarioByLogin(usuario.getEmail())!=null) {
+			MetodosUteis.addMensagem("Um usuario com esse email já existe");
+			erro = true;
+		}
+		if (dao.findUsuarioByMatricula(usuario.getMatricula())!=null) {
+			MetodosUteis.addMensagem("Um usuario com essa matricula já existe");
+			erro = true;
+		}
+		
 		if (MetodosUteis.estaVazia(usuario.getNome())) {
 			MetodosUteis.addMensagem("Campo Nome obrigatÃ³rio!");
 			erro = true;
@@ -110,7 +120,7 @@ public class CadastrarUser {
 				//no campo de senha, ou seja, caso a senha esteja vazia, ela nï¿½o deve ser modificada (deve
 				//permanecer a mesma do banco).
 				
-				UsuarioDAO dao = new UsuarioDAO();
+				
 				dao.desanexarEntidade(usuario); //retira o usuï¿½rio da memï¿½ria do hibernate para evitar erros
 				
 				//Busca novamente o usuÃ¡rio no banco

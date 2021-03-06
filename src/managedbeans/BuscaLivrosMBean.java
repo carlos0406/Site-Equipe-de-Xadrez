@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import dao.LivroDAO;
 import dao.Database;
 import dominio.Livro;
+import dominio.RodadaTorneio;
 
 @SuppressWarnings("serial") /*Parar de exibir falsos erros*/
 @ManagedBean
@@ -60,6 +61,32 @@ public class BuscaLivrosMBean {
 
 	public void setDao(LivroDAO dao) {
 		this.dao = dao;
+	}
+	
+
+	public String deletar(Livro l) {
+		EntityManager em = Database.getInstance().getEntityManager();
+		
+		try {
+			//Iniciando transa��o com o banco de dados
+			em.getTransaction().begin();
+			
+			dao.remover(l);
+			
+			//Transa��o confirmada
+			em.getTransaction().commit();
+			
+		} catch (Exception e){
+			e.printStackTrace();
+			
+			if (em.getTransaction().isActive())
+				//Como ocorreu erro, a transa��o n�o ser� confirmada
+				em.getTransaction().rollback();
+		}
+		
+		return buscar();
+
+		
 	}
 	
 	
