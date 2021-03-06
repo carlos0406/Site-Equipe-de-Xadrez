@@ -100,12 +100,14 @@ public class LoginMBean {
 
 			Gson gson = new Gson();
 			HashMap meusDados = gson.fromJson(responseGET, HashMap.class);
+			String[]vinculo =meusDados.get("vinculo").toString().split(",");
 			
+			String nome=vinculo[1].substring((vinculo[1].indexOf("=")+1),vinculo[1].length());
 			String matricula = usuario.getEmail();
 			String senha = usuario.getSenha();
 			
 			usuario = new Usuario();
-			usuario.setNome(meusDados.get("nome_usual").toString());	
+			usuario.setNome(nome);	
 			usuario.setEmail((String) meusDados.get("email"));
 			usuario.setCpf((String) meusDados.get("cpf"));
 			usuario.setSenha(CriptografiaUtils.criptografarMD5(senha));
