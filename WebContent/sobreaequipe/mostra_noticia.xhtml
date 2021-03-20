@@ -30,7 +30,7 @@
 
 			<br />
 
-			<div id="carouselExampleIndicators"  class="carousel slide " data-ride="carousel">
+			<div rendered="#{buscaNoticiasMBean.noticiaVisualizada.idsFotos!=null}" id="carouselExampleIndicators"  class="carousel slide " data-ride="carousel">
 			  
 			  <ol class="carousel-indicators" >
 			    
@@ -63,7 +63,7 @@
 				</ui:repeat>
 			    
 			  </div>
-			  
+		  	<h:panelGroup rendered="#{buscaNoticiasMBean.noticiaVisualizada.idsFotos!=null}">
 			  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 			    <span class="carousel-control-prev-icon" style="background-color: #000" aria-hidden="true"></span>
 			    <span class="sr-only">Previous</span>
@@ -73,7 +73,9 @@
 			    <span class="carousel-control-next-icon" style="background-color: #000" aria-hidden="true"></span>
 			    <span class="sr-only">Next</span>
 			  </a>
+			  </h:panelGroup>
 			</div>
-
+	
 	</div>
+	
 </ui:composition>

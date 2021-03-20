@@ -19,7 +19,7 @@
 	<!-- ###################### CONTEÚDO ###################### -->
 
 	<div id="conteudo">
-		
+		<h:messages/>
 		<h1>Biblioteca</h1>
 		
 		<h:form prependId="false" style=" margin: 0 20%;">
@@ -57,7 +57,7 @@
 						<h:commandButton class="botao" value="Pedir" action="#{cadastrarSolicitacao.entrarCadastroSolicitacaoLivro(l)}"/>
 					</p:column>
 					<p:column headerText="Solicitar" rendered="#{usuarioLogado.administrador}">
-						<h:commandButton class="botao" value="Deletar" action="#{buscaLivrosMBean.deletar(l)}" rendered="#{usuarioLogado.administrador}"/>
+						<h:commandButton class="botao" onclick="return confirmamaçãoExcluirLivro()" value="Deletar" action="#{buscaLivrosMBean.deletar(l)}" rendered="#{usuarioLogado.administrador}"/>
 					</p:column>
 				</p:dataTable>	
 			</h:panelGroup>
@@ -65,5 +65,11 @@
 			<h:graphicImage class="botaoMais" url="/imagens/iconeMais.png" /></h:commandLink>
 			
 		</h:form>
-	</div>
+	</div><script type="text/javascript">
+	function confirmamaçãoExcluirLivro(){
+		if (!confirm('Deseja realmente deletar o livro selecionado?'))
+			return false;
+	}
+
+</script>
 </ui:composition>

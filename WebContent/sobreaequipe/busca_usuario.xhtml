@@ -55,11 +55,11 @@
 		
 			<h:outputLabel  for="nomeBusca" value="Nome :" />
 			<p:inputText id="nomeBusca" value="#{buscaUsuariosMBean.nomeBusca}"/> 
-			<h:outputLabel  for="cpfBusca" value="cpf :" />	
-			<p:inputMask mask="999.999.999-99" id="cpfBusca" value="#{buscaUsuariosMBean.cpfBusca}"/>
+			<h:outputLabel rendered="#{usuarioLogado.administrador}" for="cpfBusca" value="cpf :" />	
+			<p:inputMask mask="999.999.999-99" id="cpfBusca" rendered="#{usuarioLogado.administrador}" value="#{buscaUsuariosMBean.cpfBusca}"/>
                      
-			<h:outputLabel  for="matriculaBusca" value="Matricula :" />
-			<p:inputText id="matriculaBusca" value="#{buscaUsuariosMBean.matriculaBusca}"/> 
+			<h:outputLabel  rendered="#{usuarioLogado.administrador}" for="matriculaBusca"  value="Matricula :" />
+			<p:inputText rendered="#{usuarioLogado.administrador}" id="matriculaBusca" value="#{buscaUsuariosMBean.matriculaBusca}"/> 
 			
 			<h:outputLabel  for="matriculaBusca" value="Tipo do Usuario:"  rendered="#{usuarioLogado.administrador}"/>
 			
@@ -85,7 +85,7 @@
 			</h:panelGroup>
 			<h:outputLabel  for="nomeBusca" value="Ordernar por rating? :" />
 			
-			<h:panelGroup  rendered="#{usuarioLogado.administrador}" id="ordenarRating">
+			<h:panelGroup   id="ordenarRating">
 				<h:selectOneRadio value = "#{buscaUsuariosMBean.ordeByRating}"> 
 		   			<f:selectItem itemValue = "true" itemLabel = "Sim" />
 		   			<f:selectItem itemValue = "false" itemLabel = "Não" />
@@ -103,7 +103,7 @@
 			</h:panelGroup>
 					
 			<h:panelGroup rendered="#{not empty buscaUsuariosMBean.usuariosEncontrados}"><!--Só exibe algo, se encontrar usuários-->
-						
+				<h:messages/>		
 				<p:dataTable var="u" value="#{buscaUsuariosMBean.usuariosEncontrados}">
 					<p:column headerText="Imagem">
 						<h:graphicImage url="/imagens/anonimo.png" alt="Perfil" styleClass="fotoUsuario" 
@@ -119,7 +119,7 @@
 						<h:outputText value="#{u.nome}" />
 					</p:column>
 						    
-					<p:column headerText="Tipo">
+					<p:column headerText="Tipo" rendered="#{usuarioLogado.administrador}">
 						<h:outputText value="#{u.descricaoTipoUsuario}" />
 					</p:column>
 						    

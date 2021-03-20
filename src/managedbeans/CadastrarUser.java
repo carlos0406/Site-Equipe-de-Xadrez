@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 import dao.Database;
 import dao.UsuarioDAO;
 import dominio.Arquivo;
+import dominio.TipoUsuario;
 import dominio.Usuario;
 import uteis.CriptografiaUtils;
 import uteis.MetodosUteis;
@@ -52,11 +53,11 @@ public class CadastrarUser {
 		boolean erro = false;
 		UsuarioDAO dao = new UsuarioDAO();
 		
-		if (dao.findUsuarioByLogin(usuario.getEmail())!=null) {
+		if (dao.findUsuarioByLogin(usuario.getEmail())!=null&&usuario.getId()==0) {
 			MetodosUteis.addMensagem("Um usuario com esse email j� existe");
 			erro = true;
 		}
-		if (dao.findUsuarioByMatricula(usuario.getMatricula())!=null) {
+		if (dao.findUsuarioByMatricula(usuario.getMatricula())!=null&&usuario.getId()==0) {
 			MetodosUteis.addMensagem("Um usuario com essa matricula j� existe");
 			erro = true;
 		}
@@ -98,6 +99,7 @@ public class CadastrarUser {
 			MetodosUteis.addMensagem("Campo Tipo de Usuário obrigatório!");
 			erro = true;
 		}
+		
 		if (MetodosUteis.estaVazia(usuario.getConfirmarSenha())) {
 			MetodosUteis.addMensagem("Campo Confirmar senha obrigatório!");
 			erro = true;
@@ -112,8 +114,9 @@ public class CadastrarUser {
 		}
 		
 		
-		if (erro)
+		if (erro) {
 			return null;
+		}
 		else {
 			if (usuario.getId() != 0 && ValidadorUtil.isEmpty(usuario.getSenha())){
 				//Se for edição, só deve modificar a senha caso o usu�rio tenha digitado alguma coisa
@@ -152,8 +155,9 @@ public class CadastrarUser {
 					usuario.setIdFoto(arq.getId());
 				}
 				
-				if (usuario.getId() == 0)
-					gerenciador.persist(usuario);
+				if (usuario.getId() == 0) {
+					
+					gerenciador.persist(usuario);}
 				else
 					gerenciador.merge(usuario);
 

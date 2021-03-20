@@ -46,7 +46,7 @@ public class Usuario {
 	/** Tipo do usu�rio */
 	@Enumerated(EnumType.STRING)
 	@Column(nullable=false)
-	private TipoUsuario tipoUsuario;
+	private TipoUsuario tipoUsuario=TipoUsuario.MEMBRO;
 	
 	@Column(nullable = true)
 	private String rg;
@@ -143,6 +143,7 @@ public class Usuario {
 			return false;
 		}
 	}
+	
 	
 	public boolean isMembro(){
 		if (tipoUsuario.equals(TipoUsuario.MEMBRO)){

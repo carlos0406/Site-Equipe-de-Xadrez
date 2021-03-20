@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import dao.Database;
 import dao.EventoTorneioDAO;
 import dominio.EventoTorneio;
+import uteis.MetodosUteis;
 
 @SuppressWarnings("serial") /*Parar de exibir falsos erros*/
 @ManagedBean
@@ -118,6 +119,7 @@ public class BuscaEventoTorneioMBean {
 			
 		} catch (Exception e){
 			e.printStackTrace();
+			MetodosUteis.addMensagem("Não é possivel deletar esse torneio por que existe(m) rodada(s) relacionadas a esse torneio");
 			
 			if (em.getTransaction().isActive())
 				//Como ocorreu erro, a transaï¿½ï¿½o nï¿½o serï¿½ confirmada

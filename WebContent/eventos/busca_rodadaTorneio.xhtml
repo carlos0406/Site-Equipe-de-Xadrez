@@ -60,7 +60,7 @@ td {
 				<h:outputLabel for="membro" value="Membro:"
 					style="margin-top:20px" />
 
-				<p:autoComplete
+				<p:autoComplete style="margin-left:-2px;"
 					value="#{buscaRodadaTorneioMBean.rodadaBusca.membro}"
 					minQueryLength="3"
 					completeMethod="#{buscaUsuariosMBean.autoCompleteUsuarios}"
@@ -71,7 +71,7 @@ td {
 				<h:outputLabel for="torneio" value="Torneio:"
 					style="margin-top:20px" />
 
-				<p:autoComplete
+				<p:autoComplete style="margin-left:-2px;"
 					value="#{buscaRodadaTorneioMBean.rodadaBusca.torneio}"
 					minQueryLength="3"
 					completeMethod="#{cadastarRodadaTorneioMBean.autoCompleteTorneios}"
@@ -132,7 +132,7 @@ td {
 					</p:column>
 					
 					 <p:column headerText="Link da Partida">
-					 <h:outputLink value="#{r.linkPartida}">
+					 <h:outputLink target="_blank" value="#{r.linkPartida}">
 					 	Link da partida
 					 </h:outputLink>
 						
@@ -142,9 +142,9 @@ td {
 
 
 
-					<p:column headerText="Opções">
+					<p:column headerText="Opções" rendered="#{usuarioLogado.administrador}">
 
-						<h:commandButton class="botao" value="remover"
+						<h:commandButton class="botao" onclick="return confirmamaçãoExcluirTorneio()" value="remover"
 							action="#{buscaRodadaTorneioMBean.deletar(r)}" />
 							
 						<h:commandButton class="botao" value="Editar"
@@ -167,5 +167,11 @@ td {
 
 		</h:form>
 	</div>
+<script type="text/javascript">
+	function confirmamaçãoExcluirTorneio(){
+		if (!confirm('Deseja realmente excluir a rodada selecionada?'))
+			return false;
+	}
 
+</script>
 </ui:composition>

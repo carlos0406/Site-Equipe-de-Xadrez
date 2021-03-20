@@ -211,9 +211,11 @@ public class BuscaUsuariosMBean extends ControladorGeral {
 			em.getTransaction().begin();
 			if(u.isAtivo()) {
 				u.setAtivo(false);
+				MetodosUteis.addMensagem("Usuário inativado com sucesso");
 				
 			}else {
 				u.setAtivo(true);
+				MetodosUteis.addMensagem("Usuário ativado com sucesso");
 			}
 			
 			em.merge(u);

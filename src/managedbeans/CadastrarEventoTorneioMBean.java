@@ -46,10 +46,6 @@ public class CadastrarEventoTorneioMBean {
 			erro = true;
 		}
 		
-//		if (MetodosUteis.estaVazia(evento.getUrlFotoEvento())) {
-//			MetodosUteis.addMensagem("Campo foto obrigatório!");
-//			erro = true;
-//		}
 		if (MetodosUteis.estaVazia(evento.getNome_torneio())) {
 			MetodosUteis.addMensagem("Campo Nome do torneio obrigatório!");
 			erro = true;

@@ -28,11 +28,11 @@ public class RodadaTorneioDAO extends DAOGenerico {
 			 hql = "select r FROM RodadaTorneio r"+" where 1=1";
 		}
 		if (!MetodosUteis.estaVazia(rodada.getNomeAdversario())) {
-			 hql+="and r.nomeAdversario like:nomeAdversario";
+			 hql+="and upper(r.nomeAdversario) like:nomeAdversario" ;
 		}
 		
 		if (!MetodosUteis.estaVazia(rodada.getRodada())) {
-			 hql+="and r.rodada like:rodada";
+			 hql+=" and r.rodada like:rodada";
 		}
 		
 		
@@ -57,7 +57,7 @@ public class RodadaTorneioDAO extends DAOGenerico {
 			q.setParameter("rodada", rodada.getRodada());
 		}
 		if (!MetodosUteis.estaVazia(rodada.getNomeAdversario())) {
-			q.setParameter("nomeAdversario", rodada.getNomeAdversario());
+			q.setParameter("nomeAdversario","%"+ rodada.getNomeAdversario().toUpperCase()+"%");
 		}
 		
 		

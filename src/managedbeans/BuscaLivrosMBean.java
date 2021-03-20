@@ -13,6 +13,7 @@ import dao.LivroDAO;
 import dao.Database;
 import dominio.Livro;
 import dominio.RodadaTorneio;
+import uteis.MetodosUteis;
 
 @SuppressWarnings("serial") /*Parar de exibir falsos erros*/
 @ManagedBean
@@ -77,6 +78,9 @@ public class BuscaLivrosMBean {
 			em.getTransaction().commit();
 			
 		} catch (Exception e){
+			if(e instanceof  javax.persistence.RollbackException) {
+				MetodosUteis.addMensagem("Não é possivel deletar esse livro por que existe uma solicitação pendendete");
+			}
 			e.printStackTrace();
 			
 			if (em.getTransaction().isActive())

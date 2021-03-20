@@ -108,7 +108,7 @@
 					<h:commandButton class="botao" value="Deferir" action="#{buscaSolicitacoesMBean.deferir(s)}" rendered="#{s.aprovado == null}"/>
 					<h:commandButton class="botao" value="Indeferir" action="#{buscaSolicitacoesMBean.indeferir(s)}" rendered="#{s.aprovado == null}"/>
 					<h:commandButton class="botao" value="Registrar Devolução" action="#{buscaSolicitacoesMBean.devolver(s)}" rendered="#{s.aprovado and s.devolvido == false}"/>
-					<h:commandButton class="botao" value="Remover" action="#{buscaSolicitacoesMBean.deletar(s)}" rendered="#{usuarioLogado.administrador}"/>
+					<h:commandButton class="botao" onclick="return confirmamaçãoExcluirTorneio()" value="Remover" action="#{buscaSolicitacoesMBean.deletar(s)}" rendered="#{usuarioLogado.administrador}"/>
 				</p:column>
 			
 			</p:dataTable>
@@ -116,5 +116,11 @@
 		</h:panelGroup>
 				
 	</h:form>
-	</div>
+	</div><script type="text/javascript">
+	function confirmamaçãoExcluirTorneio(){
+		if (!confirm('Deseja realmente excluir o torneio selecionado?'))
+			return false;
+	}
+
+</script>
 </ui:composition>

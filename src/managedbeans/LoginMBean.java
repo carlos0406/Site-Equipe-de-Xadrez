@@ -59,20 +59,28 @@ public class LoginMBean {
 	}
 
 	public String entrar() throws ClientProtocolException, IOException {
+		
+		
 		if (!validarLogin()) {
 			return null;
 		}
+		
+		String token = buscarToken();
+
+		suap = (token != null) ? true : false;
+		
 
 		Usuario usuarioBanco;
 		
 		try {
 			UsuarioDAO dao = new UsuarioDAO();
 
-			if (!isNumeric(usuario.getEmail())) {
-				usuarioBanco = dao.findUsuarioByLoginSenha(usuario.getEmail(),
-						CriptografiaUtils.criptografarMD5(usuario.getSenha()));
+			if (!isNumeric(usuario.getEmail())&&suap) {
+				usuarioBanco = dao.findUsuarioByMatricula(usuario.getEmail());
+				System.out.println(usuarioBanco.getNome());
+						
 			} else {
-				usuarioBanco = dao.findUsuarioByMatriculaSenha(usuario.getEmail(),CriptografiaUtils.criptografarMD5(usuario.getSenha()));
+				usuarioBanco = dao.findUsuarioByLoginSenha(usuario.getEmail(),CriptografiaUtils.criptografarMD5(usuario.getSenha()));
 			}
 
 		} catch (Exception e) {
@@ -81,10 +89,9 @@ public class LoginMBean {
 			usuario = new Usuario();
 			return null;
 		}
+		
 
-		String token = buscarToken();
-
-		suap = (token != null) ? true : false;
+		
 		
 		if (suap &&usuarioBanco==null) {
 			UsuarioDAO dao = new UsuarioDAO();

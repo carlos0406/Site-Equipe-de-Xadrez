@@ -39,9 +39,9 @@
 						<h:outputText value="#{c.ano_camisa}" />
 					</p:column>
 					
-					<p:column headerText="Opções">
+					<p:column headerText="Opções" rendered="#{usuarioLogado.administrador}">
 
-						<h:commandButton class="botao" value="remover"
+						<h:commandButton class="botao" onclick="return confirmamaçãoExcluirCamisa()" value="remover"
 							action="#{buscaCamisasMBean.deletar(c)}" />
 							
 						
@@ -56,4 +56,11 @@
 		</h:form>
 		
 	</div>
+	<script type="text/javascript">
+	function confirmamaçãoExcluirCamisa(){
+		if (!confirm('Deseja deletar a camisa selecionada?'))
+			return false;
+	}
+
+</script>
 </ui:composition>

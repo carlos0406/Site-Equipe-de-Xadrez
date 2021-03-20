@@ -27,7 +27,7 @@
 		<h:form enctype="multipart/form-data"  prependId="false" >
 			<h:messages/>
 			<h:inputHidden value="#{cadastrarUser.usuario.id}" />
-			
+			<h:inputHidden value="#{cadastrarUser.usuario.tipoUsuario}" />	
 			<h:panelGrid columns="4" style="background-color: #ecf0f1; 
                    bottom: 0px; left: 0px; right: 0px; top: 0px; 
                    width: 150px;">
@@ -68,11 +68,11 @@
 				
 				
 				
-				<h:outputLabel for="tipoUsuario" value="Tipo de Usuário: *" />
+				<h:outputLabel for="tipoUsuario" value="Tipo de Usuário: *" rendered="#{usuarioLogado.administrador}"/>
 				
 				<h:selectOneMenu value="#{cadastrarUser.usuario.tipoUsuario}"
 					id="tipoUsuario"  rendered="#{usuarioLogado.administrador}">
-					<f:selectItem itemValue="#{null}" itemLabel="--SELECIONE--"
+					<f:selectItem itemValue="" itemLabel="--SELECIONE--"
 						itemDescription="--SELECIONE--" />
 						<f:selectItem itemValue="ADMINISTRADOR" itemLabel="Administrador"
 						itemDescription="Administrador" />
@@ -81,14 +81,6 @@
 						
 				</h:selectOneMenu>
 				
-				<h:selectOneMenu value="#{cadastrarUser.usuario.tipoUsuario}"
-					id="tipoUsuario1" rendered="#{!usuarioLogado.administrador}">
-					<f:selectItem itemValue="#{null}" itemLabel="--SELECIONE--"
-						itemDescription="--SELECIONE--" />
-					<f:selectItem itemValue="MEMBRO" itemLabel="Membro"
-						itemDescription="Membro" />
-				</h:selectOneMenu>
-						
 				<p:outputLabel for="celular" value="Celular: *" />
 				<p:inputMask id="celular" value="#{cadastrarUser.usuario.celular}" mask="(99)99999-9999"/>		
 				

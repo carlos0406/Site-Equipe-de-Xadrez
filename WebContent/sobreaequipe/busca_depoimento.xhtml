@@ -54,7 +54,7 @@
 						<h:commandButton class="botao" value="Ler" action="#{buscaDepoimentoMBean.verTexto(d)}"/>
 						<h:commandButton class="botao" value="Remover" action="#{buscaDepoimentoMBean.removerdepoimento(d)}"
 							rendered="#{usuarioLogado.administrador}"
-							onclick="if (!confirm('Deseja realmente remover a notícia selecionada? Essa ação não poderá ser desfeita.')) return false;"/>
+							onclick="if (!confirm('Deseja realmente remover o depoimento selecionada? Essa ação não poderá ser desfeita.')) return false;"/>
 					</p:column>
 
 				</p:dataTable>			

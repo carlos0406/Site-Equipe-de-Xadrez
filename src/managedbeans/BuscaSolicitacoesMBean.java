@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 
 import dao.Database;
 import dao.SolicitacaoDAO;
+import dominio.EventoTorneio;
 import dominio.SolicitacaoLivro;
 
 @SuppressWarnings("serial") /*Parar de exibir falsos erros*/
@@ -113,6 +114,31 @@ public class BuscaSolicitacoesMBean {
 		}
 		
 		return buscar();
+	}
+
+	public String deletar(SolicitacaoLivro s) {
+		EntityManager em = Database.getInstance().getEntityManager();
+		
+		try {
+			//Iniciando transa��o com o banco de dados
+			em.getTransaction().begin();
+			
+			dao.remover(s);
+			
+			//Transa��o confirmada
+			em.getTransaction().commit();
+			
+		} catch (Exception e){
+			e.printStackTrace();
+			
+			if (em.getTransaction().isActive())
+				//Como ocorreu erro, a transa��o n�o ser� confirmada
+				em.getTransaction().rollback();
+		}
+		
+		return buscar();
+
+		
 	}
 
 	public String getNomeUsuario() {
