@@ -58,6 +58,7 @@ public class LoginMBean {
 		return validou;
 	}
 
+	
 	public String entrar() throws ClientProtocolException, IOException {
 		
 		
@@ -66,7 +67,6 @@ public class LoginMBean {
 		}
 		
 		String token = buscarToken();
-
 		suap = (token != null) ? true : false;
 		
 
@@ -75,9 +75,8 @@ public class LoginMBean {
 		try {
 			UsuarioDAO dao = new UsuarioDAO();
 
-			if (!isNumeric(usuario.getEmail())&&suap) {
+			if (isNumeric(usuario.getEmail())&&suap) {
 				usuarioBanco = dao.findUsuarioByMatricula(usuario.getEmail());
-				System.out.println(usuarioBanco.getNome());
 						
 			} else {
 				usuarioBanco = dao.findUsuarioByLoginSenha(usuario.getEmail(),CriptografiaUtils.criptografarMD5(usuario.getSenha()));

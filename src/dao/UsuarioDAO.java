@@ -173,6 +173,7 @@ public class UsuarioDAO extends DAOGenerico {
 
 		try {
 			Usuario usuario = (Usuario) q.getSingleResult();
+			System.out.println(usuario.getNome());
 			return usuario;
 		} catch (NoResultException e) {
 			return null;

@@ -7,76 +7,83 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui" template="../template.xhtml">
-	
+
 
 
 	<!-- ###################### CONTEÚDO ###################### -->
 
 	<div id="conteudo">
-	<style>
-	
+		<style>
 </style>
 
 		<h1>#{buscaDepoimentoMBean.depoimentoVisualizado.titulo_depoimento}</h1>
-		#{buscaDepoimentoMBean.depoimentoVisualizado.autor_depoimento.nome}
-			
-	<br />
+		#{buscaDepoimentoMBean.depoimentoVisualizado.autor_depoimento.nome} <br />
 		<h:outputText
 			value="#{buscaDepoimentoMBean.depoimentoVisualizado.dataCadastro}">
 			<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
 		</h:outputText>
-		<br /> 
+		<br />
 
-		<h:outputText 
+		<h:outputText
 			value="#{buscaDepoimentoMBean.depoimentoVisualizado.texto_depoimento}"
 			escape="false" />
 
-			<br />
+		<br />
 
-			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-			  
-			  <ol class="carousel-indicators">
-			    
-			    <ui:repeat
+		<div id="carouselExampleIndicators" class="carousel slide"
+			data-ride="carousel">
+
+			<ol class="carousel-indicators">
+
+				<ui:repeat
 					value="#{buscaDepoimentoMBean.depoimentoVisualizado.idsFotos}"
 					var="foto" varStatus="loop">
-					
+
 					<h:panelGroup rendered="#{loop.index == 0}">
-						<li data-target="#carouselExampleIndicators" data-slide-to="#{loop.index}" class="active"></li>
+						<li data-target="#carouselExampleIndicators"
+							data-slide-to="#{loop.index}" class="active"></li>
 					</h:panelGroup>
-					
+
 					<h:panelGroup rendered="#{loop.index != 0}">
-						<li data-target="#carouselExampleIndicators" data-slide-to="#{loop.index}"></li>
+						<li data-target="#carouselExampleIndicators"
+							data-slide-to="#{loop.index}"></li>
 					</h:panelGroup>
 
 				</ui:repeat>
-			    
-			  </ol>
-			  
-			  <div class="carousel-inner">
-			  
-			    <ui:repeat
+
+			</ol>
+
+			<div class="carousel-inner">
+
+				<ui:repeat
 					value="#{buscaDepoimentoMBean.depoimentoVisualizado.idsFotos}"
 					var="foto" id="manuelSwitcherImages" varStatus="loop">
-					
-					<p:panel styleClass="#{loop.index == 0 ? 'carousel-item active' : 'carousel-item'}">
+
+					<p:panel
+						styleClass="#{loop.index == 0 ? 'carousel-item active' : 'carousel-item'}">
 						<p:graphicImage url="#{foto.urlFoto}" id="image" />
 					</p:panel>
 
 				</ui:repeat>
-			    
-			  </div>
-			  
-			  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-			    <span class="carousel-control-prev-icon" style="background-color: #000" aria-hidden="true"></span>
-			    <span class="sr-only">Previous</span>
-			  </a>
-			  
-			  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-			    <span class="carousel-control-next-icon" style="background-color: #000" aria-hidden="true"></span>
-			    <span class="sr-only">Next</span>
-			  </a>
+
 			</div>
+			<h:panelGroup
+				rendered="#{buscaDepoimentoMBean.depoimentoVisualizado.idsFotos!=null}">
+
+				<a class="carousel-control-prev" href="#carouselExampleIndicators"
+					role="button" data-slide="prev"> <span
+					class="carousel-control-prev-icon" style="background-color: #000"
+					aria-hidden="true"></span> <span class="sr-only">Previous</span>
+				</a>
+
+				<a class="carousel-control-next" href="#carouselExampleIndicators"
+					role="button" data-slide="next"> <span
+					class="carousel-control-next-icon" style="background-color: #000"
+					aria-hidden="true"></span> <span class="sr-only">Next</span>
+				</a>
+			</h:panelGroup>
+
+		</div>
 
 	</div>
 </ui:composition>
